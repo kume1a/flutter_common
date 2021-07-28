@@ -152,6 +152,13 @@
             </list>
           </value>
         </entry>
+        <entry key="common_models">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/git/flutter_common-7359326d2de53ab28cfdfc8701b08eba5410434c/packages/common_models/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="convert">
           <value>
             <list>
@@ -596,6 +603,7 @@
       </option>
     </properties>
     <CLASSES>
+      <root url="file://$USER_HOME$/.pub-cache/git/flutter_common-7359326d2de53ab28cfdfc8701b08eba5410434c/packages/common_models/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/_fe_analyzer_shared-23.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/analyzer-2.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/args-2.2.0/lib" />

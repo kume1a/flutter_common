@@ -23,9 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/flutter_common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/flutter_common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common_network_components/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_network_components/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627466055427</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="relative path to git in shared network components pubspec">
+      <created>1627466270487</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1627466270487</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,7 +169,8 @@
     <MESSAGE value="added common network components package" />
     <MESSAGE value="changed version codes" />
     <MESSAGE value="fixed base_service.dart" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed base_service.dart" />
+    <MESSAGE value="relative path to git in shared network components pubspec" />
+    <option name="LAST_COMMIT_MESSAGE" value="relative path to git in shared network components pubspec" />
   </component>
   <component name="WindowStateProjectService">
     <state x="373" y="115" width="1024" height="852" key="#Project_Structure" timestamp="1627459651084">
@@ -175,10 +181,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="693" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627463835748" />
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627466056848">
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627466271411">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627466056848" />
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627466271411" />
     <state x="623" y="211" width="672" height="678" key="search.everywhere.popup" timestamp="1627464069704">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

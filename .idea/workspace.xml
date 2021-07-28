@@ -23,22 +23,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_lint_rules.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/all_lint_rules.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_options.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/widgets/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/widgets/.metadata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/widgets/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/widgets/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/widgets/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/widgets/lib/widgets.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/widgets/pubspec.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/widgets/pubspec.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common_widgets/lib/blank_container.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_widgets/lib/src/blank_container.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common_widgets/lib/bottom_nav/animated_bottom_nav.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_widgets/lib/src/bottom_nav/animated_bottom_nav.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common_widgets/lib/bottom_nav/animated_bottom_nav_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_widgets/lib/src/bottom_nav/animated_bottom_nav_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common_widgets/lib/dashed_rect.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_widgets/lib/src/dashed_rect.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common_widgets/lib/default_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_widgets/lib/src/default_form.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common_widgets/lib/sliver_sized_box.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_widgets/lib/src/sliver_sized_box.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common_widgets/lib/tap_outside_to_clear_focus.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_widgets/lib/src/tap_outside_to_clear_focus.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,6 +53,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/common_widgets/lib" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
@@ -62,6 +66,7 @@
       <recent name="$PROJECT_DIR$/packages/common_widgets/lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src" />
       <recent name="$PROJECT_DIR$/packages/widgets" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -82,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627460649453</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added common widgets package">
+      <created>1627461568531</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1627461568531</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -98,7 +110,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="added common widgets package" />
+    <option name="LAST_COMMIT_MESSAGE" value="added common widgets package" />
   </component>
   <component name="WindowStateProjectService">
     <state x="373" y="115" width="1024" height="852" key="#Project_Structure" timestamp="1627459651084">
@@ -109,9 +122,9 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="693" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627461083719" />
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627460662900">
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627461571134">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627460662900" />
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627461571134" />
   </component>
 </project>

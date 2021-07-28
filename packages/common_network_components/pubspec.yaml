@@ -1,7 +1,6 @@
 name: common_network_components
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
-# homepage: https://www.example.com
+description: Shared network components
+version: 0.0.2
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

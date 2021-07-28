@@ -17,26 +17,18 @@ class TokenHeaderInterceptor extends Interceptor {
     required this.tokenRefresher,
     required this.onTokenExpired,
     this.onWriteHeaders,
-    this.showLogs = false,
+    List<Interceptor>? interceptors,
   }) {
     _dio = Dio(BaseOptions(
       connectTimeout: kNetworkTimeout,
       receiveTimeout: kNetworkTimeout,
       sendTimeout: kNetworkTimeout,
     ));
-    if (showLogs) {
-      _dio.interceptors.add(LogInterceptor(
-        requestBody: true,
-        responseBody: true,
-        requestHeader: true,
-        responseHeader: true,
-        request: true,
-        error: true,
-      ));
+    if (interceptors != null) {
+      _dio.interceptors.addAll(interceptors);
     }
   }
 
-  final bool showLogs;
   final AuthKeyStore authKeyStore;
   final TokenRefresher tokenRefresher;
   final VoidCallback onTokenExpired;

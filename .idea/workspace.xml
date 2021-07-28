@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="" />
+    <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +55,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -195,10 +197,14 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="693" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627463835748" />
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627467028407">
+    <state x="449" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1627467753170">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627467028407" />
+    <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627467753170" />
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627467819461">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627467819461" />
     <state x="623" y="211" width="672" height="678" key="search.everywhere.popup" timestamp="1627464069704">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

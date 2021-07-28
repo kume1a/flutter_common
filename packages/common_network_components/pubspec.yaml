@@ -1,6 +1,6 @@
 name: common_network_components
 description: Shared network components
-version: 0.0.3
+version: 0.0.4
 publish_to: 'none'
 
 environment:

@@ -7,7 +7,7 @@ import '../local/auth_key_store.dart';
 import '../utils/jwt_decoder.dart';
 
 typedef TokenRefresher = Future<String?> Function(Dio dio, String refreshToken, String? oldAccessToken);
-typedef OnWriteHeaders = FutureOr<void> Function(Map<String, dynamic> headers);
+typedef ExtraHeadersProvider = FutureOr<Map<String, dynamic>> Function();
 
 const int kNetworkTimeout = 10000;
 
@@ -16,7 +16,7 @@ class TokenHeaderInterceptor extends Interceptor {
     required this.authKeyStore,
     required this.tokenRefresher,
     required this.onTokenExpired,
-    this.onWriteHeaders,
+    this.extraHeadersProvider,
     List<Interceptor>? interceptors,
   }) {
     _dio = Dio(BaseOptions(
@@ -32,7 +32,7 @@ class TokenHeaderInterceptor extends Interceptor {
   final AuthKeyStore authKeyStore;
   final TokenRefresher tokenRefresher;
   final VoidCallback onTokenExpired;
-  final OnWriteHeaders? onWriteHeaders;
+  final ExtraHeadersProvider? extraHeadersProvider;
 
   late final Dio _dio;
 
@@ -46,7 +46,10 @@ class TokenHeaderInterceptor extends Interceptor {
         accessToken = await authKeyStore.readAccessToken();
       }
       options.headers['Authorization'] = 'Bearer $accessToken';
-      onWriteHeaders?.call(options.headers);
+      if (extraHeadersProvider != null) {
+        final Map<String, dynamic> extraHeaders = await extraHeadersProvider!.call();
+        options.headers.addAll(extraHeaders);
+      }
     }
 
     super.onRequest(options, handler);
@@ -66,7 +69,7 @@ class TokenHeaderInterceptor extends Interceptor {
   Future<void> _refreshAccessToken(String refreshToken) async {
     try {
       final String? oldAccessToken = await authKeyStore.readAccessToken();
-      final String? newAccessToken = await tokenRefresher.call(_dio,refreshToken, oldAccessToken);
+      final String? newAccessToken = await tokenRefresher.call(_dio, refreshToken, oldAccessToken);
       if (newAccessToken != null) {
         authKeyStore.writeAccessToken(newAccessToken);
       } else {

@@ -1,6 +1,6 @@
 name: common_widgets
 description: Shared widgets for flutter apps
-version: 0.0.2
+version: 0.0.3
 publish_to: 'none'
 
 environment:

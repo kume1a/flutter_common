@@ -1,4 +1,5 @@
 export 'src/bottom_nav/animated_bottom_nav.dart';
+export 'src/bottom_nav/animated_bottom_nav_item.dart';
 export 'src/blank_container.dart';
 export 'src/dashed_rect.dart';
 export 'src/default_form.dart';

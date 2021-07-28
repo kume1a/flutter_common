@@ -51,7 +51,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/common_models/lib/src/failure" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/common_widgets/lib/src/carousel" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -59,18 +59,19 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/packages/common_models/lib/src/failure" />
-      <recent name="$PROJECT_DIR$/packages/common_network_components/lib/src/services" />
-      <recent name="$PROJECT_DIR$/packages/common_network_components/lib/src" />
-      <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src" />
-      <recent name="$PROJECT_DIR$/packages/common_models/lib/src/vvo" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src/carousel" />
       <recent name="$PROJECT_DIR$/packages/common_network_components/lib/src/store" />
       <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src" />
       <recent name="$PROJECT_DIR$/packages/widgets" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src/carousel" />
+      <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src" />
+      <recent name="$PROJECT_DIR$/packages/common_models/lib/src/failure" />
+      <recent name="$PROJECT_DIR$/packages/common_network_components/lib/src/services" />
+      <recent name="$PROJECT_DIR$/packages/common_network_components/lib/src" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -187,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627472225417</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="added carousel, scroll listener plus and dashed line">
+      <created>1627472711421</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1627472711421</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,7 +226,8 @@
     <MESSAGE value="changed adding extra headers in token header interceptor" />
     <MESSAGE value="export animated bottom nav item" />
     <MESSAGE value="added margin to animated bottom nav" />
-    <option name="LAST_COMMIT_MESSAGE" value="added margin to animated bottom nav" />
+    <MESSAGE value="added carousel, scroll listener plus and dashed line" />
+    <option name="LAST_COMMIT_MESSAGE" value="added carousel, scroll listener plus and dashed line" />
   </component>
   <component name="WindowStateProjectService">
     <state x="373" y="115" width="1024" height="852" key="#Project_Structure" timestamp="1627459651084">
@@ -233,10 +242,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627467753170" />
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627472227140">
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627472712476">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627472227140" />
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627472712476" />
     <state x="623" y="211" width="672" height="678" key="search.everywhere.popup" timestamp="1627464069704">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

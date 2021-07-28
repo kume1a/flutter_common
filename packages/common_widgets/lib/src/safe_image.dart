@@ -6,9 +6,9 @@ class SafeImage extends StatelessWidget {
   const SafeImage({
     Key? key,
     required this.url,
-    this.width,
-    this.height,
-    this.borderRadius,
+    required this.width,
+    required this.height,
+    this.borderRadius = 4,
     this.placeholderColor,
   })  : placeholderAssetPath = null,
         super(key: key);
@@ -16,9 +16,9 @@ class SafeImage extends StatelessWidget {
   const SafeImage.withAssetPlaceholder({
     Key? key,
     required this.url,
-    this.width,
-    this.height,
-    this.borderRadius,
+    required this.width,
+    required this.height,
+    this.borderRadius = 4,
     this.placeholderAssetPath,
   })  : placeholderColor = null,
         super(key: key);
@@ -26,7 +26,7 @@ class SafeImage extends StatelessWidget {
   final String? url;
   final double? width;
   final double? height;
-  final double? borderRadius;
+  final double borderRadius;
   final Color? placeholderColor;
   final String? placeholderAssetPath;
 
@@ -43,7 +43,7 @@ class SafeImage extends StatelessWidget {
 
   Widget _image(ImageProvider imageProvider) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius ?? 0),
+      borderRadius: BorderRadius.circular(borderRadius),
       child: Image(
         image: imageProvider,
         width: width,

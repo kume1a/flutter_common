@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 import '../local/auth_key_store.dart';
 import '../utils/jwt_decoder.dart';
 
-typedef TokenRefresher = Future<String?> Function(Dio dio, String? oldAccessToken);
+typedef TokenRefresher = Future<String?> Function(Dio dio, String refreshToken, String? oldAccessToken);
 typedef OnWriteHeaders = FutureOr<void> Function(Map<String, dynamic> headers);
 
 const int kNetworkTimeout = 10000;
@@ -74,7 +74,7 @@ class TokenHeaderInterceptor extends Interceptor {
   Future<void> _refreshAccessToken(String refreshToken) async {
     try {
       final String? oldAccessToken = await authKeyStore.readAccessToken();
-      final String? newAccessToken = await tokenRefresher.call(_dio, oldAccessToken);
+      final String? newAccessToken = await tokenRefresher.call(_dio,refreshToken, oldAccessToken);
       if (newAccessToken != null) {
         authKeyStore.writeAccessToken(newAccessToken);
       } else {

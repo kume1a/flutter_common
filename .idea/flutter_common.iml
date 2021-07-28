@@ -9,6 +9,9 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/common_models/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/packages/common_models/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/packages/common_models/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/common_network_components/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/common_network_components/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/common_network_components/build" />
       <excludeFolder url="file://$MODULE_DIR$/packages/widgets/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/packages/widgets/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/packages/widgets/build" />

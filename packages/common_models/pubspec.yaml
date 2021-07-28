@@ -1,6 +1,7 @@
 name: common_models
 description: Shared model classes
 version: 0.0.2
+publish_to: 'none'
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

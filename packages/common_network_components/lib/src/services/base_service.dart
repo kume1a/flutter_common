@@ -1,15 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:common_models/common_models.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
-import '../../../model/core/either.dart';
-import '../../../model/failures/network/fetch_failure.dart';
 
 abstract class BaseService {
 
-  @protected
   Future<Either<F, T>> safeCall<F, T>({
     required Future<T> Function() call,
     required F Function() onNetworkError,
@@ -41,7 +38,6 @@ abstract class BaseService {
     }
   }
 
-  @protected
   Future<Either<FetchFailure, T>> safeFetch<T>(Future<T> Function() call) async {
     return safeCall(
       call: call,

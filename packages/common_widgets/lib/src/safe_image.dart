@@ -6,8 +6,8 @@ class SafeImage extends StatelessWidget {
   const SafeImage({
     Key? key,
     required this.url,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     this.borderRadius = 4,
     this.placeholderColor,
   })  : placeholderAssetPath = null,
@@ -16,8 +16,8 @@ class SafeImage extends StatelessWidget {
   const SafeImage.withAssetPlaceholder({
     Key? key,
     required this.url,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     this.borderRadius = 4,
     this.placeholderAssetPath,
   })  : placeholderColor = null,

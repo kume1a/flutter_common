@@ -1,6 +1,6 @@
 name: common_widgets
 description: Shared widgets for flutter apps
-version: 0.0.3
+version: 0.0.4
 publish_to: 'none'
 
 environment:
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_hooks: ^0.18.0
 
 dev_dependencies:
   flutter_test:

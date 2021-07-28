@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="" />
+    <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -171,7 +173,21 @@
       <option name="project" value="LOCAL" />
       <updated>1627469940132</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="export animated bottom nav item">
+      <created>1627470387578</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1627470387578</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added margin to animated bottom nav">
+      <created>1627472225417</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1627472225417</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,7 +216,9 @@
     <MESSAGE value="added refresh token as an argument in interceptor" />
     <MESSAGE value="added interceptors field in token header interceptor" />
     <MESSAGE value="changed adding extra headers in token header interceptor" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed adding extra headers in token header interceptor" />
+    <MESSAGE value="export animated bottom nav item" />
+    <MESSAGE value="added margin to animated bottom nav" />
+    <option name="LAST_COMMIT_MESSAGE" value="added margin to animated bottom nav" />
   </component>
   <component name="WindowStateProjectService">
     <state x="373" y="115" width="1024" height="852" key="#Project_Structure" timestamp="1627459651084">
@@ -215,10 +233,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627467753170" />
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627469941198">
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627472227140">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627469941198" />
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627472227140" />
     <state x="623" y="211" width="672" height="678" key="search.everywhere.popup" timestamp="1627464069704">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

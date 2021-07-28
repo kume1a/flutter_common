@@ -1,0 +1,23 @@
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  errors:
+    missing_required_param: error
+    missing_return: error
+    prefer_relative_imports: warning
+    public_member_api_docs: ignore
+  exclude:
+    - lib/**/*.g.dart
+    - lib/**/*.config.dart
+    - lib/**/*.freezed.dart
+
+linter:
+  rules:
+    sort_pub_dependencies: false
+    always_put_required_named_parameters_first: false
+    avoid_classes_with_only_static_members: false
+    sort_constructors_first: true
+    prefer_single_quotes: true
+    always_specify_types: true
+    #    lines_longer_than_80_chars: true
+    prefer_relative_imports: true

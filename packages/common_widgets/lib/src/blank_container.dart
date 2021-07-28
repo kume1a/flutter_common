@@ -32,7 +32,7 @@ class BlankContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = this.color ?? Colors.grey.shade500;
+    final Color color = this.color ?? Colors.grey.shade300;
 
     switch (_containerType) {
       case _ContainerType.circular:

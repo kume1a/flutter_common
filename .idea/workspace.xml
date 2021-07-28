@@ -200,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627473163921</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="removed required from safe image width and height">
+      <created>1627473364362</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1627473364362</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -233,7 +240,8 @@
     <MESSAGE value="added margin to animated bottom nav" />
     <MESSAGE value="added carousel, scroll listener plus and dashed line" />
     <MESSAGE value="default border radius to safe image" />
-    <option name="LAST_COMMIT_MESSAGE" value="default border radius to safe image" />
+    <MESSAGE value="removed required from safe image width and height" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed required from safe image width and height" />
   </component>
   <component name="WindowStateProjectService">
     <state x="373" y="115" width="1024" height="852" key="#Project_Structure" timestamp="1627459651084">
@@ -248,10 +256,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627467753170" />
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627473164863">
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627473365557">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627473164863" />
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627473365557" />
     <state x="623" y="211" width="672" height="678" key="search.everywhere.popup" timestamp="1627464069704">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

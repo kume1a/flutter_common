@@ -1,4 +1,4 @@
-# widgets
+# common_widgets
 
 A new Flutter package project.
 

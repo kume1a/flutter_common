@@ -9,7 +9,9 @@ environment:
 dependencies:
   dio: ^4.0.0
   common_models:
-    path: ../common_models
+    git:
+      url: https://github.com/kume1a/flutter_common.git
+      path: packages/common_models
 
 dev_dependencies:
   test: ^1.16.0

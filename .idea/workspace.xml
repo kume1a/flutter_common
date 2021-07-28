@@ -22,11 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/flutter_common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/flutter_common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +49,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/common_models/lib/src/vvo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/common_widgets/lib/src" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -62,11 +58,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src" />
       <recent name="$PROJECT_DIR$/packages/common_models/lib/src/vvo" />
       <recent name="$PROJECT_DIR$/packages/common_models/lib/src/failure" />
       <recent name="$PROJECT_DIR$/packages/common_models/lib/src/vvo/core" />
       <recent name="$PROJECT_DIR$/packages/common_models/lib/src/core" />
-      <recent name="$PROJECT_DIR$/packages/common_widgets/lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src" />
@@ -104,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627461818298</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added common models package">
+      <created>1627463284795</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1627463284795</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,7 +125,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="added common widgets package" />
     <MESSAGE value="added exports in common widgets module" />
-    <option name="LAST_COMMIT_MESSAGE" value="added exports in common widgets module" />
+    <MESSAGE value="added common models package" />
+    <option name="LAST_COMMIT_MESSAGE" value="added common models package" />
   </component>
   <component name="WindowStateProjectService">
     <state x="373" y="115" width="1024" height="852" key="#Project_Structure" timestamp="1627459651084">
@@ -133,9 +137,9 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="693" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627461836695" />
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627461819702">
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627463286016">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627461819702" />
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627463286016" />
   </component>
 </project>

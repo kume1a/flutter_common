@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'animated_bottom_nav_item.dart';
+import '../../common_widgets.dart';
 
 class AnimatedBottomNav extends StatelessWidget {
   const AnimatedBottomNav({
@@ -13,8 +13,7 @@ class AnimatedBottomNav extends StatelessWidget {
     this.backgroundColor,
     this.selectedColorOpacity = .1,
     this.itemShape = const StadiumBorder(),
-    this.padding = const EdgeInsets.all(8),
-    this.borderRadius,
+    this.margin = const EdgeInsets.all(8),
     this.itemPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
     this.duration = const Duration(milliseconds: 500),
     this.curve = Curves.easeOutQuint,
@@ -28,8 +27,7 @@ class AnimatedBottomNav extends StatelessWidget {
   final Color? backgroundColor;
   final double selectedColorOpacity;
   final ShapeBorder itemShape;
-  final EdgeInsets padding;
-  final BorderRadius? borderRadius;
+  final EdgeInsets margin;
   final EdgeInsets itemPadding;
   final Duration duration;
   final Curve curve;
@@ -39,11 +37,8 @@ class AnimatedBottomNav extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
 
     return Container(
-      padding: padding,
-      decoration: BoxDecoration(
-        borderRadius: borderRadius,
-        color: backgroundColor ?? theme.bottomNavigationBarTheme.backgroundColor,
-      ),
+      padding: margin,
+      color: backgroundColor ?? theme.bottomNavigationBarTheme.backgroundColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

@@ -22,9 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -152,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627466499503</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added refresh token as an argument in interceptor">
+      <created>1627467027126</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1627467027126</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,7 +183,8 @@
     <MESSAGE value="fixed base_service.dart" />
     <MESSAGE value="relative path to git in shared network components pubspec" />
     <MESSAGE value="freezed dependency version change" />
-    <option name="LAST_COMMIT_MESSAGE" value="freezed dependency version change" />
+    <MESSAGE value="added refresh token as an argument in interceptor" />
+    <option name="LAST_COMMIT_MESSAGE" value="added refresh token as an argument in interceptor" />
   </component>
   <component name="WindowStateProjectService">
     <state x="373" y="115" width="1024" height="852" key="#Project_Structure" timestamp="1627459651084">
@@ -189,10 +195,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="693" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627463835748" />
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627466502673">
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1627467028407">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627466502673" />
+    <state x="555" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1627467028407" />
     <state x="623" y="211" width="672" height="678" key="search.everywhere.popup" timestamp="1627464069704">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

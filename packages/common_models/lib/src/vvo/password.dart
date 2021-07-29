@@ -5,7 +5,6 @@ import 'core/vvo_config.dart';
 
 class PasswordVVO extends ValueObject<PasswordFailure, String> {
   factory PasswordVVO(String value) {
-    VVOConfig.passwordVVOConfig.minLength = 7;
     if (value.isEmpty) {
       return PasswordVVO._(left(const PasswordFailure.empty()));
     }

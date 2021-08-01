@@ -1,6 +1,6 @@
 name: common_models
 description: Shared model classes
-version: 0.0.3
+version: 0.0.4
 publish_to: 'none'
 
 environment:

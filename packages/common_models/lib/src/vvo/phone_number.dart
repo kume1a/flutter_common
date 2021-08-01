@@ -16,5 +16,5 @@ class PhoneNumberVVO extends ValueObject<ValueFailure, String> {
 
   PhoneNumberVVO._(Either<ValueFailure, String> value) : super(value);
 
-  static final RegExp _patternPhoneNumber = RegExp(r'^\d{9}$');
+  static final RegExp _patternPhoneNumber = RegExp(r'^(995)?\d{9}$');
 }

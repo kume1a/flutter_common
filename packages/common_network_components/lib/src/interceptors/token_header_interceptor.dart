@@ -1,38 +1,31 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 
 import '../local/auth_key_store.dart';
 import '../utils/jwt_decoder.dart';
+import 'abstract_token_header_interceptor_flow.dart';
 
-typedef TokenRefresher = Future<String?> Function(Dio dio, String refreshToken, String? oldAccessToken);
-typedef ExtraHeadersProvider = FutureOr<Map<String, dynamic>> Function();
-
-const int kNetworkTimeout = 10000;
+const int kNetworkTimeout = 8000;
 
 class TokenHeaderInterceptor extends Interceptor {
   TokenHeaderInterceptor({
     required this.authKeyStore,
-    required this.tokenRefresher,
-    required this.onTokenExpired,
-    this.extraHeadersProvider,
-    List<Interceptor>? interceptors,
+    required this.tokenHeaderInterceptorFlow,
+    Dio? dio,
   }) {
-    _dio = Dio(BaseOptions(
-      connectTimeout: kNetworkTimeout,
-      receiveTimeout: kNetworkTimeout,
-      sendTimeout: kNetworkTimeout,
-    ));
-    if (interceptors != null) {
-      _dio.interceptors.addAll(interceptors);
-    }
+    _dio = dio ??
+        Dio(BaseOptions(
+          connectTimeout: kNetworkTimeout,
+          receiveTimeout: kNetworkTimeout,
+          sendTimeout: kNetworkTimeout,
+        ));
   }
 
   final AuthKeyStore authKeyStore;
-  final TokenRefresher tokenRefresher;
-  final VoidCallback onTokenExpired;
-  final ExtraHeadersProvider? extraHeadersProvider;
+  final AbstractTokenHeaderInterceptorFlow tokenHeaderInterceptorFlow;
 
   late final Dio _dio;
 
@@ -45,9 +38,9 @@ class TokenHeaderInterceptor extends Interceptor {
         await _tryRefreshAccessToken();
         accessToken = await authKeyStore.readAccessToken();
       }
-      options.headers['Authorization'] = 'Bearer $accessToken';
-      if (extraHeadersProvider != null) {
-        final Map<String, dynamic> extraHeaders = await extraHeadersProvider!.call();
+      options.headers[HttpHeaders.authorizationHeader] = 'Bearer $accessToken';
+      final Map<String, dynamic>? extraHeaders = await tokenHeaderInterceptorFlow.provideExtraHeaders();
+      if (extraHeaders != null) {
         options.headers.addAll(extraHeaders);
       }
     }
@@ -69,7 +62,7 @@ class TokenHeaderInterceptor extends Interceptor {
   Future<void> _refreshAccessToken(String refreshToken) async {
     try {
       final String? oldAccessToken = await authKeyStore.readAccessToken();
-      final String? newAccessToken = await tokenRefresher.call(_dio, refreshToken, oldAccessToken);
+      final String? newAccessToken = await tokenHeaderInterceptorFlow.refreshToken(_dio, refreshToken, oldAccessToken);
       if (newAccessToken != null) {
         authKeyStore.writeAccessToken(newAccessToken);
       } else {
@@ -85,6 +78,6 @@ class TokenHeaderInterceptor extends Interceptor {
 
   Future<void> _clearExit() async {
     await authKeyStore.clear();
-    onTokenExpired.call();
+    tokenHeaderInterceptorFlow.onTokenExpired();
   }
 }

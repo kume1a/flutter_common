@@ -11,6 +11,7 @@ class AnimatedBottomNav extends StatelessWidget {
     this.selectedItemColor,
     this.unselectedItemColor,
     this.backgroundColor,
+    this.borderRadius,
     this.selectedColorOpacity = .1,
     this.itemShape = const StadiumBorder(),
     this.margin = const EdgeInsets.all(8),
@@ -26,6 +27,7 @@ class AnimatedBottomNav extends StatelessWidget {
   final Color? unselectedItemColor;
   final Color? backgroundColor;
   final double selectedColorOpacity;
+  final BorderRadius? borderRadius;
   final ShapeBorder itemShape;
   final EdgeInsets margin;
   final EdgeInsets itemPadding;
@@ -38,7 +40,10 @@ class AnimatedBottomNav extends StatelessWidget {
 
     return Container(
       padding: margin,
-      color: backgroundColor ?? theme.bottomNavigationBarTheme.backgroundColor,
+      decoration: BoxDecoration(
+        borderRadius: borderRadius,
+        color: backgroundColor ?? theme.bottomNavigationBarTheme.backgroundColor,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

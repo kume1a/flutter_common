@@ -10,9 +10,7 @@ class ScrollListenerPlus extends StatelessWidget {
     this.onBellowBottomThreshold,
     this.onOverBottomThreshold,
     this.bottomThreshold = 0,
-  })  : assert((onBellowBottomThreshold == null && onOverBottomThreshold == null) ||
-      (onBellowBottomThreshold != null && onOverBottomThreshold != null)),
-        super(key: key);
+  })  : super(key: key);
 
   final Widget child;
   final VoidCallback? onScrollUp;
@@ -32,12 +30,12 @@ class ScrollListenerPlus extends StatelessWidget {
             onScrollDown?.call();
           }
 
-          if (onBellowBottomThreshold != null && onOverBottomThreshold != null) {
+          if (onBellowBottomThreshold != null || onOverBottomThreshold != null) {
             final double _bottomThreshold = notification.metrics.maxScrollExtent - bottomThreshold;
             if (notification.metrics.pixels > _bottomThreshold) {
-              onBellowBottomThreshold!.call();
+              onBellowBottomThreshold?.call();
             } else {
-              onOverBottomThreshold!.call();
+              onOverBottomThreshold?.call();
             }
           }
         }

@@ -7,13 +7,11 @@ class ScrollListener extends StatelessWidget {
     required this.child,
     this.onScrollUp,
     this.onScrollDown,
-    this.bottomThreshold = 0,
   }) : super(key: key);
 
   final Widget child;
   final VoidCallback? onScrollUp;
   final VoidCallback? onScrollDown;
-  final double bottomThreshold;
 
   @override
   Widget build(BuildContext context) {

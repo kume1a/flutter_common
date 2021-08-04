@@ -23,11 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/packages/common_network_components/lib/src/interceptors/abstract_token_header_interceptor_flow.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common_network_components/lib/src/interceptors/token_header_interceptor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_network_components/lib/src/interceptors/token_header_interceptor.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common_network_components/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_network_components/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +230,28 @@
       <option name="project" value="LOCAL" />
       <updated>1627834313434</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="changed token header interceptor implementation">
+      <created>1627835609628</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1627835609628</updated>
+    </task>
+    <task id="LOCAL-00023" summary="export abstract_token_header_interceptor_flow">
+      <created>1627835778666</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1627835778666</updated>
+    </task>
+    <task id="LOCAL-00024" summary="added border radius to animated bottom nav">
+      <created>1627836801483</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1627836801483</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -272,6 +289,8 @@
     <MESSAGE value="removed password vvo bug causing line" />
     <MESSAGE value="changed phone number regex" />
     <MESSAGE value="changed token header interceptor implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed token header interceptor implementation" />
+    <MESSAGE value="export abstract_token_header_interceptor_flow" />
+    <MESSAGE value="added border radius to animated bottom nav" />
+    <option name="LAST_COMMIT_MESSAGE" value="added border radius to animated bottom nav" />
   </component>
 </project>

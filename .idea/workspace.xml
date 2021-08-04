@@ -264,7 +264,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628083673838</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="added network retry helper">
+      <created>1628087239459</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1628087239459</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -280,7 +287,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial commit" />
     <MESSAGE value="added common widgets package" />
     <MESSAGE value="added exports in common widgets module" />
     <MESSAGE value="added common models package" />
@@ -305,6 +311,7 @@
     <MESSAGE value="export abstract_token_header_interceptor_flow" />
     <MESSAGE value="added border radius to animated bottom nav" />
     <MESSAGE value="removed scroll listener plus widget assert restrictions" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed scroll listener plus widget assert restrictions" />
+    <MESSAGE value="added network retry helper" />
+    <option name="LAST_COMMIT_MESSAGE" value="added network retry helper" />
   </component>
 </project>

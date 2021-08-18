@@ -10,3 +10,4 @@ export 'src/scroll_listener.dart';
 export 'src/scroll_listener_plus.dart';
 export 'src/sliver_sized_box.dart';
 export 'src/tap_outside_to_clear_focus.dart';
+export 'src/canvas/canvas_helpers.dart';

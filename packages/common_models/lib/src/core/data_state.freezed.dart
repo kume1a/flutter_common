@@ -30,9 +30,10 @@ class _$DataStateTearOff {
     return _Loading<F, T>();
   }
 
-  _Error<F, T> error<F, T>(F failure) {
+  _Error<F, T> error<F, T>(F failure, [T? data]) {
     return _Error<F, T>(
       failure,
+      data,
     );
   }
 }
@@ -47,7 +48,7 @@ mixin _$DataState<F, T> {
     required TResult Function(T data) success,
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(F failure) error,
+    required TResult Function(F failure, T? data) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,7 +56,7 @@ mixin _$DataState<F, T> {
     TResult Function(T data)? success,
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(F failure)? error,
+    TResult Function(F failure, T? data)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,7 +164,7 @@ class _$_Success<F, T> extends _Success<F, T> {
     required TResult Function(T data) success,
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(F failure) error,
+    required TResult Function(F failure, T? data) error,
   }) {
     return success(data);
   }
@@ -174,7 +175,7 @@ class _$_Success<F, T> extends _Success<F, T> {
     TResult Function(T data)? success,
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(F failure)? error,
+    TResult Function(F failure, T? data)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -261,7 +262,7 @@ class _$_Idle<F, T> extends _Idle<F, T> {
     required TResult Function(T data) success,
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(F failure) error,
+    required TResult Function(F failure, T? data) error,
   }) {
     return idle();
   }
@@ -272,7 +273,7 @@ class _$_Idle<F, T> extends _Idle<F, T> {
     TResult Function(T data)? success,
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(F failure)? error,
+    TResult Function(F failure, T? data)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -356,7 +357,7 @@ class _$_Loading<F, T> extends _Loading<F, T> {
     required TResult Function(T data) success,
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(F failure) error,
+    required TResult Function(F failure, T? data) error,
   }) {
     return loading();
   }
@@ -367,7 +368,7 @@ class _$_Loading<F, T> extends _Loading<F, T> {
     TResult Function(T data)? success,
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(F failure)? error,
+    TResult Function(F failure, T? data)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -413,7 +414,7 @@ abstract class _$ErrorCopyWith<F, T, $Res> {
   factory _$ErrorCopyWith(
           _Error<F, T> value, $Res Function(_Error<F, T>) then) =
       __$ErrorCopyWithImpl<F, T, $Res>;
-  $Res call({F failure});
+  $Res call({F failure, T? data});
 }
 
 /// @nodoc
@@ -429,12 +430,17 @@ class __$ErrorCopyWithImpl<F, T, $Res>
   @override
   $Res call({
     Object? failure = freezed,
+    Object? data = freezed,
   }) {
     return _then(_Error<F, T>(
       failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as F,
+      data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as T?,
     ));
   }
 }
@@ -442,14 +448,16 @@ class __$ErrorCopyWithImpl<F, T, $Res>
 /// @nodoc
 
 class _$_Error<F, T> extends _Error<F, T> {
-  const _$_Error(this.failure) : super._();
+  const _$_Error(this.failure, [this.data]) : super._();
 
   @override
   final F failure;
+  @override
+  final T? data;
 
   @override
   String toString() {
-    return 'DataState<$F, $T>.error(failure: $failure)';
+    return 'DataState<$F, $T>.error(failure: $failure, data: $data)';
   }
 
   @override
@@ -457,12 +465,17 @@ class _$_Error<F, T> extends _Error<F, T> {
     return identical(this, other) ||
         (other is _Error<F, T> &&
             (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+                const DeepCollectionEquality()
+                    .equals(other.failure, failure)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(failure) ^
+      const DeepCollectionEquality().hash(data);
 
   @JsonKey(ignore: true)
   @override
@@ -475,9 +488,9 @@ class _$_Error<F, T> extends _Error<F, T> {
     required TResult Function(T data) success,
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(F failure) error,
+    required TResult Function(F failure, T? data) error,
   }) {
-    return error(failure);
+    return error(failure, data);
   }
 
   @override
@@ -486,11 +499,11 @@ class _$_Error<F, T> extends _Error<F, T> {
     TResult Function(T data)? success,
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(F failure)? error,
+    TResult Function(F failure, T? data)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(failure);
+      return error(failure, data);
     }
     return orElse();
   }
@@ -523,10 +536,11 @@ class _$_Error<F, T> extends _Error<F, T> {
 }
 
 abstract class _Error<F, T> extends DataState<F, T> {
-  const factory _Error(F failure) = _$_Error<F, T>;
+  const factory _Error(F failure, [T? data]) = _$_Error<F, T>;
   const _Error._() : super._();
 
   F get failure => throw _privateConstructorUsedError;
+  T? get data => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$ErrorCopyWith<F, T, _Error<F, T>> get copyWith =>
       throw _privateConstructorUsedError;

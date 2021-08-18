@@ -9,7 +9,7 @@ class DataState<F, T> with _$DataState<F, T> {
   const factory DataState.success(T data) = _Success<F, T>;
   const factory DataState.idle() = _Idle<F, T>;
   const factory DataState.loading() = _Loading<F, T>;
-  const factory DataState.error(F failure) = _Error<F, T>;
+  const factory DataState.error(F failure, [T? data]) = _Error<F, T>;
 
   const DataState._();
 

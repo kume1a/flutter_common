@@ -23,11 +23,13 @@ class DataState<F, T> with _$DataState<F, T> {
 
   T get getOrThrow => maybeWhen(
     success: (T data) => data,
+    error: (F failure, T? data) => data!,
     orElse: () => throw Exception('getOrCrash called on !success'),
   );
 
   T? get get => maybeWhen(
     success: (T data) => data,
+    error: (F failure, T? data) => data,
     orElse: () => null,
   );
 }

@@ -49,7 +49,7 @@ class PagedList<T> extends StatelessWidget {
     }
 
     final int l = items.length;
-    final int itemCount = totalCount == l ? l : l + 1;
+    final int itemCount = totalCount <= l ? l : l + 1;
     switch (listType) {
       case ListType.sliverBuilder:
         return SliverList(

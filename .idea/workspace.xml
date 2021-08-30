@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="" />
+    <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,8 +58,9 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/common_widgets/lib/src/carousel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/common_utilities/lib/src" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -65,19 +68,19 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/common_utilities/lib/src" />
+      <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src/carousel" />
+      <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src" />
+      <recent name="$PROJECT_DIR$/packages/common_models/lib/src/failure" />
+      <recent name="$PROJECT_DIR$/packages/common_network_components/lib/src/services" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src/carousel" />
       <recent name="$PROJECT_DIR$/packages/common_network_components/lib/src/store" />
       <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src" />
       <recent name="$PROJECT_DIR$/packages/widgets" />
       <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src/carousel" />
-      <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src" />
-      <recent name="$PROJECT_DIR$/packages/common_models/lib/src/failure" />
-      <recent name="$PROJECT_DIR$/packages/common_network_components/lib/src/services" />
-      <recent name="$PROJECT_DIR$/packages/common_network_components/lib/src" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -271,7 +274,49 @@
       <option name="project" value="LOCAL" />
       <updated>1628087239459</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="report retry">
+      <created>1628087309024</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1628087309024</updated>
+    </task>
+    <task id="LOCAL-00028" summary="added canvas helper extensions">
+      <created>1629271674401</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1629271674401</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added sliver list and refreshable list">
+      <created>1629279514690</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1629279514690</updated>
+    </task>
+    <task id="LOCAL-00030" summary="added sliver list and refreshable list">
+      <created>1629279767475</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1629279767475</updated>
+    </task>
+    <task id="LOCAL-00031" summary="added Unit">
+      <created>1629454360479</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1629454360479</updated>
+    </task>
+    <task id="LOCAL-00032" summary="paged list fix">
+      <created>1629976982455</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1629976982455</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -287,12 +332,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added common widgets package" />
-    <MESSAGE value="added exports in common widgets module" />
-    <MESSAGE value="added common models package" />
-    <MESSAGE value="added exports and 2 widgets" />
-    <MESSAGE value="added common network components package" />
-    <MESSAGE value="changed version codes" />
     <MESSAGE value="fixed base_service.dart" />
     <MESSAGE value="relative path to git in shared network components pubspec" />
     <MESSAGE value="freezed dependency version change" />
@@ -312,6 +351,12 @@
     <MESSAGE value="added border radius to animated bottom nav" />
     <MESSAGE value="removed scroll listener plus widget assert restrictions" />
     <MESSAGE value="added network retry helper" />
-    <option name="LAST_COMMIT_MESSAGE" value="added network retry helper" />
+    <MESSAGE value="report retry" />
+    <MESSAGE value="added canvas helper extensions" />
+    <MESSAGE value="commit refreshable list" />
+    <MESSAGE value="added sliver list and refreshable list" />
+    <MESSAGE value="added Unit" />
+    <MESSAGE value="paged list fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="paged list fix" />
   </component>
 </project>

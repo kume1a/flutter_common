@@ -19,6 +19,9 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/widgets/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/packages/widgets/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/packages/widgets/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/common_utilities/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/common_utilities/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/common_utilities/.pub" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

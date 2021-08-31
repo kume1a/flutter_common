@@ -11,6 +11,7 @@ export 'src/failure/name_failure.dart';
 export 'src/failure/password_failure.dart';
 export 'src/failure/value_failure.dart';
 export 'src/failure/fetch_failure.dart';
+export 'src/failure/repeated_password_failure.dart';
 
 export 'src/vvo/core/value_object.dart';
 export 'src/vvo/core/vvo_config.dart';
@@ -18,3 +19,5 @@ export 'src/vvo/email.dart';
 export 'src/vvo/name.dart';
 export 'src/vvo/password.dart';
 export 'src/vvo/phone_number.dart';
+export 'src/vvo/repeated_password.dart';
+export 'src/vvo/verification_code.dart';

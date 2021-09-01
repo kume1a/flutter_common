@@ -1,4 +1,4 @@
-import 'package:common_models/common_models.dart';
+import '../../common_models.dart';
 
 class VerificationCodeVVO extends ValueObject<ValueFailure, String> {
   factory VerificationCodeVVO(String verificationCode) {

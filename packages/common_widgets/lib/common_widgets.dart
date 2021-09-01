@@ -6,6 +6,7 @@ export 'src/carousel/carousel.dart';
 export 'src/dashed_line.dart';
 export 'src/dashed_rect.dart';
 export 'src/default_form.dart';
+export 'src/overlay_loading_indicator.dart';
 export 'src/paged_list.dart';
 export 'src/refreshable_list.dart';
 export 'src/safe_image.dart';

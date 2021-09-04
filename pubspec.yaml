@@ -5,8 +5,8 @@ version: 0.0.1
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
-dependencies:
-  lint: ^1.5.3
+#dependencies:
+#  lint: ^1.5.3
 
 dev_dependencies:
   test: ^1.16.0

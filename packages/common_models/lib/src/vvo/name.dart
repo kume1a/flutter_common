@@ -1,8 +1,7 @@
-import 'core/vvo_config.dart';
-
 import '../core/either.dart';
 import '../failure/name_failure.dart';
 import 'core/value_object.dart';
+import 'core/vvo_config.dart';
 
 class NameVVO extends ValueObject<NameFailure, String> {
   factory NameVVO(String name) {

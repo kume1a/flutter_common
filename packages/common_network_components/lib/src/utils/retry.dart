@@ -59,9 +59,9 @@ class RetryOptions {
     if (attempt <= 0) {
       return Duration.zero;
     }
-    final double rf = (randomizationFactor * (_rand.nextDouble() * 2 - 1) + 1);
+    final double rf = randomizationFactor * (_rand.nextDouble() * 2 - 1) + 1;
     final int exp = math.min(attempt, 31); // prevent overflows.
-    final Duration delay = (delayFactor * math.pow(2.0, exp) * rf);
+    final Duration delay = delayFactor * math.pow(2.0, exp) * rf;
     return delay < maxDelay ? delay : maxDelay;
   }
 

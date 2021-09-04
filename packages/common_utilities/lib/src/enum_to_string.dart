@@ -2,7 +2,7 @@ class EnumToString {
   EnumToString._();
 
   static bool _isEnum(dynamic enumItem) {
-    final splitEnum = enumItem.toString().split('.');
+    final List<String> splitEnum = enumItem.toString().split('.');
     return splitEnum.length > 1 && splitEnum[0] == enumItem.runtimeType.toString();
   }
 

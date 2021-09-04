@@ -13,4 +13,5 @@ dev_dependencies:
   test: ^1.16.0
   freezed: ^0.14.2
   build_runner: ^2.0.6
+  lint: ^1.6.0
 

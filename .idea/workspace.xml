@@ -23,7 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="034df6cc-3435-4ded-be72-35409ebf6e70" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common_utilities/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_utilities/analysis_options.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common_utilities/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_utilities/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common_widgets/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_widgets/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common_widgets/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common_widgets/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +64,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/common_utilities/lib/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/common_models" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -69,11 +73,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/packages/common_utilities/lib/src" />
-      <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src/carousel" />
+      <recent name="$PROJECT_DIR$/packages/common_models" />
+      <recent name="$PROJECT_DIR$/packages/common_network_components" />
+      <recent name="$PROJECT_DIR$/packages/common_utilities" />
+      <recent name="$PROJECT_DIR$/packages/common_widgets" />
       <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src" />
-      <recent name="$PROJECT_DIR$/packages/common_models/lib/src/failure" />
-      <recent name="$PROJECT_DIR$/packages/common_network_components/lib/src/services" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/common_widgets/lib/src/carousel" />
@@ -316,7 +320,28 @@
       <option name="project" value="LOCAL" />
       <updated>1629976982455</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="added common utilities package">
+      <created>1630330999721</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1630330999721</updated>
+    </task>
+    <task id="LOCAL-00034" summary="export models">
+      <created>1630428704905</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1630428704905</updated>
+    </task>
+    <task id="LOCAL-00035" summary="+ overlay loading indicator">
+      <created>1630484856792</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1630484856792</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -332,9 +357,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed base_service.dart" />
-    <MESSAGE value="relative path to git in shared network components pubspec" />
-    <MESSAGE value="freezed dependency version change" />
     <MESSAGE value="added refresh token as an argument in interceptor" />
     <MESSAGE value="added interceptors field in token header interceptor" />
     <MESSAGE value="changed adding extra headers in token header interceptor" />
@@ -357,6 +379,9 @@
     <MESSAGE value="added sliver list and refreshable list" />
     <MESSAGE value="added Unit" />
     <MESSAGE value="paged list fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="paged list fix" />
+    <MESSAGE value="added common utilities package" />
+    <MESSAGE value="export models" />
+    <MESSAGE value="+ overlay loading indicator" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ overlay loading indicator" />
   </component>
 </project>

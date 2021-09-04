@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'core/enums/list_type.dart';
-import 'core/typedefs.dart';
+import '../core/enums/list_type.dart';
+import '../core/typedefs.dart';
 
 class RefreshableList<T> extends StatelessWidget {
   const RefreshableList({

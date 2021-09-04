@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 enum _ContainerType { circular, square }
+const Color _defaultColor = Color(0xFFE0E0E0);
 
 class BlankContainer extends StatelessWidget {
   const BlankContainer({
@@ -8,7 +9,7 @@ class BlankContainer extends StatelessWidget {
     required this.width,
     required this.height,
     this.borderRadius = 0,
-    this.color,
+    this.color = _defaultColor,
   })  : _containerType = _ContainerType.square,
         radius = null,
         super(key: key);
@@ -16,7 +17,7 @@ class BlankContainer extends StatelessWidget {
   const BlankContainer.circular({
     Key? key,
     required this.radius,
-    this.color,
+    this.color = _defaultColor,
   })   : _containerType = _ContainerType.circular,
         width = null,
         height = null,
@@ -32,8 +33,6 @@ class BlankContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = this.color ?? Colors.grey.shade300;
-
     switch (_containerType) {
       case _ContainerType.circular:
         return CircleAvatar(

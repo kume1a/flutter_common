@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DefaultForm extends StatelessWidget {
-  const DefaultForm({
+class ValidatedForm extends StatelessWidget {
+  const ValidatedForm({
     Key? key,
     required this.child,
     required this.showErrors,

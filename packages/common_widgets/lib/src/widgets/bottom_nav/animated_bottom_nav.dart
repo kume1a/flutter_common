@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../common_widgets.dart';
+import 'animated_bottom_nav_item.dart';
 
 class AnimatedBottomNav extends StatelessWidget {
   const AnimatedBottomNav({

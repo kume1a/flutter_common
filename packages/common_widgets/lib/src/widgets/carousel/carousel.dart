@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import 'carousel_indicator_options.dart';
 import 'page_indicator.dart';
 
 class Carousel extends HookWidget {
@@ -13,6 +14,7 @@ class Carousel extends HookWidget {
     this.onPageChanged,
     this.viewPortFraction = .84,
     this.distortionValue = .3,
+    this.indicatorOptions,
   }) : super(key: key);
 
   final double height;
@@ -22,6 +24,7 @@ class Carousel extends HookWidget {
   final ValueChanged<int>? onPageChanged;
   final double viewPortFraction;
   final double distortionValue;
+  final CarouselIndicatorOptions? indicatorOptions;
 
   Widget getEnlargeWrapper(Widget? child, {double? width, double? height, required double scale}) {
     return Transform.scale(
@@ -90,18 +93,25 @@ class Carousel extends HookWidget {
             },
           ),
         ),
-        if (itemCount > 1) const SizedBox(height: 18),
-        if (itemCount > 1)
+        if (indicatorOptions != null && itemCount > 1)
+          SizedBox(height: indicatorOptions!.spaceFromPageIndicatorToCarousel),
+        if (indicatorOptions != null && itemCount > 1)
           PageIndicator(
             controller: pageController,
             count: itemCount,
-            effect: const ScrollingDotsEffect(
-              maxVisibleDots: 7,
-              radius: 4,
-              activeDotScale: 1.2,
-              dotHeight: 8,
-              dotWidth: 8,
-              dotColor: Color(0xFFC0C0C1),
+            onDotClicked: indicatorOptions!.onDotClicked,
+            effect: ScrollingDotsEffect(
+              maxVisibleDots: indicatorOptions!.maxVisibleDots,
+              radius: indicatorOptions!.radius,
+              activeDotScale: indicatorOptions!.activeDotScale,
+              dotHeight: indicatorOptions!.dotHeight,
+              dotWidth: indicatorOptions!.dotWidth,
+              dotColor: indicatorOptions!.dotColor,
+              activeDotColor: indicatorOptions!.activeDotColor,
+              activeStrokeWidth: indicatorOptions!.activeStrokeWidth,
+              paintStyle: indicatorOptions!.paintStyle,
+              spacing: indicatorOptions!.spacing,
+              strokeWidth: indicatorOptions!.strokeWidth,
             ),
           ),
       ],

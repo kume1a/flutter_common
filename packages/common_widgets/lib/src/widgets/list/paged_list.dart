@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'core/enums/list_type.dart';
-import 'core/typedefs.dart';
-import 'sliver_sized_box.dart';
+import '../core/enums/list_type.dart';
+import '../core/typedefs.dart';
+import '../sliver_sized_box.dart';
 
 class PagedList<T> extends StatelessWidget {
   const PagedList({

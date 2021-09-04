@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 extension CanvasX on Canvas {
-  /// draws text on a canvas
+  /// draws text on a painting
   ///
   /// @returns The amount of space required to paint this text.
   Size drawText({

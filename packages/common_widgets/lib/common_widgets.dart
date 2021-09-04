@@ -4,6 +4,7 @@ export 'src/widgets/blank_container.dart';
 export 'src/widgets/bottom_nav/animated_bottom_nav.dart';
 export 'src/widgets/bottom_nav/animated_bottom_nav_item.dart';
 export 'src/widgets/carousel/carousel.dart';
+export 'src/widgets/carousel/carousel_indicator_options.dart';
 export 'src/widgets/dashed_line.dart';
 export 'src/widgets/dashed_rect.dart';
 export 'src/widgets/list/paged_list.dart';

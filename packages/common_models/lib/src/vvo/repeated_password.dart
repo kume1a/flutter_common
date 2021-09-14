@@ -3,7 +3,7 @@ import '../failure/repeated_password_failure.dart';
 
 class RepeatedPasswordVVO extends ValueObject<RepeatedPasswordFailure, String> {
   factory RepeatedPasswordVVO(String password, String repeatedPassword) {
-    if (password.isEmpty) {
+    if (repeatedPassword.isEmpty) {
       return RepeatedPasswordVVO._(left(const RepeatedPasswordFailure.none()));
     }
     if (password != repeatedPassword) {

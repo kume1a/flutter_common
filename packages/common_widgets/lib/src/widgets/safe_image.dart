@@ -11,6 +11,8 @@ class SafeImage extends StatelessWidget {
     this.borderRadius = 4,
     this.placeholderColor,
   })  : placeholderAssetPath = null,
+        assetWidth = null,
+        assetHeight = null,
         super(key: key);
 
   const SafeImage.withAssetPlaceholder({
@@ -20,6 +22,8 @@ class SafeImage extends StatelessWidget {
     this.height,
     this.borderRadius = 4,
     this.placeholderAssetPath,
+    this.assetWidth,
+    this.assetHeight,
   })  : placeholderColor = null,
         super(key: key);
 
@@ -29,25 +33,35 @@ class SafeImage extends StatelessWidget {
   final double borderRadius;
   final Color? placeholderColor;
   final String? placeholderAssetPath;
+  final double? assetWidth;
+  final double? assetHeight;
 
   @override
   Widget build(BuildContext context) {
     if (url == null || url!.trim().isEmpty) {
       if (placeholderAssetPath != null) {
-        return _image(AssetImage(placeholderAssetPath!));
+        return _image(
+          AssetImage(placeholderAssetPath!),
+          width: assetWidth,
+          height: assetHeight,
+        );
       }
       return _blankContainer();
     }
     return _image(NetworkImage(url!));
   }
 
-  Widget _image(ImageProvider imageProvider) {
+  Widget _image(
+    ImageProvider imageProvider, {
+    double? width,
+    double? height,
+  }) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: Image(
         image: imageProvider,
-        width: width,
-        height: height,
+        width: width ?? this.width,
+        height: height ?? this.height,
         fit: BoxFit.cover,
         errorBuilder: (_, __, ___) => _blankContainer(),
       ),

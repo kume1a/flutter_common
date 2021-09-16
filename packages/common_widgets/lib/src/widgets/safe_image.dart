@@ -56,7 +56,7 @@ class SafeImage extends StatelessWidget {
     double? width,
     double? height,
   }) {
-    return ClipRRect(
+    final Widget imageContent = ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: Image(
         image: imageProvider,
@@ -66,6 +66,16 @@ class SafeImage extends StatelessWidget {
         errorBuilder: (_, __, ___) => _blankContainer(),
       ),
     );
+
+    if ((width != null && width != this.width) || (height != null && height != this.height)) {
+      return Container(
+        width: width,
+        height: height,
+        alignment: Alignment.center,
+        child: imageContent,
+      );
+    }
+    return imageContent;
   }
 
   Widget _blankContainer() {

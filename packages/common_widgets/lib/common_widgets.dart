@@ -13,6 +13,7 @@ export 'src/widgets/overlay_loading_indicator.dart';
 export 'src/widgets/safe_image.dart';
 export 'src/widgets/scroll_listener/scroll_listener.dart';
 export 'src/widgets/scroll_listener/scroll_listener_plus.dart';
+export 'src/widgets/shimmer.dart';
 export 'src/widgets/sliver_sized_box.dart';
 export 'src/widgets/tap_outside_to_clear_focus.dart';
 export 'src/widgets/validated_form.dart';

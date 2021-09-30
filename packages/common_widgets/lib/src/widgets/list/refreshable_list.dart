@@ -64,7 +64,12 @@ class RefreshableList<T> extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(child: Text(errorText)),
+            Flexible(
+              child: Text(
+                errorText,
+                textAlign: TextAlign.center,
+              ),
+            ),
             const SizedBox(width: 12),
             IconButton(
               onPressed: onRefresh,

@@ -75,10 +75,10 @@ class RetryOptions {
   /// thrown. To retry on an [Error], the error must be caught and _rethrown_
   /// as an [Exception].
   Future<T> retry<T>(
-      FutureOr<T> Function() fn, {
-        FutureOr<bool> Function(Exception)? retryIf,
-        FutureOr<void> Function(Exception)? onRetry,
-      }) async {
+    FutureOr<T> Function() fn, {
+    FutureOr<bool> Function(Exception)? retryIf,
+    FutureOr<void> Function(Exception)? onRetry,
+  }) async {
     int attempt = 0;
     // ignore: literal_only_boolean_expressions
     while (true) {
@@ -86,8 +86,7 @@ class RetryOptions {
       try {
         return await fn();
       } on Exception catch (e) {
-        if (attempt >= maxAttempts ||
-            (retryIf != null && !(await retryIf(e)))) {
+        if (attempt >= maxAttempts || (retryIf != null && !(await retryIf(e)))) {
           rethrow;
         }
         if (onRetry != null) {
@@ -128,17 +127,21 @@ class RetryOptions {
 /// thrown. To retry on an [Error], the error must be caught and _rethrown_
 /// as an [Exception].
 Future<T> retry<T>(
-    FutureOr<T> Function() fn, {
-      Duration delayFactor = const Duration(milliseconds: 200),
-      double randomizationFactor = 0.25,
-      Duration maxDelay = const Duration(seconds: 30),
-      int maxAttempts = 8,
-      FutureOr<bool> Function(Exception)? retryIf,
-      FutureOr<void> Function(Exception)? onRetry,
-    }) =>
+  FutureOr<T> Function() fn, {
+  Duration delayFactor = const Duration(milliseconds: 200),
+  double randomizationFactor = 0.25,
+  Duration maxDelay = const Duration(seconds: 30),
+  int maxAttempts = 8,
+  FutureOr<bool> Function(Exception)? retryIf,
+  FutureOr<void> Function(Exception)? onRetry,
+}) =>
     RetryOptions(
       delayFactor: delayFactor,
       randomizationFactor: randomizationFactor,
       maxDelay: maxDelay,
       maxAttempts: maxAttempts,
-    ).retry(fn, retryIf: retryIf, onRetry: onRetry);
+    ).retry(
+      fn,
+      retryIf: retryIf,
+      onRetry: onRetry,
+    );

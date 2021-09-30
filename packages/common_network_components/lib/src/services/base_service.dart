@@ -17,7 +17,7 @@ abstract class BaseService {
       final T result = await call();
       return right(result);
     } on DioError catch (e) {
-      log('UserService.safeCall: ', error: e);
+      log('BaseService.safeCall: ', error: e);
       switch (e.type) {
         case DioErrorType.connectTimeout:
           return left(onNetworkError());

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../core/enums/list_type.dart';
 import '../core/typedefs.dart';
-import '../sliver_sized_box.dart';
 
 class PagedList<T> extends StatelessWidget {
   const PagedList({
@@ -14,6 +13,7 @@ class PagedList<T> extends StatelessWidget {
     this.loadingBuilder,
     this.scrollController,
     this.padding,
+    this.onEmptyListBuilder,
   }) : listType = ListType.builder;
 
   const PagedList.sliver({
@@ -22,6 +22,7 @@ class PagedList<T> extends StatelessWidget {
     required this.request,
     required this.itemBuilder,
     this.loadingBuilder,
+    this.onEmptyListBuilder,
   })  : listType = ListType.sliverBuilder,
         padding = null,
         axis = Axis.vertical,
@@ -36,14 +37,20 @@ class PagedList<T> extends StatelessWidget {
   final WidgetBuilder? loadingBuilder;
   final List<T> items;
   final int totalCount;
+  final WidgetBuilder? onEmptyListBuilder;
 
   @override
   Widget build(BuildContext context) {
     if (totalCount == 0) {
       switch (listType) {
         case ListType.sliverBuilder:
-          return const SliverSizedBox.shrink();
+          return SliverToBoxAdapter(
+            child: onEmptyListBuilder?.call(context),
+          );
         case ListType.builder:
+          if (onEmptyListBuilder != null) {
+            return onEmptyListBuilder!.call(context);
+          }
           return const SizedBox.shrink();
       }
     }

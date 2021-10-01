@@ -12,6 +12,7 @@ class RefreshableList<T> extends StatelessWidget {
     required this.onRefresh,
     this.padding,
     this.refreshBuilder,
+    this.onEmptyListErrorBuilder,
   })  : listType = ListType.builder,
         super(key: key);
 
@@ -22,6 +23,7 @@ class RefreshableList<T> extends StatelessWidget {
     required this.errorText,
     required this.onRefresh,
     this.refreshBuilder,
+    this.onEmptyListErrorBuilder,
   })  : listType = ListType.sliverBuilder,
         padding = null,
         super(key: key);
@@ -34,11 +36,16 @@ class RefreshableList<T> extends StatelessWidget {
 
   final EdgeInsets? padding;
   final WidgetBuilder? refreshBuilder;
+  final WidgetBuilder? onEmptyListErrorBuilder;
 
   @override
   Widget build(BuildContext context) {
     switch (listType) {
       case ListType.sliverBuilder:
+        if ((data == null || data?.isEmpty == true )&& onEmptyListErrorBuilder != null) {
+          return SliverToBoxAdapter(child: onEmptyListErrorBuilder!.call(context));
+        }
+
         return SliverList(
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) => _itemBuilder(context, index),
@@ -46,6 +53,10 @@ class RefreshableList<T> extends StatelessWidget {
           ),
         );
       case ListType.builder:
+        if ((data == null || data?.isEmpty == true )&& onEmptyListErrorBuilder != null) {
+          return onEmptyListErrorBuilder!.call(context);
+        }
+
         return ListView.builder(
           itemBuilder: _itemBuilder,
           itemCount: (data?.length ?? 0) + 1,
@@ -60,7 +71,7 @@ class RefreshableList<T> extends StatelessWidget {
         return refreshBuilder!.call(context);
       }
       return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -70,10 +81,10 @@ class RefreshableList<T> extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 8),
             IconButton(
               onPressed: onRefresh,
-              splashRadius: 28,
+              splashRadius: 24,
               icon: const Icon(Icons.refresh),
             ),
           ],

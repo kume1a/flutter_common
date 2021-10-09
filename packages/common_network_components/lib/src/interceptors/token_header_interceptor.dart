@@ -17,11 +17,13 @@ class TokenHeaderInterceptor extends Interceptor {
     Dio? dio,
   }) {
     _dio = dio ??
-        Dio(BaseOptions(
-          connectTimeout: kNetworkTimeout,
-          receiveTimeout: kNetworkTimeout,
-          sendTimeout: kNetworkTimeout,
-        ));
+        Dio(
+          BaseOptions(
+            connectTimeout: kNetworkTimeout,
+            receiveTimeout: kNetworkTimeout,
+            sendTimeout: kNetworkTimeout,
+          ),
+        );
   }
 
   final AuthKeyStore authKeyStore;

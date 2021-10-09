@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import '../core/enums/list_type.dart';
 import '../core/typedefs.dart';
 
-class RefreshableList<T> extends StatelessWidget {
-  const RefreshableList({
+class RefreshableGrid<T> extends StatelessWidget {
+  const RefreshableGrid({
     Key? key,
+    required this.gridDelegate,
     required this.data,
     required this.itemBuilder,
     required this.errorText,
@@ -16,8 +17,9 @@ class RefreshableList<T> extends StatelessWidget {
   })  : listType = ListType.builder,
         super(key: key);
 
-  const RefreshableList.sliver({
+  const RefreshableGrid.sliver({
     Key? key,
+    required this.gridDelegate,
     required this.data,
     required this.itemBuilder,
     required this.errorText,
@@ -28,6 +30,7 @@ class RefreshableList<T> extends StatelessWidget {
         padding = null,
         super(key: key);
 
+  final SliverGridDelegate gridDelegate;
   final ListType listType;
   final List<T>? data;
   final ItemBuilder<T> itemBuilder;
@@ -42,22 +45,24 @@ class RefreshableList<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (listType) {
       case ListType.sliverBuilder:
-        if ((data == null || data?.isEmpty == true )&& onEmptyListErrorBuilder != null) {
+        if ((data == null || data?.isEmpty == true) && onEmptyListErrorBuilder != null) {
           return SliverToBoxAdapter(child: onEmptyListErrorBuilder!.call(context));
         }
 
-        return SliverList(
+        return SliverGrid(
+          gridDelegate: gridDelegate,
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) => _itemBuilder(context, index),
             childCount: (data?.length ?? 0) + 1,
           ),
         );
       case ListType.builder:
-        if ((data == null || data?.isEmpty == true )&& onEmptyListErrorBuilder != null) {
+        if ((data == null || data?.isEmpty == true) && onEmptyListErrorBuilder != null) {
           return onEmptyListErrorBuilder!.call(context);
         }
 
-        return ListView.builder(
+        return GridView.builder(
+          gridDelegate: gridDelegate,
           itemBuilder: _itemBuilder,
           itemCount: (data?.length ?? 0) + 1,
           padding: padding,

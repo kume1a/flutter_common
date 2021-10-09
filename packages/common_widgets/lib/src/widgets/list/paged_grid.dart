@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../core/enums/list_type.dart';
 import '../core/typedefs.dart';
 
-class PagedList<T> extends StatelessWidget {
-  const PagedList({
-    this.axis = Axis.vertical,
+class PagedGrid<T> extends StatelessWidget {
+  const PagedGrid({
+    required this.gridDelegate,
     required this.totalCount,
     required this.items,
     required this.request,
@@ -16,7 +16,8 @@ class PagedList<T> extends StatelessWidget {
     this.onEmptyListBuilder,
   }) : listType = ListType.builder;
 
-  const PagedList.sliver({
+  const PagedGrid.sliver({
+    required this.gridDelegate,
     required this.totalCount,
     required this.items,
     required this.request,
@@ -25,10 +26,9 @@ class PagedList<T> extends StatelessWidget {
     this.onEmptyListBuilder,
   })  : listType = ListType.sliverBuilder,
         padding = null,
-        axis = Axis.vertical,
         scrollController = null;
 
-  final Axis axis;
+  final SliverGridDelegate gridDelegate;
   final ListType listType;
   final ScrollController? scrollController;
   final EdgeInsets? padding;
@@ -59,16 +59,17 @@ class PagedList<T> extends StatelessWidget {
     final int itemCount = totalCount <= l ? l : l + 1;
     switch (listType) {
       case ListType.sliverBuilder:
-        return SliverList(
+        return SliverGrid(
+          gridDelegate: gridDelegate,
           delegate: SliverChildBuilderDelegate(
             _itemBuilder,
             childCount: itemCount,
           ),
         );
       case ListType.builder:
-        return ListView.builder(
+        return GridView.builder(
           itemCount: itemCount,
-          scrollDirection: axis,
+          gridDelegate: gridDelegate,
           itemBuilder: _itemBuilder,
           controller: scrollController,
           padding: padding,

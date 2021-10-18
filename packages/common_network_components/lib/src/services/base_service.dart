@@ -10,8 +10,8 @@ abstract class BaseService {
   Future<Either<F, T>> safeCall<F, T>({
     required Future<T> Function() call,
     required F Function() onNetworkError,
-    required F Function(Response? response) onResponseError, // ignore: always_specify_types
     required F Function(Exception e) onUnknownError,
+    F Function(Response? response)? onResponseError, // ignore: always_specify_types
   }) async {
     try {
       final T result = await call();
@@ -26,7 +26,7 @@ abstract class BaseService {
         case DioErrorType.receiveTimeout:
           return left(onNetworkError());
         case DioErrorType.response:
-          return left(onResponseError(e.response));
+          return left(onResponseError != null ? onResponseError(e.response) : onUnknownError(e));
         case DioErrorType.cancel:
           return left(onNetworkError());
         case DioErrorType.other:
@@ -35,6 +35,9 @@ abstract class BaseService {
           }
           return left(onUnknownError(e));
       }
+    } on Exception catch (e) {
+      log('BaseService.safeCall: ', error: e);
+      return left(onUnknownError(e));
     }
   }
 

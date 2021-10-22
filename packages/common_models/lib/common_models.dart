@@ -10,6 +10,7 @@ export 'src/failure/fetch_failure.dart';
 export 'src/failure/name_failure.dart';
 export 'src/failure/password_failure.dart';
 export 'src/failure/repeated_password_failure.dart';
+export 'src/failure/simple_action_failure.dart';
 export 'src/failure/simple_content_value_failure.dart';
 export 'src/failure/value_failure.dart';
 export 'src/vvo/core/value_object.dart';

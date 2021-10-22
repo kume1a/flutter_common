@@ -1,17 +1,19 @@
+// ignore_for_file: always_specify_types
+
 import 'dart:developer';
 import 'dart:io';
 
 import 'package:common_models/common_models.dart';
 import 'package:dio/dio.dart';
-
+import 'package:meta/meta.dart';
 
 abstract class BaseService {
-
+  @protected
   Future<Either<F, T>> safeCall<F, T>({
     required Future<T> Function() call,
     required F Function() onNetworkError,
     required F Function(Exception e) onUnknownError,
-    F Function(Response? response)? onResponseError, // ignore: always_specify_types
+    F Function(Response? response)? onResponseError,
   }) async {
     try {
       final T result = await call();
@@ -41,11 +43,13 @@ abstract class BaseService {
     }
   }
 
-  Future<Either<FetchFailure, T>> safeFetch<T>(Future<T> Function() call) async {
+  @protected
+  Future<Either<FetchFailure, T>> safeFetch<T>(
+    Future<T> Function() call,
+  ) async {
     return safeCall(
       call: call,
       onNetworkError: () => const FetchFailure.networkError(),
-      // ignore: always_specify_types
       onResponseError: (Response? response) {
         if (response != null && response.statusCode != null) {
           final int statusCode = response.statusCode!;
@@ -56,6 +60,15 @@ abstract class BaseService {
         return const FetchFailure.unknownError();
       },
       onUnknownError: (Exception e) => const FetchFailure.unknownError(),
+    );
+  }
+
+  @protected
+  Future<Either<SimpleActionFailure, T>> safeSimpleCall<T>(Future<T> Function() call) async {
+    return safeCall(
+      call: call,
+      onNetworkError: () => const SimpleActionFailure.network(),
+      onUnknownError: (_) => const SimpleActionFailure.unknown(),
     );
   }
 }

@@ -14,6 +14,7 @@ class PagedList<T> extends StatelessWidget {
     this.scrollController,
     this.padding,
     this.onEmptyListBuilder,
+    this.reverse = false,
   }) : listType = ListType.builder;
 
   const PagedList.sliver({
@@ -26,7 +27,8 @@ class PagedList<T> extends StatelessWidget {
   })  : listType = ListType.sliverBuilder,
         padding = null,
         axis = Axis.vertical,
-        scrollController = null;
+        scrollController = null,
+        reverse = false;
 
   final Axis axis;
   final ListType listType;
@@ -38,6 +40,7 @@ class PagedList<T> extends StatelessWidget {
   final List<T> items;
   final int totalCount;
   final WidgetBuilder? onEmptyListBuilder;
+  final bool reverse;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +71,7 @@ class PagedList<T> extends StatelessWidget {
       case ListType.builder:
         return ListView.builder(
           itemCount: itemCount,
+          reverse: reverse,
           scrollDirection: axis,
           itemBuilder: _itemBuilder,
           controller: scrollController,

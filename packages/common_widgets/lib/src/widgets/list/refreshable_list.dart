@@ -13,6 +13,7 @@ class RefreshableList<T> extends StatelessWidget {
     this.padding,
     this.refreshBuilder,
     this.onEmptyListErrorBuilder,
+    this.reverse = false,
   })  : listType = ListType.builder,
         super(key: key);
 
@@ -26,6 +27,7 @@ class RefreshableList<T> extends StatelessWidget {
     this.onEmptyListErrorBuilder,
   })  : listType = ListType.sliverBuilder,
         padding = null,
+        reverse = false,
         super(key: key);
 
   final ListType listType;
@@ -37,12 +39,13 @@ class RefreshableList<T> extends StatelessWidget {
   final EdgeInsets? padding;
   final WidgetBuilder? refreshBuilder;
   final WidgetBuilder? onEmptyListErrorBuilder;
+  final bool reverse;
 
   @override
   Widget build(BuildContext context) {
     switch (listType) {
       case ListType.sliverBuilder:
-        if ((data == null || data?.isEmpty == true )&& onEmptyListErrorBuilder != null) {
+        if ((data == null || data?.isEmpty == true) && onEmptyListErrorBuilder != null) {
           return SliverToBoxAdapter(child: onEmptyListErrorBuilder!.call(context));
         }
 
@@ -53,13 +56,14 @@ class RefreshableList<T> extends StatelessWidget {
           ),
         );
       case ListType.builder:
-        if ((data == null || data?.isEmpty == true )&& onEmptyListErrorBuilder != null) {
+        if ((data == null || data?.isEmpty == true) && onEmptyListErrorBuilder != null) {
           return onEmptyListErrorBuilder!.call(context);
         }
 
         return ListView.builder(
           itemBuilder: _itemBuilder,
           itemCount: (data?.length ?? 0) + 1,
+          reverse: reverse,
           padding: padding,
         );
     }

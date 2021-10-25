@@ -12,7 +12,7 @@ abstract class BaseService {
   Future<Either<F, T>> safeCall<F, T>({
     required Future<T> Function() call,
     required F Function() onNetworkError,
-    required F Function(Exception e) onUnknownError,
+    required F Function(Object? e) onUnknownError,
     F Function(Response? response)? onResponseError,
   }) async {
     try {
@@ -37,7 +37,7 @@ abstract class BaseService {
           }
           return left(onUnknownError(e));
       }
-    } on Exception catch (e) {
+    } catch (e) {
       log('BaseService.safeCall: ', error: e);
       return left(onUnknownError(e));
     }
@@ -59,7 +59,7 @@ abstract class BaseService {
         }
         return const FetchFailure.unknownError();
       },
-      onUnknownError: (Exception e) => const FetchFailure.unknownError(),
+      onUnknownError: (Object? e) => const FetchFailure.unknownError(),
     );
   }
 

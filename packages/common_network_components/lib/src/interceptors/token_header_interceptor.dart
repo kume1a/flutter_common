@@ -8,7 +8,7 @@ import '../local/auth_key_store.dart';
 import '../utils/jwt_decoder.dart';
 import 'abstract_token_header_interceptor_flow.dart';
 
-const int kNetworkTimeout = 8000;
+const int kNetworkTimeout = 20000;
 
 class TokenHeaderInterceptor extends Interceptor {
   TokenHeaderInterceptor({
@@ -72,9 +72,6 @@ class TokenHeaderInterceptor extends Interceptor {
       }
     } on DioError catch (e) {
       log('TokenHeaderInterceptor._refreshAccessToken: ', error: e);
-      if (e.type == DioErrorType.response) {
-        await _clearExit();
-      }
     }
   }
 

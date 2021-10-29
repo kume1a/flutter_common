@@ -39,7 +39,19 @@ class SafeImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (url == null || url!.trim().isEmpty) {
-      return _placeholder();
+      if (placeholderAssetPath != null) {
+        return _image(
+          AssetImage(placeholderAssetPath!),
+          width: assetWidth,
+          height: assetHeight,
+        );
+      }
+      return BlankContainer(
+        width: width,
+        height: height,
+        borderRadius: borderRadius,
+        color: placeholderColor,
+      );
     }
     return _image(NetworkImage(url!));
   }
@@ -56,7 +68,21 @@ class SafeImage extends StatelessWidget {
         width: width ?? this.width,
         height: height ?? this.height,
         fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => _placeholder(),
+        errorBuilder: (_, __, ___) {
+          if (placeholderAssetPath != null) {
+            return Image.asset(
+              placeholderAssetPath!,
+              width: assetWidth,
+              height: assetHeight,
+            );
+          }
+          return BlankContainer(
+            width: this.width,
+            height: this.height,
+            borderRadius: borderRadius,
+            color: placeholderColor,
+          );
+        },
       ),
     );
 
@@ -69,21 +95,5 @@ class SafeImage extends StatelessWidget {
       );
     }
     return imageContent;
-  }
-
-  Widget _placeholder() {
-    if (placeholderAssetPath != null) {
-      return _image(
-        AssetImage(placeholderAssetPath!),
-        width: assetWidth,
-        height: assetHeight,
-      );
-    }
-    return BlankContainer(
-      width: width,
-      height: height,
-      borderRadius: borderRadius,
-      color: placeholderColor,
-    );
   }
 }

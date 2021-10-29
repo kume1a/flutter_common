@@ -18,10 +18,10 @@ class SafeImage extends StatelessWidget {
   const SafeImage.withAssetPlaceholder({
     Key? key,
     required this.url,
+    required this.placeholderAssetPath,
     this.width,
     this.height,
     this.borderRadius = 4,
-    this.placeholderAssetPath,
     this.assetWidth,
     this.assetHeight,
   })  : placeholderColor = null,
@@ -39,14 +39,7 @@ class SafeImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (url == null || url!.trim().isEmpty) {
-      if (placeholderAssetPath != null) {
-        return _image(
-          AssetImage(placeholderAssetPath!),
-          width: assetWidth,
-          height: assetHeight,
-        );
-      }
-      return _blankContainer();
+      return _placeholder();
     }
     return _image(NetworkImage(url!));
   }
@@ -63,7 +56,7 @@ class SafeImage extends StatelessWidget {
         width: width ?? this.width,
         height: height ?? this.height,
         fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => _blankContainer(),
+        errorBuilder: (_, __, ___) => _placeholder(),
       ),
     );
 
@@ -78,7 +71,14 @@ class SafeImage extends StatelessWidget {
     return imageContent;
   }
 
-  Widget _blankContainer() {
+  Widget _placeholder() {
+    if (placeholderAssetPath != null) {
+      return _image(
+        AssetImage(placeholderAssetPath!),
+        width: assetWidth,
+        height: assetHeight,
+      );
+    }
     return BlankContainer(
       width: width,
       height: height,

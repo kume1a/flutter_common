@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'either.dart';
@@ -42,19 +44,19 @@ class DataState<F, T> with _$DataState<F, T> {
         orElse: () => null,
       );
 
-  DataState<F, T>? modifyIfHasDataAndGet(
-    T? Function(T data) modifier,
-  ) {
+  FutureOr<DataState<F, T>?> modifyIfHasDataAndGet(
+    FutureOr<T?> Function(T data) modifier,
+  ) async {
     return maybeWhen(
-      success: (T data) {
-        final T? newData = modifier.call(data);
+      success: (T data) async {
+        final T? newData = await modifier.call(data);
         if (newData != null) {
           return DataState<F, T>.success(newData);
         }
       },
-      error: (F failure, T? data) {
+      error: (F failure, T? data) async {
         if (data != null) {
-          final T? newData = modifier.call(data);
+          final T? newData = await modifier.call(data);
           if (newData != null) {
             return DataState<F, T>.error(failure, newData);
           }

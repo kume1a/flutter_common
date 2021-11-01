@@ -70,10 +70,14 @@ class SafeImage extends StatelessWidget {
         fit: BoxFit.cover,
         errorBuilder: (_, __, ___) {
           if (placeholderAssetPath != null) {
-            return Image.asset(
-              placeholderAssetPath!,
-              width: assetWidth,
-              height: assetHeight,
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(borderRadius),
+              child: Image.asset(
+                placeholderAssetPath!,
+                width: assetWidth,
+                height: assetHeight,
+                fit: BoxFit.cover,
+              ),
             );
           }
           return BlankContainer(

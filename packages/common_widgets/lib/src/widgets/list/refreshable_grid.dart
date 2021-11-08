@@ -45,8 +45,14 @@ class RefreshableGrid<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (listType) {
       case ListType.sliverBuilder:
-        if ((data == null || data?.isEmpty == true) && onEmptyListErrorBuilder != null) {
-          return SliverToBoxAdapter(child: onEmptyListErrorBuilder!.call(context));
+        if (data == null || data?.isEmpty == true) {
+          return onEmptyListErrorBuilder != null
+              ? SliverList(
+                  delegate: SliverChildListDelegate(
+                    <Widget>[onEmptyListErrorBuilder!.call(context)],
+                  ),
+                )
+              : const SliverToBoxAdapter();
         }
 
         return SliverGrid(
@@ -57,8 +63,12 @@ class RefreshableGrid<T> extends StatelessWidget {
           ),
         );
       case ListType.builder:
-        if ((data == null || data?.isEmpty == true) && onEmptyListErrorBuilder != null) {
-          return onEmptyListErrorBuilder!.call(context);
+        if (data == null || data?.isEmpty == true) {
+          return onEmptyListErrorBuilder != null
+              ? SingleChildScrollView(
+                  child: onEmptyListErrorBuilder!.call(context),
+                )
+              : const SizedBox.shrink();
         }
 
         return GridView.builder(
@@ -72,29 +82,28 @@ class RefreshableGrid<T> extends StatelessWidget {
 
   Widget _itemBuilder(BuildContext context, int index) {
     if (index == (data?.length ?? 0)) {
-      if (refreshBuilder != null) {
-        return refreshBuilder!.call(context);
-      }
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Flexible(
-              child: Text(
-                errorText,
-                textAlign: TextAlign.center,
+      return refreshBuilder != null
+          ? refreshBuilder!.call(context)
+          : Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Flexible(
+                    child: Text(
+                      errorText,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton(
+                    onPressed: onRefresh,
+                    splashRadius: 24,
+                    icon: const Icon(Icons.refresh),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(width: 8),
-            IconButton(
-              onPressed: onRefresh,
-              splashRadius: 24,
-              icon: const Icon(Icons.refresh),
-            ),
-          ],
-        ),
-      );
+            );
     }
     return itemBuilder.call(context, data![index]);
   }

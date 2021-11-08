@@ -44,14 +44,19 @@ class PagedGrid<T> extends StatelessWidget {
     if (totalCount == 0) {
       switch (listType) {
         case ListType.sliverBuilder:
-          return SliverToBoxAdapter(
-            child: onEmptyListBuilder?.call(context),
-          );
+          return onEmptyListBuilder != null
+              ? SliverList(
+                  delegate: SliverChildListDelegate(
+                    <Widget>[onEmptyListBuilder!.call(context)],
+                  ),
+                )
+              : const SliverToBoxAdapter();
         case ListType.builder:
-          if (onEmptyListBuilder != null) {
-            return onEmptyListBuilder!.call(context);
-          }
-          return const SizedBox.shrink();
+          return onEmptyListBuilder != null
+              ? SingleChildScrollView(
+                  child: onEmptyListBuilder!.call(context),
+                )
+              : const SizedBox.shrink();
       }
     }
 
@@ -80,15 +85,15 @@ class PagedGrid<T> extends StatelessWidget {
   Widget _itemBuilder(BuildContext context, int index) {
     if (index >= items.length) {
       request.call();
-      if (loadingBuilder != null) {
-        return loadingBuilder!.call(context);
-      }
-      return const Center(
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: CircularProgressIndicator(),
-        ),
-      );
+
+      return loadingBuilder != null
+          ? loadingBuilder!.call(context)
+          : const Center(
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: CircularProgressIndicator(),
+              ),
+            );
     }
     return itemBuilder.call(context, items[index]);
   }

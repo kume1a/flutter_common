@@ -78,13 +78,18 @@ class RetryOptions {
     FutureOr<T> Function() fn, {
     FutureOr<bool> Function(Exception)? retryIf,
     FutureOr<void> Function(Exception)? onRetry,
+    FutureOr<bool> Function(T result)? retryIfResult,
   }) async {
     int attempt = 0;
     // ignore: literal_only_boolean_expressions
     while (true) {
       attempt++; // first invocation is the first attempt
       try {
-        return await fn();
+        final T result = await fn();
+        final bool? shouldRetry = await retryIfResult?.call(result);
+        if (!(shouldRetry ?? false)) {
+          return result;
+        }
       } on Exception catch (e) {
         if (attempt >= maxAttempts || (retryIf != null && !(await retryIf(e)))) {
           rethrow;
@@ -134,6 +139,7 @@ Future<T> retry<T>(
   int maxAttempts = 8,
   FutureOr<bool> Function(Exception)? retryIf,
   FutureOr<void> Function(Exception)? onRetry,
+  FutureOr<bool> Function(T result)? retryIfResult,
 }) =>
     RetryOptions(
       delayFactor: delayFactor,
@@ -144,4 +150,5 @@ Future<T> retry<T>(
       fn,
       retryIf: retryIf,
       onRetry: onRetry,
+      retryIfResult: retryIfResult,
     );

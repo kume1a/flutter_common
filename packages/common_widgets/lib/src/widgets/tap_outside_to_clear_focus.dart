@@ -4,9 +4,11 @@ class TapOutsideToClearFocus extends StatelessWidget {
   const TapOutsideToClearFocus({
     Key? key,
     required this.child,
+    this.afterAction,
   }) : super(key: key);
 
   final Widget child;
+  final VoidCallback? afterAction;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,8 @@ class TapOutsideToClearFocus extends StatelessWidget {
         if (!currentFocus.hasPrimaryFocus && currentFocus.hasFocus) {
           FocusManager.instance.primaryFocus?.unfocus();
         }
+
+        afterAction?.call();
       },
       child: child,
     );

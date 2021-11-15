@@ -9,7 +9,7 @@ import 'core/list_config.dart';
 class PagedList<T> extends StatelessWidget {
   const PagedList({
     Key? key,
-    this.listViewConfig,
+    ListBuilderConfig? config,
     required this.data,
     required this.totalCount,
     required this.onScrolledToEnd,
@@ -17,12 +17,13 @@ class PagedList<T> extends StatelessWidget {
     this.loadingBuilder,
     this.emptyListBuilder,
   })  : listType = ListType.builder,
-        sliverListConfig = null,
+        listBuilderConfig = config,
+        sliverBuilderConfig = null,
         super(key: key);
 
   const PagedList.sliver({
     Key? key,
-    this.sliverListConfig,
+    SliverBuilderConfig? config,
     required this.data,
     required this.totalCount,
     required this.onScrolledToEnd,
@@ -30,11 +31,12 @@ class PagedList<T> extends StatelessWidget {
     this.loadingBuilder,
     this.emptyListBuilder,
   })  : listType = ListType.sliverBuilder,
-        listViewConfig = null,
+        sliverBuilderConfig = config,
+        listBuilderConfig = null,
         super(key: key);
 
-  final ListBuilderConfig? listViewConfig;
-  final SliverBuilderConfig? sliverListConfig;
+  final ListBuilderConfig? listBuilderConfig;
+  final SliverBuilderConfig? sliverBuilderConfig;
 
   final ListType listType;
 
@@ -74,16 +76,16 @@ class PagedList<T> extends StatelessWidget {
     switch (listType) {
       case ListType.sliverBuilder:
         return SliverList(
-          delegate: sliverListConfig != null
+          delegate: sliverBuilderConfig != null
               ? SliverChildBuilderDelegate(
                   _itemBuilder,
                   childCount: itemCount,
-                  findChildIndexCallback: sliverListConfig!.findChildIndexCallback,
-                  addAutomaticKeepAlives: sliverListConfig!.addAutomaticKeepAlives,
-                  addRepaintBoundaries: sliverListConfig!.addRepaintBoundaries,
-                  addSemanticIndexes: sliverListConfig!.addSemanticIndexes,
-                  semanticIndexCallback: sliverListConfig!.semanticIndexCallback,
-                  semanticIndexOffset: sliverListConfig!.semanticIndexOffset,
+                  findChildIndexCallback: sliverBuilderConfig!.findChildIndexCallback,
+                  addAutomaticKeepAlives: sliverBuilderConfig!.addAutomaticKeepAlives,
+                  addRepaintBoundaries: sliverBuilderConfig!.addRepaintBoundaries,
+                  addSemanticIndexes: sliverBuilderConfig!.addSemanticIndexes,
+                  semanticIndexCallback: sliverBuilderConfig!.semanticIndexCallback,
+                  semanticIndexOffset: sliverBuilderConfig!.semanticIndexOffset,
                 )
               : SliverChildBuilderDelegate(
                   _itemBuilder,
@@ -91,26 +93,26 @@ class PagedList<T> extends StatelessWidget {
                 ),
         );
       case ListType.builder:
-        return listViewConfig != null
+        return listBuilderConfig != null
             ? ListView.builder(
                 itemCount: itemCount,
                 itemBuilder: _itemBuilder,
-                scrollDirection: listViewConfig!.scrollDirection,
-                reverse: listViewConfig!.reverse,
-                controller: listViewConfig!.controller,
-                primary: listViewConfig!.primary,
-                physics: listViewConfig!.physics,
-                shrinkWrap: listViewConfig!.shrinkWrap,
-                padding: listViewConfig!.padding,
-                addAutomaticKeepAlives: listViewConfig!.addAutomaticKeepAlives,
-                addRepaintBoundaries: listViewConfig!.addRepaintBoundaries,
-                addSemanticIndexes: listViewConfig!.addSemanticIndexes,
-                cacheExtent: listViewConfig!.cacheExtent,
-                semanticChildCount: listViewConfig!.semanticChildCount,
-                dragStartBehavior: listViewConfig!.dragStartBehavior,
-                keyboardDismissBehavior: listViewConfig!.keyboardDismissBehavior,
-                restorationId: listViewConfig!.restorationId,
-                clipBehavior: listViewConfig!.clipBehavior,
+                scrollDirection: listBuilderConfig!.scrollDirection,
+                reverse: listBuilderConfig!.reverse,
+                controller: listBuilderConfig!.controller,
+                primary: listBuilderConfig!.primary,
+                physics: listBuilderConfig!.physics,
+                shrinkWrap: listBuilderConfig!.shrinkWrap,
+                padding: listBuilderConfig!.padding,
+                addAutomaticKeepAlives: listBuilderConfig!.addAutomaticKeepAlives,
+                addRepaintBoundaries: listBuilderConfig!.addRepaintBoundaries,
+                addSemanticIndexes: listBuilderConfig!.addSemanticIndexes,
+                cacheExtent: listBuilderConfig!.cacheExtent,
+                semanticChildCount: listBuilderConfig!.semanticChildCount,
+                dragStartBehavior: listBuilderConfig!.dragStartBehavior,
+                keyboardDismissBehavior: listBuilderConfig!.keyboardDismissBehavior,
+                restorationId: listBuilderConfig!.restorationId,
+                clipBehavior: listBuilderConfig!.clipBehavior,
               )
             : ListView.builder(
                 itemBuilder: _itemBuilder,

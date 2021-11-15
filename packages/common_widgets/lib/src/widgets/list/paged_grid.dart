@@ -9,7 +9,7 @@ import 'core/list_config.dart';
 class PagedGrid<T> extends StatelessWidget {
   const PagedGrid({
     Key? key,
-    this.listViewConfig,
+    ListBuilderConfig? config,
     required this.gridDelegate,
     required this.data,
     required this.totalCount,
@@ -18,12 +18,13 @@ class PagedGrid<T> extends StatelessWidget {
     this.loadingBuilder,
     this.emptyListBuilder,
   })  : listType = ListType.builder,
-        sliverListConfig = null,
+        listBuilderConfig = config,
+        sliverBuilderConfig = null,
         super(key: key);
 
   const PagedGrid.sliver({
     Key? key,
-    this.sliverListConfig,
+    SliverBuilderConfig? config,
     required this.gridDelegate,
     required this.data,
     required this.totalCount,
@@ -32,11 +33,12 @@ class PagedGrid<T> extends StatelessWidget {
     this.loadingBuilder,
     this.emptyListBuilder,
   })  : listType = ListType.sliverBuilder,
-        listViewConfig = null,
+        sliverBuilderConfig = config,
+        listBuilderConfig = null,
         super(key: key);
 
-  final ListBuilderConfig? listViewConfig;
-  final SliverBuilderConfig? sliverListConfig;
+  final ListBuilderConfig? listBuilderConfig;
+  final SliverBuilderConfig? sliverBuilderConfig;
 
   final SliverGridDelegate gridDelegate;
   final ListType listType;
@@ -77,16 +79,16 @@ class PagedGrid<T> extends StatelessWidget {
       case ListType.sliverBuilder:
         return SliverGrid(
           gridDelegate: gridDelegate,
-          delegate: sliverListConfig != null
+          delegate: sliverBuilderConfig != null
               ? SliverChildBuilderDelegate(
                   _itemBuilder,
                   childCount: itemCount,
-                  findChildIndexCallback: sliverListConfig!.findChildIndexCallback,
-                  addAutomaticKeepAlives: sliverListConfig!.addAutomaticKeepAlives,
-                  addRepaintBoundaries: sliverListConfig!.addRepaintBoundaries,
-                  addSemanticIndexes: sliverListConfig!.addSemanticIndexes,
-                  semanticIndexCallback: sliverListConfig!.semanticIndexCallback,
-                  semanticIndexOffset: sliverListConfig!.semanticIndexOffset,
+                  findChildIndexCallback: sliverBuilderConfig!.findChildIndexCallback,
+                  addAutomaticKeepAlives: sliverBuilderConfig!.addAutomaticKeepAlives,
+                  addRepaintBoundaries: sliverBuilderConfig!.addRepaintBoundaries,
+                  addSemanticIndexes: sliverBuilderConfig!.addSemanticIndexes,
+                  semanticIndexCallback: sliverBuilderConfig!.semanticIndexCallback,
+                  semanticIndexOffset: sliverBuilderConfig!.semanticIndexOffset,
                 )
               : SliverChildBuilderDelegate(
                   _itemBuilder,
@@ -94,27 +96,27 @@ class PagedGrid<T> extends StatelessWidget {
                 ),
         );
       case ListType.builder:
-        return listViewConfig != null
+        return listBuilderConfig != null
             ? GridView.builder(
                 gridDelegate: gridDelegate,
                 itemCount: itemCount,
                 itemBuilder: _itemBuilder,
-                scrollDirection: listViewConfig!.scrollDirection,
-                reverse: listViewConfig!.reverse,
-                controller: listViewConfig!.controller,
-                primary: listViewConfig!.primary,
-                physics: listViewConfig!.physics,
-                shrinkWrap: listViewConfig!.shrinkWrap,
-                padding: listViewConfig!.padding,
-                addAutomaticKeepAlives: listViewConfig!.addAutomaticKeepAlives,
-                addRepaintBoundaries: listViewConfig!.addRepaintBoundaries,
-                addSemanticIndexes: listViewConfig!.addSemanticIndexes,
-                cacheExtent: listViewConfig!.cacheExtent,
-                semanticChildCount: listViewConfig!.semanticChildCount,
-                dragStartBehavior: listViewConfig!.dragStartBehavior,
-                keyboardDismissBehavior: listViewConfig!.keyboardDismissBehavior,
-                restorationId: listViewConfig!.restorationId,
-                clipBehavior: listViewConfig!.clipBehavior,
+                scrollDirection: listBuilderConfig!.scrollDirection,
+                reverse: listBuilderConfig!.reverse,
+                controller: listBuilderConfig!.controller,
+                primary: listBuilderConfig!.primary,
+                physics: listBuilderConfig!.physics,
+                shrinkWrap: listBuilderConfig!.shrinkWrap,
+                padding: listBuilderConfig!.padding,
+                addAutomaticKeepAlives: listBuilderConfig!.addAutomaticKeepAlives,
+                addRepaintBoundaries: listBuilderConfig!.addRepaintBoundaries,
+                addSemanticIndexes: listBuilderConfig!.addSemanticIndexes,
+                cacheExtent: listBuilderConfig!.cacheExtent,
+                semanticChildCount: listBuilderConfig!.semanticChildCount,
+                dragStartBehavior: listBuilderConfig!.dragStartBehavior,
+                keyboardDismissBehavior: listBuilderConfig!.keyboardDismissBehavior,
+                restorationId: listBuilderConfig!.restorationId,
+                clipBehavior: listBuilderConfig!.clipBehavior,
               )
             : GridView.builder(
                 gridDelegate: gridDelegate,

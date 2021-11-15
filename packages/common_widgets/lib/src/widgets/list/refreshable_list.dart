@@ -9,34 +9,36 @@ import 'core/list_config.dart';
 class RefreshableList<T> extends StatelessWidget {
   const RefreshableList({
     Key? key,
-    this.listViewConfig,
+    ListBuilderConfig? config,
     required this.data,
     required this.itemBuilder,
     this.onRefreshPressed,
     this.refreshBuilder,
     this.emptyListErrorBuilder,
   })  : listType = ListType.builder,
-        sliverListConfig = null,
+        listBuilderConfig = config,
+        sliverBuilderConfig = null,
         assert((refreshBuilder == null && onRefreshPressed != null) ||
             (refreshBuilder != null && onRefreshPressed == null)),
         super(key: key);
 
   const RefreshableList.sliver({
     Key? key,
-    this.sliverListConfig,
+    SliverBuilderConfig? config,
     required this.data,
     required this.itemBuilder,
     this.onRefreshPressed,
     this.refreshBuilder,
     this.emptyListErrorBuilder,
   })  : listType = ListType.sliverBuilder,
-        listViewConfig = null,
+        sliverBuilderConfig = config,
+        listBuilderConfig = null,
         assert((refreshBuilder == null && onRefreshPressed != null) ||
             (refreshBuilder != null && onRefreshPressed == null)),
         super(key: key);
 
-  final ListBuilderConfig? listViewConfig;
-  final SliverBuilderConfig? sliverListConfig;
+  final ListBuilderConfig? listBuilderConfig;
+  final SliverBuilderConfig? sliverBuilderConfig;
 
   final ListType listType;
 
@@ -77,16 +79,16 @@ class RefreshableList<T> extends StatelessWidget {
     switch (listType) {
       case ListType.sliverBuilder:
         return SliverList(
-          delegate: sliverListConfig != null
+          delegate: sliverBuilderConfig != null
               ? SliverChildBuilderDelegate(
                   (BuildContext context, int index) => _itemBuilder(context, index),
                   childCount: itemCount,
-                  findChildIndexCallback: sliverListConfig!.findChildIndexCallback,
-                  addAutomaticKeepAlives: sliverListConfig!.addAutomaticKeepAlives,
-                  addRepaintBoundaries: sliverListConfig!.addRepaintBoundaries,
-                  addSemanticIndexes: sliverListConfig!.addSemanticIndexes,
-                  semanticIndexCallback: sliverListConfig!.semanticIndexCallback,
-                  semanticIndexOffset: sliverListConfig!.semanticIndexOffset,
+                  findChildIndexCallback: sliverBuilderConfig!.findChildIndexCallback,
+                  addAutomaticKeepAlives: sliverBuilderConfig!.addAutomaticKeepAlives,
+                  addRepaintBoundaries: sliverBuilderConfig!.addRepaintBoundaries,
+                  addSemanticIndexes: sliverBuilderConfig!.addSemanticIndexes,
+                  semanticIndexCallback: sliverBuilderConfig!.semanticIndexCallback,
+                  semanticIndexOffset: sliverBuilderConfig!.semanticIndexOffset,
                 )
               : SliverChildBuilderDelegate(
                   (BuildContext context, int index) => _itemBuilder(context, index),
@@ -94,26 +96,26 @@ class RefreshableList<T> extends StatelessWidget {
                 ),
         );
       case ListType.builder:
-        return listViewConfig != null
+        return listBuilderConfig != null
             ? ListView.builder(
                 itemBuilder: _itemBuilder,
                 itemCount: itemCount,
-                scrollDirection: listViewConfig!.scrollDirection,
-                reverse: listViewConfig!.reverse,
-                controller: listViewConfig!.controller,
-                primary: listViewConfig!.primary,
-                physics: listViewConfig!.physics,
-                shrinkWrap: listViewConfig!.shrinkWrap,
-                padding: listViewConfig!.padding,
-                addAutomaticKeepAlives: listViewConfig!.addAutomaticKeepAlives,
-                addRepaintBoundaries: listViewConfig!.addRepaintBoundaries,
-                addSemanticIndexes: listViewConfig!.addSemanticIndexes,
-                cacheExtent: listViewConfig!.cacheExtent,
-                semanticChildCount: listViewConfig!.semanticChildCount,
-                dragStartBehavior: listViewConfig!.dragStartBehavior,
-                keyboardDismissBehavior: listViewConfig!.keyboardDismissBehavior,
-                restorationId: listViewConfig!.restorationId,
-                clipBehavior: listViewConfig!.clipBehavior,
+                scrollDirection: listBuilderConfig!.scrollDirection,
+                reverse: listBuilderConfig!.reverse,
+                controller: listBuilderConfig!.controller,
+                primary: listBuilderConfig!.primary,
+                physics: listBuilderConfig!.physics,
+                shrinkWrap: listBuilderConfig!.shrinkWrap,
+                padding: listBuilderConfig!.padding,
+                addAutomaticKeepAlives: listBuilderConfig!.addAutomaticKeepAlives,
+                addRepaintBoundaries: listBuilderConfig!.addRepaintBoundaries,
+                addSemanticIndexes: listBuilderConfig!.addSemanticIndexes,
+                cacheExtent: listBuilderConfig!.cacheExtent,
+                semanticChildCount: listBuilderConfig!.semanticChildCount,
+                dragStartBehavior: listBuilderConfig!.dragStartBehavior,
+                keyboardDismissBehavior: listBuilderConfig!.keyboardDismissBehavior,
+                restorationId: listBuilderConfig!.restorationId,
+                clipBehavior: listBuilderConfig!.clipBehavior,
               )
             : ListView.builder(
                 itemBuilder: _itemBuilder,

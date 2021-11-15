@@ -7,6 +7,7 @@ export 'src/widgets/carousel/carousel.dart';
 export 'src/widgets/carousel/carousel_indicator_options.dart';
 export 'src/widgets/dashed_line.dart';
 export 'src/widgets/dashed_rect.dart';
+export 'src/widgets/list/core/list_config.dart';
 export 'src/widgets/list/paged_grid.dart';
 export 'src/widgets/list/paged_list.dart';
 export 'src/widgets/list/refreshable_grid.dart';

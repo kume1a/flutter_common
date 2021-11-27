@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'carousel_indicator_options.dart';
 import 'page_indicator.dart';
 
-class Carousel extends HookWidget {
+class Carousel extends StatefulWidget {
   const Carousel({
     Key? key,
     required this.height,
@@ -26,6 +25,28 @@ class Carousel extends HookWidget {
   final double distortionValue;
   final CarouselIndicatorOptions? indicatorOptions;
 
+  @override
+  State<Carousel> createState() => _CarouselState();
+}
+
+class _CarouselState extends State<Carousel> {
+  late final PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    pageController = PageController(viewportFraction: widget.viewPortFraction);
+  }
+
+
+  @override
+  void dispose() {
+    pageController.dispose();
+
+    super.dispose();
+  }
+
   Widget getEnlargeWrapper(Widget? child, {double? width, double? height, required double scale}) {
     return Transform.scale(
       scale: scale,
@@ -39,16 +60,14 @@ class Carousel extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PageController pageController = usePageController(viewportFraction: viewPortFraction);
-
     return Column(
       children: <Widget>[
         SizedBox(
-          height: height,
+          height: widget.height,
           child: PageView.builder(
-            scrollDirection: scrollDirection,
-            itemCount: itemCount,
-            onPageChanged: (int index) => onPageChanged?.call(index),
+            scrollDirection: widget.scrollDirection,
+            itemCount: widget.itemCount,
+            onPageChanged: (int index) => widget.onPageChanged?.call(index),
             controller: pageController,
             itemBuilder: (BuildContext context, int index) {
               return AnimatedBuilder(
@@ -67,14 +86,14 @@ class Carousel extends HookWidget {
                       itemOffset = index.toDouble();
                     }
                   }
-                  final double distortionRatio = (1 - (itemOffset.abs() * this.distortionValue)).clamp(0.0, 1.0);
+                  final double distortionRatio = (1 - (itemOffset.abs() * widget.distortionValue)).clamp(0.0, 1.0);
                   final double distortionValue = Curves.easeOut.transform(distortionRatio);
 
-                  if (scrollDirection == Axis.horizontal) {
+                  if (widget.scrollDirection == Axis.horizontal) {
                     return Center(
                       child: getEnlargeWrapper(
                         child,
-                        height: distortionValue * height,
+                        height: distortionValue * widget.height,
                         scale: distortionValue,
                       ),
                     );
@@ -88,30 +107,30 @@ class Carousel extends HookWidget {
                     );
                   }
                 },
-                child: itemBuilder(context, index),
+                child: widget.itemBuilder(context, index),
               );
             },
           ),
         ),
-        if (indicatorOptions != null && itemCount > 1)
-          SizedBox(height: indicatorOptions!.spaceFromPageIndicatorToCarousel),
-        if (indicatorOptions != null && itemCount > 1)
+        if (widget.indicatorOptions != null && widget.itemCount > 1)
+          SizedBox(height: widget.indicatorOptions!.spaceFromPageIndicatorToCarousel),
+        if (widget.indicatorOptions != null && widget.itemCount > 1)
           PageIndicator(
             controller: pageController,
-            count: itemCount,
-            onDotClicked: indicatorOptions!.onDotClicked,
+            count: widget.itemCount,
+            onDotClicked: widget.indicatorOptions!.onDotClicked,
             effect: ScrollingDotsEffect(
-              maxVisibleDots: indicatorOptions!.maxVisibleDots,
-              radius: indicatorOptions!.radius,
-              activeDotScale: indicatorOptions!.activeDotScale,
-              dotHeight: indicatorOptions!.dotHeight,
-              dotWidth: indicatorOptions!.dotWidth,
-              dotColor: indicatorOptions!.dotColor,
-              activeDotColor: indicatorOptions!.activeDotColor,
-              activeStrokeWidth: indicatorOptions!.activeStrokeWidth,
-              paintStyle: indicatorOptions!.paintStyle,
-              spacing: indicatorOptions!.spacing,
-              strokeWidth: indicatorOptions!.strokeWidth,
+              maxVisibleDots: widget.indicatorOptions!.maxVisibleDots,
+              radius: widget.indicatorOptions!.radius,
+              activeDotScale: widget.indicatorOptions!.activeDotScale,
+              dotHeight: widget.indicatorOptions!.dotHeight,
+              dotWidth: widget.indicatorOptions!.dotWidth,
+              dotColor: widget.indicatorOptions!.dotColor,
+              activeDotColor: widget.indicatorOptions!.activeDotColor,
+              activeStrokeWidth: widget.indicatorOptions!.activeStrokeWidth,
+              paintStyle: widget.indicatorOptions!.paintStyle,
+              spacing: widget.indicatorOptions!.spacing,
+              strokeWidth: widget.indicatorOptions!.strokeWidth,
             ),
           ),
       ],

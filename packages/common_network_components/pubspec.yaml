@@ -7,7 +7,7 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  dio: ^4.0.0
+  dio: ^4.0.4
   meta: ^1.7.0
   common_models:
     git:

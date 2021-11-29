@@ -1,3 +1,4 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
@@ -52,6 +53,14 @@ mixin _$DataState<F, T> {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T data)? success,
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(F failure, T? data)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? success,
     TResult Function()? idle,
@@ -66,6 +75,14 @@ mixin _$DataState<F, T> {
     required TResult Function(_Idle<F, T> value) idle,
     required TResult Function(_Loading<F, T> value) loading,
     required TResult Function(_Error<F, T> value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Success<F, T> value)? success,
+    TResult Function(_Idle<F, T> value)? idle,
+    TResult Function(_Loading<F, T> value)? loading,
+    TResult Function(_Error<F, T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -144,14 +161,14 @@ class _$_Success<F, T> extends _Success<F, T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Success<F, T> &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _Success<F, T> &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -167,6 +184,17 @@ class _$_Success<F, T> extends _Success<F, T> {
     required TResult Function(F failure, T? data) error,
   }) {
     return success(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T data)? success,
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(F failure, T? data)? error,
+  }) {
+    return success?.call(data);
   }
 
   @override
@@ -197,6 +225,17 @@ class _$_Success<F, T> extends _Success<F, T> {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Success<F, T> value)? success,
+    TResult Function(_Idle<F, T> value)? idle,
+    TResult Function(_Loading<F, T> value)? loading,
+    TResult Function(_Error<F, T> value)? error,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Success<F, T> value)? success,
     TResult Function(_Idle<F, T> value)? idle,
@@ -215,7 +254,7 @@ abstract class _Success<F, T> extends DataState<F, T> {
   const factory _Success(T data) = _$_Success<F, T>;
   const _Success._() : super._();
 
-  T get data => throw _privateConstructorUsedError;
+  T get data;
   @JsonKey(ignore: true)
   _$SuccessCopyWith<F, T, _Success<F, T>> get copyWith =>
       throw _privateConstructorUsedError;
@@ -250,7 +289,8 @@ class _$_Idle<F, T> extends _Idle<F, T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Idle<F, T>);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Idle<F, T>);
   }
 
   @override
@@ -265,6 +305,17 @@ class _$_Idle<F, T> extends _Idle<F, T> {
     required TResult Function(F failure, T? data) error,
   }) {
     return idle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T data)? success,
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(F failure, T? data)? error,
+  }) {
+    return idle?.call();
   }
 
   @override
@@ -291,6 +342,17 @@ class _$_Idle<F, T> extends _Idle<F, T> {
     required TResult Function(_Error<F, T> value) error,
   }) {
     return idle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Success<F, T> value)? success,
+    TResult Function(_Idle<F, T> value)? idle,
+    TResult Function(_Loading<F, T> value)? loading,
+    TResult Function(_Error<F, T> value)? error,
+  }) {
+    return idle?.call(this);
   }
 
   @override
@@ -345,7 +407,8 @@ class _$_Loading<F, T> extends _Loading<F, T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Loading<F, T>);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Loading<F, T>);
   }
 
   @override
@@ -360,6 +423,17 @@ class _$_Loading<F, T> extends _Loading<F, T> {
     required TResult Function(F failure, T? data) error,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T data)? success,
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(F failure, T? data)? error,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -386,6 +460,17 @@ class _$_Loading<F, T> extends _Loading<F, T> {
     required TResult Function(_Error<F, T> value) error,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Success<F, T> value)? success,
+    TResult Function(_Idle<F, T> value)? idle,
+    TResult Function(_Loading<F, T> value)? loading,
+    TResult Function(_Error<F, T> value)? error,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -463,19 +548,17 @@ class _$_Error<F, T> extends _Error<F, T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Error<F, T> &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality()
-                    .equals(other.failure, failure)) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _Error<F, T> &&
+            const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(failure) ^
-      const DeepCollectionEquality().hash(data);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -491,6 +574,17 @@ class _$_Error<F, T> extends _Error<F, T> {
     required TResult Function(F failure, T? data) error,
   }) {
     return error(failure, data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T data)? success,
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(F failure, T? data)? error,
+  }) {
+    return error?.call(failure, data);
   }
 
   @override
@@ -521,6 +615,17 @@ class _$_Error<F, T> extends _Error<F, T> {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Success<F, T> value)? success,
+    TResult Function(_Idle<F, T> value)? idle,
+    TResult Function(_Loading<F, T> value)? loading,
+    TResult Function(_Error<F, T> value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Success<F, T> value)? success,
     TResult Function(_Idle<F, T> value)? idle,
@@ -539,8 +644,8 @@ abstract class _Error<F, T> extends DataState<F, T> {
   const factory _Error(F failure, [T? data]) = _$_Error<F, T>;
   const _Error._() : super._();
 
-  F get failure => throw _privateConstructorUsedError;
-  T? get data => throw _privateConstructorUsedError;
+  F get failure;
+  T? get data;
   @JsonKey(ignore: true)
   _$ErrorCopyWith<F, T, _Error<F, T>> get copyWith =>
       throw _privateConstructorUsedError;

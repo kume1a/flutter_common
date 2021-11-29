@@ -3,6 +3,8 @@
 /// More dartdocs go here.
 library common_models;
 
+export 'src/core/base_mapper.dart';
+export 'src/core/data_page.dart';
 export 'src/core/data_state.dart';
 export 'src/core/either.dart';
 export 'src/core/unit.dart';

@@ -10,6 +10,7 @@ class SafeImage extends StatelessWidget {
     this.height,
     this.borderRadius = 4,
     this.placeholderColor,
+    this.fit = BoxFit.cover,
   })  : placeholderAssetPath = null,
         assetWidth = null,
         assetHeight = null,
@@ -24,6 +25,7 @@ class SafeImage extends StatelessWidget {
     this.borderRadius = 4,
     this.assetWidth,
     this.assetHeight,
+    this.fit = BoxFit.cover,
   })  : placeholderColor = null,
         super(key: key);
 
@@ -35,6 +37,7 @@ class SafeImage extends StatelessWidget {
   final String? placeholderAssetPath;
   final double? assetWidth;
   final double? assetHeight;
+  final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +70,7 @@ class SafeImage extends StatelessWidget {
         image: imageProvider,
         width: width ?? this.width,
         height: height ?? this.height,
-        fit: BoxFit.cover,
+        fit: fit,
         errorBuilder: (_, __, ___) {
           if (placeholderAssetPath != null) {
             return ClipRRect(
@@ -76,7 +79,7 @@ class SafeImage extends StatelessWidget {
                 placeholderAssetPath!,
                 width: assetWidth,
                 height: assetHeight,
-                fit: BoxFit.cover,
+                fit: fit,
               ),
             );
           }

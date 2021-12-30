@@ -1,5 +1,6 @@
-import '../../common_models.dart';
+import '../core/either.dart';
 import '../failure/repeated_password_failure.dart';
+import 'core/value_object.dart';
 
 class RepeatedPasswordVVO extends ValueObject<RepeatedPasswordFailure, String> {
   factory RepeatedPasswordVVO(String password, String repeatedPassword) {
@@ -12,7 +13,8 @@ class RepeatedPasswordVVO extends ValueObject<RepeatedPasswordFailure, String> {
     return RepeatedPasswordVVO._(right(repeatedPassword));
   }
 
-  factory RepeatedPasswordVVO.empty() => RepeatedPasswordVVO._(left(const RepeatedPasswordFailure.none()));
+  factory RepeatedPasswordVVO.empty() =>
+      RepeatedPasswordVVO._(left(const RepeatedPasswordFailure.none()));
 
   RepeatedPasswordVVO._(Either<RepeatedPasswordFailure, String> value) : super(value);
 }

@@ -1,5 +1,6 @@
-import '../../common_models.dart';
+import '../core/either.dart';
 import '../failure/simple_content_value_failure.dart';
+import 'core/value_object.dart';
 
 class SimpleContentValueVVO extends ValueObject<SimpleContentValueFailure, String> {
   factory SimpleContentValueVVO(String value) {

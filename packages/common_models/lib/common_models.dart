@@ -23,4 +23,5 @@ export 'src/vvo/password.dart';
 export 'src/vvo/phone_number.dart';
 export 'src/vvo/repeated_password.dart';
 export 'src/vvo/simple_content_value.dart';
+export 'src/vvo/url.dart';
 export 'src/vvo/verification_code.dart';

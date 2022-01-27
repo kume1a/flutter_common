@@ -5,7 +5,7 @@ import 'core/vvo_config.dart';
 
 class NameVVO extends ValueObject<NameFailure, String> {
   factory NameVVO(String name) {
-    if (name.isEmpty) {
+    if (name.trim().isEmpty) {
       return NameVVO._(left(const NameFailure.empty()));
     }
     if (name.length < VVOConfig.nameVVOConfig.minLength) {

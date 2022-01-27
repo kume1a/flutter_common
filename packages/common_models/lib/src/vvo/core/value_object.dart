@@ -12,7 +12,7 @@ abstract class ValueObject<F, T> {
 
   /// @returns value [T] if present
   /// @throws [Exception] if value isn't valid
-  T get getOrCrash => value.fold((F l) => throw Exception('getOrCrash called with failure'), (T t) => t);
+  T get getOrThrow => value.fold((F l) => throw Exception('getOrThrow called with failure'), (T t) => t);
 
   T getOrElse(T orElse) => value.getOrElse(() => orElse);
 

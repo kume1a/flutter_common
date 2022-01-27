@@ -9,11 +9,8 @@ part 'data_state.freezed.dart';
 @freezed
 class DataState<F, T> with _$DataState<F, T> {
   const factory DataState.success(T data) = _Success<F, T>;
-
   const factory DataState.idle() = _Idle<F, T>;
-
   const factory DataState.loading() = _Loading<F, T>;
-
   const factory DataState.error(F failure, [T? data]) = _Error<F, T>;
 
   const DataState._();
@@ -35,7 +32,7 @@ class DataState<F, T> with _$DataState<F, T> {
   T get getOrThrow => maybeWhen(
         success: (T data) => data,
         error: (F failure, T? data) => data!,
-        orElse: () => throw Exception('getOrCrash called on !success'),
+        orElse: () => throw Exception('getOrThrow called on !success'),
       );
 
   T? get get => maybeWhen(

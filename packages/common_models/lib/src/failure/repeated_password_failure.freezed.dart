@@ -1,3 +1,4 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
@@ -37,6 +38,12 @@ mixin _$RepeatedPasswordFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? none,
+    TResult Function()? doesntMatch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? none,
     TResult Function()? doesntMatch,
@@ -47,6 +54,12 @@ mixin _$RepeatedPasswordFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_None value) none,
     required TResult Function(_DoesntMatch value) doesntMatch,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_None value)? none,
+    TResult Function(_DoesntMatch value)? doesntMatch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -104,7 +117,8 @@ class _$_None implements _None {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _None);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _None);
   }
 
   @override
@@ -117,6 +131,15 @@ class _$_None implements _None {
     required TResult Function() doesntMatch,
   }) {
     return none();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? none,
+    TResult Function()? doesntMatch,
+  }) {
+    return none?.call();
   }
 
   @override
@@ -139,6 +162,15 @@ class _$_None implements _None {
     required TResult Function(_DoesntMatch value) doesntMatch,
   }) {
     return none(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_None value)? none,
+    TResult Function(_DoesntMatch value)? doesntMatch,
+  }) {
+    return none?.call(this);
   }
 
   @override
@@ -190,7 +222,8 @@ class _$_DoesntMatch implements _DoesntMatch {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _DoesntMatch);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _DoesntMatch);
   }
 
   @override
@@ -203,6 +236,15 @@ class _$_DoesntMatch implements _DoesntMatch {
     required TResult Function() doesntMatch,
   }) {
     return doesntMatch();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? none,
+    TResult Function()? doesntMatch,
+  }) {
+    return doesntMatch?.call();
   }
 
   @override
@@ -225,6 +267,15 @@ class _$_DoesntMatch implements _DoesntMatch {
     required TResult Function(_DoesntMatch value) doesntMatch,
   }) {
     return doesntMatch(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_None value)? none,
+    TResult Function(_DoesntMatch value)? doesntMatch,
+  }) {
+    return doesntMatch?.call(this);
   }
 
   @override

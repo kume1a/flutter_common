@@ -1,11 +1,11 @@
 import 'dart:async';
 
-abstract class BaseMapper<Schema, Model> {
-  FutureOr<Model> mapToModel(Schema s) {
+abstract class BaseMapper<L, R> {
+  FutureOr<R> mapToRight(L l) {
     throw UnimplementedError();
   }
 
-  FutureOr<Schema> mapToSchema(Model m) {
+  FutureOr<L> mapToLeft(R r) {
     throw UnimplementedError();
   }
 }

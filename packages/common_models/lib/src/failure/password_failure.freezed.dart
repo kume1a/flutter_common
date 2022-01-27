@@ -1,3 +1,4 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
@@ -57,6 +58,16 @@ mixin _$PasswordFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? shortPassword,
+    TResult Function()? noUpperCaseCharacterPresent,
+    TResult Function()? noLowerCaseCharacterPresent,
+    TResult Function()? noDigitsPresent,
+    TResult Function()? noSpecialCharacterPresent,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? shortPassword,
@@ -77,6 +88,19 @@ mixin _$PasswordFailure {
         noLowerCaseCharacterPresent,
     required TResult Function(_NoDigitsPresent value) noDigitsPresent,
     required TResult Function(_NoSpecialCharacterPresent value)
+        noSpecialCharacterPresent,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortPassword value)? shortPassword,
+    TResult Function(_NoUpperCaseCharacterPresent value)?
+        noUpperCaseCharacterPresent,
+    TResult Function(_NoLowerCaseCharacterPresent value)?
+        noLowerCaseCharacterPresent,
+    TResult Function(_NoDigitsPresent value)? noDigitsPresent,
+    TResult Function(_NoSpecialCharacterPresent value)?
         noSpecialCharacterPresent,
   }) =>
       throw _privateConstructorUsedError;
@@ -141,7 +165,8 @@ class _$_Empty implements _Empty {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Empty);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Empty);
   }
 
   @override
@@ -158,6 +183,19 @@ class _$_Empty implements _Empty {
     required TResult Function() noSpecialCharacterPresent,
   }) {
     return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? shortPassword,
+    TResult Function()? noUpperCaseCharacterPresent,
+    TResult Function()? noLowerCaseCharacterPresent,
+    TResult Function()? noDigitsPresent,
+    TResult Function()? noSpecialCharacterPresent,
+  }) {
+    return empty?.call();
   }
 
   @override
@@ -191,6 +229,22 @@ class _$_Empty implements _Empty {
         noSpecialCharacterPresent,
   }) {
     return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortPassword value)? shortPassword,
+    TResult Function(_NoUpperCaseCharacterPresent value)?
+        noUpperCaseCharacterPresent,
+    TResult Function(_NoLowerCaseCharacterPresent value)?
+        noLowerCaseCharacterPresent,
+    TResult Function(_NoDigitsPresent value)? noDigitsPresent,
+    TResult Function(_NoSpecialCharacterPresent value)?
+        noSpecialCharacterPresent,
+  }) {
+    return empty?.call(this);
   }
 
   @override
@@ -249,7 +303,8 @@ class _$_ShortPassword implements _ShortPassword {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ShortPassword);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _ShortPassword);
   }
 
   @override
@@ -266,6 +321,19 @@ class _$_ShortPassword implements _ShortPassword {
     required TResult Function() noSpecialCharacterPresent,
   }) {
     return shortPassword();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? shortPassword,
+    TResult Function()? noUpperCaseCharacterPresent,
+    TResult Function()? noLowerCaseCharacterPresent,
+    TResult Function()? noDigitsPresent,
+    TResult Function()? noSpecialCharacterPresent,
+  }) {
+    return shortPassword?.call();
   }
 
   @override
@@ -299,6 +367,22 @@ class _$_ShortPassword implements _ShortPassword {
         noSpecialCharacterPresent,
   }) {
     return shortPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortPassword value)? shortPassword,
+    TResult Function(_NoUpperCaseCharacterPresent value)?
+        noUpperCaseCharacterPresent,
+    TResult Function(_NoLowerCaseCharacterPresent value)?
+        noLowerCaseCharacterPresent,
+    TResult Function(_NoDigitsPresent value)? noDigitsPresent,
+    TResult Function(_NoSpecialCharacterPresent value)?
+        noSpecialCharacterPresent,
+  }) {
+    return shortPassword?.call(this);
   }
 
   @override
@@ -360,7 +444,9 @@ class _$_NoUpperCaseCharacterPresent implements _NoUpperCaseCharacterPresent {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _NoUpperCaseCharacterPresent);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _NoUpperCaseCharacterPresent);
   }
 
   @override
@@ -377,6 +463,19 @@ class _$_NoUpperCaseCharacterPresent implements _NoUpperCaseCharacterPresent {
     required TResult Function() noSpecialCharacterPresent,
   }) {
     return noUpperCaseCharacterPresent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? shortPassword,
+    TResult Function()? noUpperCaseCharacterPresent,
+    TResult Function()? noLowerCaseCharacterPresent,
+    TResult Function()? noDigitsPresent,
+    TResult Function()? noSpecialCharacterPresent,
+  }) {
+    return noUpperCaseCharacterPresent?.call();
   }
 
   @override
@@ -410,6 +509,22 @@ class _$_NoUpperCaseCharacterPresent implements _NoUpperCaseCharacterPresent {
         noSpecialCharacterPresent,
   }) {
     return noUpperCaseCharacterPresent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortPassword value)? shortPassword,
+    TResult Function(_NoUpperCaseCharacterPresent value)?
+        noUpperCaseCharacterPresent,
+    TResult Function(_NoLowerCaseCharacterPresent value)?
+        noLowerCaseCharacterPresent,
+    TResult Function(_NoDigitsPresent value)? noDigitsPresent,
+    TResult Function(_NoSpecialCharacterPresent value)?
+        noSpecialCharacterPresent,
+  }) {
+    return noUpperCaseCharacterPresent?.call(this);
   }
 
   @override
@@ -471,7 +586,9 @@ class _$_NoLowerCaseCharacterPresent implements _NoLowerCaseCharacterPresent {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _NoLowerCaseCharacterPresent);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _NoLowerCaseCharacterPresent);
   }
 
   @override
@@ -488,6 +605,19 @@ class _$_NoLowerCaseCharacterPresent implements _NoLowerCaseCharacterPresent {
     required TResult Function() noSpecialCharacterPresent,
   }) {
     return noLowerCaseCharacterPresent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? shortPassword,
+    TResult Function()? noUpperCaseCharacterPresent,
+    TResult Function()? noLowerCaseCharacterPresent,
+    TResult Function()? noDigitsPresent,
+    TResult Function()? noSpecialCharacterPresent,
+  }) {
+    return noLowerCaseCharacterPresent?.call();
   }
 
   @override
@@ -521,6 +651,22 @@ class _$_NoLowerCaseCharacterPresent implements _NoLowerCaseCharacterPresent {
         noSpecialCharacterPresent,
   }) {
     return noLowerCaseCharacterPresent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortPassword value)? shortPassword,
+    TResult Function(_NoUpperCaseCharacterPresent value)?
+        noUpperCaseCharacterPresent,
+    TResult Function(_NoLowerCaseCharacterPresent value)?
+        noLowerCaseCharacterPresent,
+    TResult Function(_NoDigitsPresent value)? noDigitsPresent,
+    TResult Function(_NoSpecialCharacterPresent value)?
+        noSpecialCharacterPresent,
+  }) {
+    return noLowerCaseCharacterPresent?.call(this);
   }
 
   @override
@@ -579,7 +725,8 @@ class _$_NoDigitsPresent implements _NoDigitsPresent {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _NoDigitsPresent);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _NoDigitsPresent);
   }
 
   @override
@@ -596,6 +743,19 @@ class _$_NoDigitsPresent implements _NoDigitsPresent {
     required TResult Function() noSpecialCharacterPresent,
   }) {
     return noDigitsPresent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? shortPassword,
+    TResult Function()? noUpperCaseCharacterPresent,
+    TResult Function()? noLowerCaseCharacterPresent,
+    TResult Function()? noDigitsPresent,
+    TResult Function()? noSpecialCharacterPresent,
+  }) {
+    return noDigitsPresent?.call();
   }
 
   @override
@@ -629,6 +789,22 @@ class _$_NoDigitsPresent implements _NoDigitsPresent {
         noSpecialCharacterPresent,
   }) {
     return noDigitsPresent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortPassword value)? shortPassword,
+    TResult Function(_NoUpperCaseCharacterPresent value)?
+        noUpperCaseCharacterPresent,
+    TResult Function(_NoLowerCaseCharacterPresent value)?
+        noLowerCaseCharacterPresent,
+    TResult Function(_NoDigitsPresent value)? noDigitsPresent,
+    TResult Function(_NoSpecialCharacterPresent value)?
+        noSpecialCharacterPresent,
+  }) {
+    return noDigitsPresent?.call(this);
   }
 
   @override
@@ -688,7 +864,9 @@ class _$_NoSpecialCharacterPresent implements _NoSpecialCharacterPresent {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _NoSpecialCharacterPresent);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _NoSpecialCharacterPresent);
   }
 
   @override
@@ -705,6 +883,19 @@ class _$_NoSpecialCharacterPresent implements _NoSpecialCharacterPresent {
     required TResult Function() noSpecialCharacterPresent,
   }) {
     return noSpecialCharacterPresent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? shortPassword,
+    TResult Function()? noUpperCaseCharacterPresent,
+    TResult Function()? noLowerCaseCharacterPresent,
+    TResult Function()? noDigitsPresent,
+    TResult Function()? noSpecialCharacterPresent,
+  }) {
+    return noSpecialCharacterPresent?.call();
   }
 
   @override
@@ -738,6 +929,22 @@ class _$_NoSpecialCharacterPresent implements _NoSpecialCharacterPresent {
         noSpecialCharacterPresent,
   }) {
     return noSpecialCharacterPresent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_ShortPassword value)? shortPassword,
+    TResult Function(_NoUpperCaseCharacterPresent value)?
+        noUpperCaseCharacterPresent,
+    TResult Function(_NoLowerCaseCharacterPresent value)?
+        noLowerCaseCharacterPresent,
+    TResult Function(_NoDigitsPresent value)? noDigitsPresent,
+    TResult Function(_NoSpecialCharacterPresent value)?
+        noSpecialCharacterPresent,
+  }) {
+    return noSpecialCharacterPresent?.call(this);
   }
 
   @override

@@ -1,3 +1,4 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
@@ -37,6 +38,12 @@ mixin _$NameFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? tooShort,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? tooShort,
@@ -47,6 +54,12 @@ mixin _$NameFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
     required TResult Function(_TooShort value) tooShort,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_TooShort value)? tooShort,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -102,7 +115,8 @@ class _$_Empty implements _Empty {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Empty);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Empty);
   }
 
   @override
@@ -115,6 +129,15 @@ class _$_Empty implements _Empty {
     required TResult Function() tooShort,
   }) {
     return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? tooShort,
+  }) {
+    return empty?.call();
   }
 
   @override
@@ -137,6 +160,15 @@ class _$_Empty implements _Empty {
     required TResult Function(_TooShort value) tooShort,
   }) {
     return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_TooShort value)? tooShort,
+  }) {
+    return empty?.call(this);
   }
 
   @override
@@ -185,7 +217,8 @@ class _$_TooShort implements _TooShort {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _TooShort);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _TooShort);
   }
 
   @override
@@ -198,6 +231,15 @@ class _$_TooShort implements _TooShort {
     required TResult Function() tooShort,
   }) {
     return tooShort();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? tooShort,
+  }) {
+    return tooShort?.call();
   }
 
   @override
@@ -220,6 +262,15 @@ class _$_TooShort implements _TooShort {
     required TResult Function(_TooShort value) tooShort,
   }) {
     return tooShort(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_TooShort value)? tooShort,
+  }) {
+    return tooShort?.call(this);
   }
 
   @override

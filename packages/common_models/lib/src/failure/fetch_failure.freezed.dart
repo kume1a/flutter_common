@@ -1,3 +1,4 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
@@ -42,6 +43,13 @@ mixin _$FetchFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverError,
+    TResult Function()? networkError,
+    TResult Function()? unknownError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? serverError,
     TResult Function()? networkError,
@@ -54,6 +62,13 @@ mixin _$FetchFailure {
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_NetworkError value) networkError,
     required TResult Function(_EnknownError value) unknownError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_NetworkError value)? networkError,
+    TResult Function(_EnknownError value)? unknownError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -112,7 +127,8 @@ class _$_ServerError implements _ServerError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ServerError);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _ServerError);
   }
 
   @override
@@ -126,6 +142,16 @@ class _$_ServerError implements _ServerError {
     required TResult Function() unknownError,
   }) {
     return serverError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverError,
+    TResult Function()? networkError,
+    TResult Function()? unknownError,
+  }) {
+    return serverError?.call();
   }
 
   @override
@@ -150,6 +176,16 @@ class _$_ServerError implements _ServerError {
     required TResult Function(_EnknownError value) unknownError,
   }) {
     return serverError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_NetworkError value)? networkError,
+    TResult Function(_EnknownError value)? unknownError,
+  }) {
+    return serverError?.call(this);
   }
 
   @override
@@ -201,7 +237,8 @@ class _$_NetworkError implements _NetworkError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _NetworkError);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _NetworkError);
   }
 
   @override
@@ -215,6 +252,16 @@ class _$_NetworkError implements _NetworkError {
     required TResult Function() unknownError,
   }) {
     return networkError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverError,
+    TResult Function()? networkError,
+    TResult Function()? unknownError,
+  }) {
+    return networkError?.call();
   }
 
   @override
@@ -239,6 +286,16 @@ class _$_NetworkError implements _NetworkError {
     required TResult Function(_EnknownError value) unknownError,
   }) {
     return networkError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_NetworkError value)? networkError,
+    TResult Function(_EnknownError value)? unknownError,
+  }) {
+    return networkError?.call(this);
   }
 
   @override
@@ -290,7 +347,8 @@ class _$_EnknownError implements _EnknownError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _EnknownError);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _EnknownError);
   }
 
   @override
@@ -304,6 +362,16 @@ class _$_EnknownError implements _EnknownError {
     required TResult Function() unknownError,
   }) {
     return unknownError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverError,
+    TResult Function()? networkError,
+    TResult Function()? unknownError,
+  }) {
+    return unknownError?.call();
   }
 
   @override
@@ -328,6 +396,16 @@ class _$_EnknownError implements _EnknownError {
     required TResult Function(_EnknownError value) unknownError,
   }) {
     return unknownError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_NetworkError value)? networkError,
+    TResult Function(_EnknownError value)? unknownError,
+  }) {
+    return unknownError?.call(this);
   }
 
   @override

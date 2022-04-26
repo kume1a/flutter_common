@@ -1,18 +1,35 @@
 abstract class PercentFailure {
-  factory PercentFailure.empty() => const _Empty._();
+  const PercentFailure._();
 
-  factory PercentFailure.invalid() => const _Invalid._();
+  static PercentFailure empty() => const _Empty._();
 
-  factory PercentFailure.outOfRange() => const _OutOfRange._();
+  static PercentFailure invalid() => const _Invalid._();
+
+  static PercentFailure outOfRange() => const _OutOfRange._();
+
+  T when<T extends Object>({
+    required T Function() empty,
+    required T Function() invalid,
+    required T Function() outOfRange,
+  }) {
+    if (this is _Empty) {
+      return empty();
+    } else if (this is _Invalid) {
+      return invalid();
+    } else if (this is _OutOfRange) {
+      return outOfRange();
+    }
+
+    throw Exception('unsupported subclass');
+  }
 }
 
-class _Empty implements PercentFailure {
-  const _Empty._();
+class _Empty extends PercentFailure {
+  const _Empty._(): super._();
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-          other is _Empty && runtimeType == other.runtimeType;
+      identical(this, other) || other is _Empty && runtimeType == other.runtimeType;
 
   @override
   int get hashCode => 0;
@@ -21,13 +38,12 @@ class _Empty implements PercentFailure {
   String toString() => 'PercentFailure._Empty';
 }
 
-class _Invalid implements PercentFailure {
-  const _Invalid._();
+class _Invalid extends PercentFailure {
+  const _Invalid._() : super._();
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-          other is _Empty && runtimeType == other.runtimeType;
+      identical(this, other) || other is _Empty && runtimeType == other.runtimeType;
 
   @override
   int get hashCode => 0;
@@ -36,13 +52,12 @@ class _Invalid implements PercentFailure {
   String toString() => 'PercentFailure._Invalid';
 }
 
-class _OutOfRange implements PercentFailure {
-  const _OutOfRange._();
+class _OutOfRange extends PercentFailure {
+  const _OutOfRange._(): super._();
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-          other is _Empty && runtimeType == other.runtimeType;
+      identical(this, other) || other is _Empty && runtimeType == other.runtimeType;
 
   @override
   int get hashCode => 0;

@@ -1,12 +1,52 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+abstract class PercentFailure {
+  factory PercentFailure.empty() => const _Empty._();
 
-part 'percent_failure.freezed.dart';
+  factory PercentFailure.invalid() => const _Invalid._();
 
-@freezed
-class PercentFailure with _$PercentFailure {
-  const factory PercentFailure.empty() = _Empty;
+  factory PercentFailure.outOfRange() => const _OutOfRange._();
+}
 
-  const factory PercentFailure.invalid() = _Invalid;
+class _Empty implements PercentFailure {
+  const _Empty._();
 
-  const factory PercentFailure.outOfRange() = _OutOfRange;
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is _Empty && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'PercentFailure._Empty';
+}
+
+class _Invalid implements PercentFailure {
+  const _Invalid._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is _Empty && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'PercentFailure._Invalid';
+}
+
+class _OutOfRange implements PercentFailure {
+  const _OutOfRange._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is _Empty && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'PercentFailure._OutOfRange';
 }

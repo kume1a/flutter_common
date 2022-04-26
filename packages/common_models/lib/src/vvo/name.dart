@@ -3,18 +3,18 @@ import '../failure/name_failure.dart';
 import 'core/value_object.dart';
 import 'core/vvo_config.dart';
 
-class NameVVO extends ValueObject<NameFailure, String> {
-  factory NameVVO(String name) {
+class Name extends ValueObject<NameFailure, String> {
+  factory Name(String name) {
     if (name.trim().isEmpty) {
-      return NameVVO._(left(const NameFailure.empty()));
+      return Name._(left(const NameFailure.empty()));
     }
     if (name.length < VVOConfig.nameVVOConfig.minLength) {
-      return NameVVO._(left(const NameFailure.tooShort()));
+      return Name._(left(const NameFailure.tooShort()));
     }
-    return NameVVO._(right(name));
+    return Name._(right(name));
   }
 
-  factory NameVVO.empty() => NameVVO('');
+  factory Name.empty() => Name('');
 
-  const NameVVO._(Either<NameFailure, String> value) : super(value);
+  const Name._(Either<NameFailure, String> value) : super(value);
 }

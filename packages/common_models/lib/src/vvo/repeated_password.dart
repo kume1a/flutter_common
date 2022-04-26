@@ -2,19 +2,19 @@ import '../core/either.dart';
 import '../failure/repeated_password_failure.dart';
 import 'core/value_object.dart';
 
-class RepeatedPasswordVVO extends ValueObject<RepeatedPasswordFailure, String> {
-  factory RepeatedPasswordVVO(String password, String repeatedPassword) {
+class RepeatedPassword extends ValueObject<RepeatedPasswordFailure, String> {
+  factory RepeatedPassword(String password, String repeatedPassword) {
     if (repeatedPassword.isEmpty) {
-      return RepeatedPasswordVVO._(left(const RepeatedPasswordFailure.none()));
+      return RepeatedPassword._(left(const RepeatedPasswordFailure.none()));
     }
     if (password != repeatedPassword) {
-      return RepeatedPasswordVVO._(left(const RepeatedPasswordFailure.doesntMatch()));
+      return RepeatedPassword._(left(const RepeatedPasswordFailure.doesntMatch()));
     }
-    return RepeatedPasswordVVO._(right(repeatedPassword));
+    return RepeatedPassword._(right(repeatedPassword));
   }
 
-  factory RepeatedPasswordVVO.empty() =>
-      RepeatedPasswordVVO._(left(const RepeatedPasswordFailure.none()));
+  factory RepeatedPassword.empty() =>
+      RepeatedPassword._(left(const RepeatedPasswordFailure.none()));
 
-  RepeatedPasswordVVO._(Either<RepeatedPasswordFailure, String> value) : super(value);
+  RepeatedPassword._(Either<RepeatedPasswordFailure, String> value) : super(value);
 }

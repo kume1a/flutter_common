@@ -2,15 +2,15 @@ import '../core/either.dart';
 import '../failure/simple_content_value_failure.dart';
 import 'core/value_object.dart';
 
-class SimpleContentValueVVO extends ValueObject<SimpleContentValueFailure, String> {
-  factory SimpleContentValueVVO(String value) {
+class SimpleContentValue extends ValueObject<SimpleContentValueFailure, String> {
+  factory SimpleContentValue(String value) {
     if (value.trim().isEmpty) {
-      return SimpleContentValueVVO._(left(const SimpleContentValueFailure.empty()));
+      return SimpleContentValue._(left(const SimpleContentValueFailure.empty()));
     }
-    return SimpleContentValueVVO._(right(value));
+    return SimpleContentValue._(right(value));
   }
 
-  factory SimpleContentValueVVO.empty() => SimpleContentValueVVO('');
+  factory SimpleContentValue.empty() => SimpleContentValue('');
 
-  SimpleContentValueVVO._(Either<SimpleContentValueFailure, String> value) : super(value);
+  SimpleContentValue._(Either<SimpleContentValueFailure, String> value) : super(value);
 }

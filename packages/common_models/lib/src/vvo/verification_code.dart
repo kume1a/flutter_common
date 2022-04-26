@@ -1,16 +1,16 @@
 import '../../common_models.dart';
 
-class VerificationCodeVVO extends ValueObject<ValueFailure, String> {
-  factory VerificationCodeVVO(String verificationCode) {
+class VerificationCode extends ValueObject<ValueFailure, String> {
+  factory VerificationCode(String verificationCode) {
     if (verificationCode.isEmpty) {
-      return VerificationCodeVVO._(left(const ValueFailure.empty()));
+      return VerificationCode._(left(const ValueFailure.empty()));
     } else if (verificationCode.length < 4) {
-      return VerificationCodeVVO._(left(const ValueFailure.invalid()));
+      return VerificationCode._(left(const ValueFailure.invalid()));
     }
-    return VerificationCodeVVO._(right(verificationCode));
+    return VerificationCode._(right(verificationCode));
   }
 
-  factory VerificationCodeVVO.empty() => VerificationCodeVVO._(left(const ValueFailure.empty()));
+  factory VerificationCode.empty() => VerificationCode._(left(const ValueFailure.empty()));
 
-  VerificationCodeVVO._(Either<ValueFailure, String> value) : super(value);
+  VerificationCode._(Either<ValueFailure, String> value) : super(value);
 }

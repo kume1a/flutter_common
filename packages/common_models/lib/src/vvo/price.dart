@@ -9,11 +9,19 @@ class Price extends ValueObject<ValueFailure, double> {
     }
 
     final double? priceValue = double.tryParse(value);
-    if (priceValue == null || priceValue.isNaN) {
-      return Price._(left(ValueFailure.invalid()));
+    if (priceValue == null || priceValue.isNaN || priceValue < 0) {
+      return Price._(left(const ValueFailure.invalid()));
     }
 
     return Price._(right(priceValue));
+  }
+
+  factory Price.fromDouble(double value) {
+    if (value < 0) {
+      return Price._(left(const ValueFailure.invalid()));
+    }
+
+    return Price._(right(value));
   }
 
   factory Price.empty() => Price('');

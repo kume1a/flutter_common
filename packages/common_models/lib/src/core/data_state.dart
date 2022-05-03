@@ -50,6 +50,7 @@ class DataState<F, T> with _$DataState<F, T> {
         if (newData != null) {
           return DataState<F, T>.success(newData);
         }
+        return null;
       },
       error: (F failure, T? data) async {
         if (data != null) {

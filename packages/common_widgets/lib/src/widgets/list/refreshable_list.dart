@@ -18,8 +18,10 @@ class RefreshableList<T> extends StatelessWidget {
   })  : listType = ListType.builder,
         listBuilderConfig = config,
         sliverBuilderConfig = null,
-        assert((refreshBuilder == null && onRefreshPressed != null) ||
-            (refreshBuilder != null && onRefreshPressed == null)),
+        assert(
+          (refreshBuilder == null && onRefreshPressed != null) ||
+              (refreshBuilder != null && onRefreshPressed == null),
+        ),
         super(key: key);
 
   const RefreshableList.sliver({
@@ -33,8 +35,10 @@ class RefreshableList<T> extends StatelessWidget {
   })  : listType = ListType.sliverBuilder,
         sliverBuilderConfig = config,
         listBuilderConfig = null,
-        assert((refreshBuilder == null && onRefreshPressed != null) ||
-            (refreshBuilder != null && onRefreshPressed == null)),
+        assert(
+          (refreshBuilder == null && onRefreshPressed != null) ||
+              (refreshBuilder != null && onRefreshPressed == null),
+        ),
         super(key: key);
 
   final ListBuilderConfig? listBuilderConfig;

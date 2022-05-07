@@ -1,22 +1,67 @@
 import 'dart:async';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:collection/collection.dart';
 
 import 'either.dart';
 
-part 'data_state.freezed.dart';
-
-@freezed
-class DataState<F, T> with _$DataState<F, T> {
-  const factory DataState.success(T data) = _Success<F, T>;
-  const factory DataState.idle() = _Idle<F, T>;
-  const factory DataState.loading() = _Loading<F, T>;
-  const factory DataState.error(F failure, [T? data]) = _Error<F, T>;
-
+abstract class DataState<F, T> {
   const DataState._();
 
-  factory DataState.fromEither(Either<F, T> either) =>
-      either.fold((F l) => DataState<F, T>.error(l), (T r) => DataState<F, T>.success(r));
+  factory DataState.success(T data) => _Success<F, T>._(data);
+
+  factory DataState.idle() => _Idle<F, T>._();
+
+  factory DataState.loading() => _Loading<F, T>._();
+
+  factory DataState.failure(F failure, [T? data]) => _Failure<F, T>._(failure, data);
+
+  factory DataState.fromEither(Either<F, T> either) => either.fold(
+        (F l) => DataState<F, T>.failure(l),
+        (T r) => DataState<F, T>.success(r),
+      );
+
+  A when<A extends Object?>({
+    required A Function() idle,
+    required A Function(T data) success,
+    required A Function() loading,
+    required A Function(F failure, T? data) failure,
+  }) {
+    if (this is _Idle<F, T>) {
+      return idle();
+    } else if (this is _Success<F, T>) {
+      final _Success<F, T> value = this as _Success<F, T>;
+      return success(value.data);
+    } else if (this is _Loading<F, T>) {
+      return loading();
+    } else if (this is _Failure<F, T>) {
+      final _Failure<F, T> value = this as _Failure<F, T>;
+      return failure(value.failure, value.data);
+    }
+
+    throw Exception('unsupported subclass');
+  }
+
+  A maybeWhen<A extends Object?>({
+    required A Function() orElse,
+    A Function()? idle,
+    A Function(T data)? success,
+    A Function()? loading,
+    A Function(F failure, T? data)? failure,
+  }) {
+    if (this is _Idle<F, T>) {
+      return idle != null ? idle() : orElse();
+    } else if (this is _Success<F, T>) {
+      final _Success<F, T> value = this as _Success<F, T>;
+      return success != null ? success(value.data) : orElse();
+    } else if (this is _Loading<F, T>) {
+      return loading != null ? loading() : orElse();
+    } else if (this is _Failure<F, T>) {
+      final _Failure<F, T> value = this as _Failure<F, T>;
+      return failure != null ? failure(value.failure, value.data) : orElse();
+    }
+
+    throw Exception('unsupported subclass');
+  }
 
   bool get isSuccess => maybeWhen(
         success: (_) => true,
@@ -25,19 +70,19 @@ class DataState<F, T> with _$DataState<F, T> {
 
   bool get hasData => maybeWhen(
         success: (_) => true,
-        error: (_, T? data) => data != null,
+        failure: (_, T? data) => data != null,
         orElse: () => false,
       );
 
   T get getOrThrow => maybeWhen(
         success: (T data) => data,
-        error: (F failure, T? data) => data!,
+        failure: (F failure, T? data) => data!,
         orElse: () => throw Exception('getOrThrow called on !success'),
       );
 
   T? get get => maybeWhen(
         success: (T data) => data,
-        error: (F failure, T? data) => data,
+        failure: (F failure, T? data) => data,
         orElse: () => null,
       );
 
@@ -52,11 +97,11 @@ class DataState<F, T> with _$DataState<F, T> {
         }
         return null;
       },
-      error: (F failure, T? data) async {
+      failure: (F failure, T? data) async {
         if (data != null) {
           final T? newData = await modifier.call(data);
           if (newData != null) {
-            return DataState<F, T>.error(failure, newData);
+            return DataState<F, T>.failure(failure, newData);
           }
         }
         return null;
@@ -64,4 +109,75 @@ class DataState<F, T> with _$DataState<F, T> {
       orElse: () => null,
     );
   }
+}
+
+class _Idle<F, T> extends DataState<F, T> {
+  const _Idle._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _Idle && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'DataState._Idle';
+}
+
+class _Success<F, T> extends DataState<F, T> {
+  const _Success._(this.data) : super._();
+
+  final T data;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _Success &&
+          runtimeType == other.runtimeType &&
+          const DeepCollectionEquality().equals(data, other.data);
+
+  @override
+  int get hashCode => data.hashCode;
+
+  @override
+  String toString() => 'DataState._Success{data: $data}';
+}
+
+class _Loading<F, T> extends DataState<F, T> {
+  const _Loading._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _Loading && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'DataState._Loading';
+}
+
+class _Failure<F, T> extends DataState<F, T> {
+  const _Failure._(
+    this.failure,
+    this.data,
+  ) : super._();
+
+  final F failure;
+  final T? data;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _Failure &&
+          runtimeType == other.runtimeType &&
+          const DeepCollectionEquality().equals(failure, other.failure) &&
+          const DeepCollectionEquality().equals(data, other.data);
+
+  @override
+  int get hashCode => failure.hashCode ^ data.hashCode;
+
+  @override
+  String toString() => 'DataState._Failure{failure: $failure, data: $data}';
 }

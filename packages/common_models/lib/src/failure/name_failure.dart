@@ -1,9 +1,59 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+abstract class NameFailure {
+  const NameFailure._();
 
-part 'name_failure.freezed.dart';
+  static NameFailure empty() => const _Empty._();
 
-@freezed
-class NameFailure with _$NameFailure {
-  const factory NameFailure.empty() = _Empty;
-  const factory NameFailure.tooShort() = _TooShort;
+  static NameFailure tooShort() => const _TooShort._();
+
+  T when<T extends Object>({
+    required T Function() empty,
+    required T Function() tooShort,
+  }) {
+    if (this is _Empty) {
+      return empty();
+    } else if (this is _TooShort) {
+      return tooShort();
+    }
+
+    throw Exception('unsupported subclass');
+  }
+
+  T maybeWhen<T extends Object>({
+    required T Function() orElse,
+    T Function()? empty,
+    T Function()? tooShort,
+  }) {
+    return when(
+      empty: empty ?? orElse,
+      tooShort: tooShort ?? orElse,
+    );
+  }
+}
+
+class _Empty extends NameFailure {
+  const _Empty._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _Empty && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'NameFailure._Empty';
+}
+
+class _TooShort extends NameFailure {
+  const _TooShort._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _TooShort && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'NameFailure._TooShort';
 }

@@ -1,11 +1,9 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:collection/collection.dart';
 
 typedef _Function1<A, B> = B Function(A a);
 
 A _id<A>(A a) => a;
 
-/// source from package:dartz
-/// functional entity, holding either a failure or a value
 abstract class Either<L, R> {
   const Either();
 

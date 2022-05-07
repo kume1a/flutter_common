@@ -22,10 +22,23 @@ abstract class PercentFailure {
 
     throw Exception('unsupported subclass');
   }
+
+  T maybeWhen<T extends Object>({
+    required T Function() orElse,
+    T Function()? empty,
+    T Function()? invalid,
+    T Function()? outOfRange,
+  }) {
+    return when(
+      empty: empty ?? orElse,
+      invalid: invalid ?? orElse,
+      outOfRange: outOfRange ?? orElse,
+    );
+  }
 }
 
 class _Empty extends PercentFailure {
-  const _Empty._(): super._();
+  const _Empty._() : super._();
 
   @override
   bool operator ==(Object other) =>
@@ -53,7 +66,7 @@ class _Invalid extends PercentFailure {
 }
 
 class _OutOfRange extends PercentFailure {
-  const _OutOfRange._(): super._();
+  const _OutOfRange._() : super._();
 
   @override
   bool operator ==(Object other) =>

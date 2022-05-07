@@ -3,14 +3,14 @@ import '../../common_models.dart';
 class VerificationCode extends ValueObject<ValueFailure, String> {
   factory VerificationCode(String verificationCode) {
     if (verificationCode.isEmpty) {
-      return VerificationCode._(left(const ValueFailure.empty()));
+      return VerificationCode._(left(ValueFailure.empty()));
     } else if (verificationCode.length < 4) {
-      return VerificationCode._(left(const ValueFailure.invalid()));
+      return VerificationCode._(left(ValueFailure.invalid()));
     }
     return VerificationCode._(right(verificationCode));
   }
 
-  factory VerificationCode.empty() => VerificationCode._(left(const ValueFailure.empty()));
+  factory VerificationCode.empty() => VerificationCode._(left(ValueFailure.empty()));
 
   VerificationCode._(Either<ValueFailure, String> value) : super(value);
 }

@@ -20,7 +20,7 @@ class Percent extends ValueObject<PercentFailure, double> {
     return Percent._(right(percentValue));
   }
 
-  factory Percent.empty() => Percent('');
+  factory Percent.empty() => Percent._(left(PercentFailure.empty()));
 
   Percent._(Either<PercentFailure, double> value) : super(value);
 }

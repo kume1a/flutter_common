@@ -6,6 +6,7 @@ analyzer:
     missing_return: error
     prefer_relative_imports: warning
     public_member_api_docs: ignore
+    always_use_package_imports: ignore
   exclude:
     - lib/**/*.g.dart
     - lib/**/*.config.dart
@@ -19,5 +20,4 @@ linter:
     sort_constructors_first: true
     prefer_single_quotes: true
     always_specify_types: true
-    #    lines_longer_than_80_chars: true
     prefer_relative_imports: true

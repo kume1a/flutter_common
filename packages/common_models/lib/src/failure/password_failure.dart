@@ -1,13 +1,143 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+abstract class PasswordFailure {
+  const PasswordFailure._();
 
-part 'password_failure.freezed.dart';
+  static PasswordFailure empty() => const _Empty._();
 
-@freezed
-class PasswordFailure with _$PasswordFailure {
-  const factory PasswordFailure.empty() = _Empty;
-  const factory PasswordFailure.shortPassword() = _ShortPassword;
-  const factory PasswordFailure.noUpperCaseCharacterPresent() = _NoUpperCaseCharacterPresent;
-  const factory PasswordFailure.noLowerCaseCharacterPresent() = _NoLowerCaseCharacterPresent;
-  const factory PasswordFailure.noDigitsPresent() = _NoDigitsPresent;
-  const factory PasswordFailure.noSpecialCharacterPresent() = _NoSpecialCharacterPresent;
+  static PasswordFailure tooShort() => const _TooShort._();
+
+  static PasswordFailure noUppercaseCharsFound() => const _NoUppercaseCharsFound._();
+
+  static PasswordFailure noLowercaseCharsFound() => const _NoLowerCaseChartFound._();
+
+  static PasswordFailure noDigitsFound() => const _NoDigitsFound._();
+
+  static PasswordFailure noSpecialCharsFound() => const _NoSpecialCharsFound._();
+
+  T when<T extends Object>({
+    required T Function() empty,
+    required T Function() tooShort,
+    required T Function() noUppercaseCharsFound,
+    required T Function() noLowercaseCharsFound,
+    required T Function() noDigitsFound,
+    required T Function() noSpecialCharsFound,
+  }) {
+    if (this is _Empty) {
+      return empty();
+    } else if (this is _TooShort) {
+      return tooShort();
+    } else if (this is _NoUppercaseCharsFound) {
+      return noUppercaseCharsFound();
+    } else if (this is _NoLowerCaseChartFound) {
+      return noLowercaseCharsFound();
+    } else if (this is _NoDigitsFound) {
+      return noDigitsFound();
+    } else if (this is _NoSpecialCharsFound) {
+      return noSpecialCharsFound();
+    }
+
+    throw Exception('unsupported subclass');
+  }
+
+  T maybeWhen<T extends Object>({
+    required T Function() orElse,
+    T Function()? empty,
+    T Function()? tooShort,
+    T Function()? noUppercaseCharsFound,
+    T Function()? noLowercaseCharsFound,
+    T Function()? noDigitsFound,
+    T Function()? noSpecialCharsFound,
+  }) {
+    return when(
+      empty: empty ?? orElse,
+      tooShort: tooShort ?? orElse,
+      noUppercaseCharsFound: noUppercaseCharsFound ?? orElse,
+      noLowercaseCharsFound: noLowercaseCharsFound ?? orElse,
+      noDigitsFound: noDigitsFound ?? orElse,
+      noSpecialCharsFound: noSpecialCharsFound ?? orElse,
+    );
+  }
+}
+
+class _Empty extends PasswordFailure {
+  const _Empty._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _Empty && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'PasswordFailure._Empty';
+}
+
+class _TooShort extends PasswordFailure {
+  const _TooShort._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _TooShort && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'PasswordFailure._TooShort';
+}
+
+class _NoUppercaseCharsFound extends PasswordFailure {
+  const _NoUppercaseCharsFound._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _NoUppercaseCharsFound && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'PasswordFailure._NoUppercaseCharsFound';
+}
+
+class _NoLowerCaseChartFound extends PasswordFailure {
+  const _NoLowerCaseChartFound._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _NoLowerCaseChartFound && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'PasswordFailure._NoLowerCaseChartFound';
+}
+
+class _NoDigitsFound extends PasswordFailure {
+  const _NoDigitsFound._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _NoDigitsFound && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'PasswordFailure._NoDigitsFound';
+}
+
+class _NoSpecialCharsFound extends PasswordFailure {
+  const _NoSpecialCharsFound._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _NoSpecialCharsFound && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'PasswordFailure._NoSpecialCharsFound';
 }

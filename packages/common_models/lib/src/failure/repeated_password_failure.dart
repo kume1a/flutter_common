@@ -1,9 +1,59 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+abstract class RepeatedPasswordFailure {
+  const RepeatedPasswordFailure._();
 
-part 'repeated_password_failure.freezed.dart';
+  static RepeatedPasswordFailure empty() => const _Empty._();
 
-@freezed
-class RepeatedPasswordFailure with _$RepeatedPasswordFailure {
-  const factory RepeatedPasswordFailure.none() = _None;
-  const factory RepeatedPasswordFailure.doesntMatch() = _DoesntMatch;
+  static RepeatedPasswordFailure doesNotMatch() => const _DoesNotMatch._();
+
+  T when<T extends Object>({
+    required T Function() empty,
+    required T Function() doesNotMatch,
+  }) {
+    if (this is _Empty) {
+      return empty();
+    } else if (this is _DoesNotMatch) {
+      return doesNotMatch();
+    }
+
+    throw Exception('unsupported subclass');
+  }
+
+  T maybeWhen<T extends Object>({
+    required T Function() orElse,
+    T Function()? empty,
+    T Function()? doesNotMatch,
+  }) {
+    return when(
+      empty: empty ?? orElse,
+      doesNotMatch: doesNotMatch ?? orElse,
+    );
+  }
+}
+
+class _Empty extends RepeatedPasswordFailure {
+  const _Empty._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _Empty && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'RepeatedPasswordFailure._Empty';
+}
+
+class _DoesNotMatch extends RepeatedPasswordFailure {
+  const _DoesNotMatch._() : super._();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is _DoesNotMatch && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  String toString() => 'RepeatedPasswordFailure._DoesNotMatch';
 }

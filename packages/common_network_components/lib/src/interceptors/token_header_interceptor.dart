@@ -41,7 +41,8 @@ class TokenHeaderInterceptor extends Interceptor {
         accessToken = await authKeyStore.readAccessToken();
       }
       options.headers[HttpHeaders.authorizationHeader] = 'Bearer $accessToken';
-      final Map<String, dynamic>? extraHeaders = await tokenHeaderInterceptorFlow.provideExtraHeaders();
+      final Map<String, dynamic>? extraHeaders =
+          await tokenHeaderInterceptorFlow.provideExtraHeaders();
       if (extraHeaders != null) {
         options.headers.addAll(extraHeaders);
       }
@@ -64,7 +65,8 @@ class TokenHeaderInterceptor extends Interceptor {
   Future<void> _refreshAccessToken(String refreshToken) async {
     try {
       final String? oldAccessToken = await authKeyStore.readAccessToken();
-      final String? newAccessToken = await tokenHeaderInterceptorFlow.refreshToken(_dio, refreshToken, oldAccessToken);
+      final String? newAccessToken =
+          await tokenHeaderInterceptorFlow.refreshToken(_dio, refreshToken, oldAccessToken);
       if (newAccessToken != null) {
         authKeyStore.writeAccessToken(newAccessToken);
       } else {

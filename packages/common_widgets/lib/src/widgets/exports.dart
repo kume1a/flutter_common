@@ -4,6 +4,7 @@ export 'carousel/exports.dart';
 export 'dashed_line.dart';
 export 'dashed_rect.dart';
 export 'list/exports.dart';
+export 'minimal_date_picker.dart';
 export 'overlay_loading_indicator.dart';
 export 'pinput.dart';
 export 'read_more.dart';

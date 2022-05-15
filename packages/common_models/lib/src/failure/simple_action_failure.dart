@@ -5,7 +5,7 @@ abstract class SimpleActionFailure {
 
   static SimpleActionFailure unknown() => const _Unknown._();
 
-  T when<T extends Object>({
+  T when<T>({
     required T Function() network,
     required T Function() unknown,
   }) {
@@ -18,7 +18,7 @@ abstract class SimpleActionFailure {
     throw Exception('unsupported subclass');
   }
 
-  T maybeWhen<T extends Object>({
+  T maybeWhen<T>({
     required T Function() orElse,
     T Function()? network,
     T Function()? unknown,

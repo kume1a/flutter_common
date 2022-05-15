@@ -1,19 +1,19 @@
 abstract class PasswordFailure {
   const PasswordFailure._();
 
-  static PasswordFailure empty() => const _Empty._();
+  factory PasswordFailure.empty() => const _Empty._();
 
-  static PasswordFailure tooShort() => const _TooShort._();
+  factory PasswordFailure.tooShort() => const _TooShort._();
 
-  static PasswordFailure noUppercaseCharsFound() => const _NoUppercaseCharsFound._();
+  factory PasswordFailure.noUppercaseCharsFound() => const _NoUppercaseCharsFound._();
 
-  static PasswordFailure noLowercaseCharsFound() => const _NoLowerCaseChartFound._();
+  factory PasswordFailure.noLowercaseCharsFound() => const _NoLowerCaseChartFound._();
 
-  static PasswordFailure noDigitsFound() => const _NoDigitsFound._();
+  factory PasswordFailure.noDigitsFound() => const _NoDigitsFound._();
 
-  static PasswordFailure noSpecialCharsFound() => const _NoSpecialCharsFound._();
+  factory PasswordFailure.noSpecialCharsFound() => const _NoSpecialCharsFound._();
 
-  T when<T extends Object>({
+  T when<T>({
     required T Function() empty,
     required T Function() tooShort,
     required T Function() noUppercaseCharsFound,
@@ -38,7 +38,7 @@ abstract class PasswordFailure {
     throw Exception('unsupported subclass');
   }
 
-  T maybeWhen<T extends Object>({
+  T maybeWhen<T>({
     required T Function() orElse,
     T Function()? empty,
     T Function()? tooShort,

@@ -1,13 +1,13 @@
 abstract class PercentFailure {
   const PercentFailure._();
 
-  static PercentFailure empty() => const _Empty._();
+  factory PercentFailure.empty() => const _Empty._();
 
-  static PercentFailure invalid() => const _Invalid._();
+  factory PercentFailure.invalid() => const _Invalid._();
 
-  static PercentFailure outOfRange() => const _OutOfRange._();
+  factory PercentFailure.outOfRange() => const _OutOfRange._();
 
-  T when<T extends Object>({
+  T when<T>({
     required T Function() empty,
     required T Function() invalid,
     required T Function() outOfRange,
@@ -23,7 +23,7 @@ abstract class PercentFailure {
     throw Exception('unsupported subclass');
   }
 
-  T maybeWhen<T extends Object>({
+  T maybeWhen<T>({
     required T Function() orElse,
     T Function()? empty,
     T Function()? invalid,

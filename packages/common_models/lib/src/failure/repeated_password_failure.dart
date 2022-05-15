@@ -1,11 +1,11 @@
 abstract class RepeatedPasswordFailure {
   const RepeatedPasswordFailure._();
 
-  static RepeatedPasswordFailure empty() => const _Empty._();
+  factory RepeatedPasswordFailure.empty() => const _Empty._();
 
-  static RepeatedPasswordFailure doesNotMatch() => const _DoesNotMatch._();
+  factory RepeatedPasswordFailure.doesNotMatch() => const _DoesNotMatch._();
 
-  T when<T extends Object>({
+  T when<T>({
     required T Function() empty,
     required T Function() doesNotMatch,
   }) {
@@ -18,7 +18,7 @@ abstract class RepeatedPasswordFailure {
     throw Exception('unsupported subclass');
   }
 
-  T maybeWhen<T extends Object>({
+  T maybeWhen<T>({
     required T Function() orElse,
     T Function()? empty,
     T Function()? doesNotMatch,

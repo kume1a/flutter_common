@@ -1,11 +1,11 @@
 abstract class NameFailure {
   const NameFailure._();
 
-  static NameFailure empty() => const _Empty._();
+  factory NameFailure.empty() => const _Empty._();
 
-  static NameFailure tooShort() => const _TooShort._();
+  factory NameFailure.tooShort() => const _TooShort._();
 
-  T when<T extends Object>({
+  T when<T>({
     required T Function() empty,
     required T Function() tooShort,
   }) {
@@ -18,7 +18,7 @@ abstract class NameFailure {
     throw Exception('unsupported subclass');
   }
 
-  T maybeWhen<T extends Object>({
+  T maybeWhen<T>({
     required T Function() orElse,
     T Function()? empty,
     T Function()? tooShort,

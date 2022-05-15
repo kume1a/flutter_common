@@ -1,11 +1,11 @@
 abstract class ValueFailure {
   const ValueFailure._();
 
-  static ValueFailure empty() => const _Empty._();
+  factory ValueFailure.empty() => const _Empty._();
 
-  static ValueFailure invalid() => const _Invalid._();
+  factory ValueFailure.invalid() => const _Invalid._();
 
-  T when<T extends Object>({
+  T when<T>({
     required T Function() empty,
     required T Function() invalid,
   }) {
@@ -18,7 +18,7 @@ abstract class ValueFailure {
     throw Exception('unsupported subclass');
   }
 
-  T maybeWhen<T extends Object>({
+  T maybeWhen<T>({
     required T Function() orElse,
     T Function()? empty,
     T Function()? invalid,

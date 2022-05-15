@@ -1,9 +1,9 @@
 abstract class SimpleContentValueFailure {
   const SimpleContentValueFailure._();
 
-  static SimpleContentValueFailure empty() => const _Empty._();
+  factory SimpleContentValueFailure.empty() => const _Empty._();
 
-  T when<T extends Object>({
+  T when<T>({
     required T Function() empty,
   }) {
     if (this is _Empty) {
@@ -13,7 +13,7 @@ abstract class SimpleContentValueFailure {
     throw Exception('unsupported subclass');
   }
 
-  T maybeWhen<T extends Object>({
+  T maybeWhen<T>({
     required T Function() orElse,
     T Function()? empty,
   }) {

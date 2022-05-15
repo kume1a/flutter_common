@@ -1,9 +1,9 @@
 abstract class SimpleActionFailure {
   const SimpleActionFailure._();
 
-  static SimpleActionFailure network() => const _Network._();
+  factory SimpleActionFailure.network() => const _Network._();
 
-  static SimpleActionFailure unknown() => const _Unknown._();
+  factory SimpleActionFailure.unknown() => const _Unknown._();
 
   T when<T>({
     required T Function() network,

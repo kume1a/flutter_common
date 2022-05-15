@@ -1,13 +1,13 @@
 abstract class FetchFailure {
   const FetchFailure._();
 
-  static FetchFailure server() => const _Server._();
+  factory FetchFailure.server() => const _Server._();
 
-  static FetchFailure network() => const _Network._();
+  factory FetchFailure.network() => const _Network._();
 
-  static FetchFailure unknown() => const _Unknown._();
+  factory FetchFailure.unknown() => const _Unknown._();
 
-  T when<T extends Object>({
+  T when<T>({
     required T Function() server,
     required T Function() network,
     required T Function() unknown,
@@ -23,7 +23,7 @@ abstract class FetchFailure {
     throw Exception('unsupported subclass');
   }
 
-  T maybeWhen<T extends Object>({
+  T maybeWhen<T>({
     required T Function() orElse,
     T Function()? server,
     T Function()? network,

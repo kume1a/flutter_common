@@ -8,7 +8,7 @@ class SafeImage extends StatelessWidget {
     required this.url,
     this.width,
     this.height,
-    this.borderRadius = 4,
+    this.borderRadius = BorderRadius.zero,
     this.placeholderColor,
     this.fit = BoxFit.cover,
   })  : placeholderAssetPath = null,
@@ -22,7 +22,7 @@ class SafeImage extends StatelessWidget {
     required this.placeholderAssetPath,
     this.width,
     this.height,
-    this.borderRadius = 4,
+    this.borderRadius = BorderRadius.zero,
     this.assetWidth,
     this.assetHeight,
     this.fit = BoxFit.cover,
@@ -32,7 +32,7 @@ class SafeImage extends StatelessWidget {
   final String? url;
   final double? width;
   final double? height;
-  final double borderRadius;
+  final BorderRadius borderRadius;
   final Color? placeholderColor;
   final String? placeholderAssetPath;
   final double? assetWidth;
@@ -65,7 +65,7 @@ class SafeImage extends StatelessWidget {
     double? height,
   }) {
     final Widget imageContent = ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: borderRadius,
       child: Image(
         image: imageProvider,
         width: width ?? this.width,
@@ -74,7 +74,7 @@ class SafeImage extends StatelessWidget {
         errorBuilder: (_, __, ___) {
           if (placeholderAssetPath != null) {
             return ClipRRect(
-              borderRadius: BorderRadius.circular(borderRadius),
+              borderRadius: borderRadius,
               child: Image.asset(
                 placeholderAssetPath!,
                 width: assetWidth,

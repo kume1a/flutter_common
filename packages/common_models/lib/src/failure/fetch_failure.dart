@@ -16,8 +16,8 @@ abstract class FetchFailure {
       return server();
     } else if (this is _Network) {
       return network();
-    } else if (this is _Server) {
-      return server();
+    } else if (this is _Unknown) {
+      return unknown();
     }
 
     throw Exception('unsupported subclass');

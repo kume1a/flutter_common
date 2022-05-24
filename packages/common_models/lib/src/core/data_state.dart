@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 
+import '../../common_models.dart';
 import 'either.dart';
 
 abstract class DataState<F, T> {
@@ -86,7 +87,7 @@ abstract class DataState<F, T> {
         orElse: () => null,
       );
 
-  FutureOr<DataState<F, T>?> modifyIfHasDataAndGet(
+  FutureOr<DataState<F, T>> modifyData(
     FutureOr<T?> Function(T data) modifier,
   ) async {
     return maybeWhen(
@@ -95,7 +96,7 @@ abstract class DataState<F, T> {
         if (newData != null) {
           return DataState<F, T>.success(newData);
         }
-        return null;
+        return this;
       },
       failure: (F failure, T? data) async {
         if (data != null) {
@@ -104,9 +105,9 @@ abstract class DataState<F, T> {
             return DataState<F, T>.failure(failure, newData);
           }
         }
-        return null;
+        return this;
       },
-      orElse: () => null,
+      orElse: () => this,
     );
   }
 }
@@ -116,7 +117,7 @@ class _Idle<F, T> extends DataState<F, T> {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || other is _Idle && runtimeType == other.runtimeType;
+      identical(this, other) || other is _Idle<F, T> && runtimeType == other.runtimeType;
 
   @override
   int get hashCode => 0;
@@ -133,7 +134,7 @@ class _Success<F, T> extends DataState<F, T> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is _Success &&
+      other is _Success<F, T> &&
           runtimeType == other.runtimeType &&
           const DeepCollectionEquality().equals(data, other.data);
 
@@ -149,7 +150,7 @@ class _Loading<F, T> extends DataState<F, T> {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || other is _Loading && runtimeType == other.runtimeType;
+      identical(this, other) || other is _Loading<F, T> && runtimeType == other.runtimeType;
 
   @override
   int get hashCode => 0;
@@ -170,7 +171,7 @@ class _Failure<F, T> extends DataState<F, T> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is _Failure &&
+      other is _Failure<F, T> &&
           runtimeType == other.runtimeType &&
           const DeepCollectionEquality().equals(failure, other.failure) &&
           const DeepCollectionEquality().equals(data, other.data);

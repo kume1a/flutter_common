@@ -28,7 +28,7 @@ class DataPage<T> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DataPage &&
+      other is DataPage<T> &&
           runtimeType == other.runtimeType &&
           const DeepCollectionEquality().equals(items, other.items) &&
           count == other.count;

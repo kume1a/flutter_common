@@ -139,7 +139,7 @@ class _Success<F, T> extends DataState<F, T> {
           const DeepCollectionEquality().equals(data, other.data);
 
   @override
-  int get hashCode => data.hashCode;
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @override
   String toString() => 'DataState._Success{data: $data}';
@@ -177,7 +177,11 @@ class _Failure<F, T> extends DataState<F, T> {
           const DeepCollectionEquality().equals(data, other.data);
 
   @override
-  int get hashCode => failure.hashCode ^ data.hashCode;
+  int get hashCode => Object.hash(
+        runtimeType,
+        const DeepCollectionEquality().hash(failure),
+        const DeepCollectionEquality().hash(data),
+      );
 
   @override
   String toString() => 'DataState._Failure{failure: $failure, data: $data}';

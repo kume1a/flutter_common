@@ -34,7 +34,11 @@ class DataPage<T> {
           count == other.count;
 
   @override
-  int get hashCode => items.hashCode ^ count.hashCode;
+  int get hashCode => Object.hash(
+        runtimeType,
+        const DeepCollectionEquality().hash(items),
+        count.hashCode,
+      );
 
   @override
   String toString() => 'DataPage{items: $items, count: $count}';

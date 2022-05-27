@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../core/enums/list_type.dart';
 import '../core/typedefs.dart';
-import 'core/default_paging_empty_list_indicator.dart';
 import 'core/default_paging_refresh_indicator.dart';
 import 'core/list_config.dart';
 
@@ -68,7 +67,7 @@ class RefreshableGrid<T> extends StatelessWidget {
                 if (emptyListErrorBuilder != null)
                   emptyListErrorBuilder!.call(context)
                 else
-                  const DefaultPagingEmptyListIndicator(),
+                  _buildRefreshIndicator(context),
               ],
             ),
           );
@@ -76,7 +75,7 @@ class RefreshableGrid<T> extends StatelessWidget {
           return SingleChildScrollView(
             child: emptyListErrorBuilder != null
                 ? emptyListErrorBuilder!.call(context)
-                : const DefaultPagingEmptyListIndicator(),
+                : _buildRefreshIndicator(context),
           );
       }
     }
@@ -137,13 +136,12 @@ class RefreshableGrid<T> extends StatelessWidget {
   Widget _itemBuilder(
     BuildContext context,
     int index,
-  ) {
-    if (index == (data?.length ?? 0)) {
-      return refreshBuilder != null
-          ? refreshBuilder!.call(context)
-          : DefaultPagingRefreshIndicator(onRefreshPressed: onRefreshPressed!);
-    }
+  ) =>
+      index == (data?.length ?? 0)
+          ? _buildRefreshIndicator(context)
+          : itemBuilder.call(context, data![index]);
 
-    return itemBuilder.call(context, data![index]);
-  }
+  Widget _buildRefreshIndicator(BuildContext context) => refreshBuilder != null
+      ? refreshBuilder!.call(context)
+      : DefaultPagingRefreshIndicator(onRefreshPressed: onRefreshPressed!);
 }

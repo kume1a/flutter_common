@@ -16,7 +16,9 @@ abstract class ValueObject<F, T> {
 
   T getOrElse(T orElse) => value.getOrElse(() => orElse);
 
-  bool get isValid => value.isRight();
+  bool get valid => value.isRight();
+
+  bool get invalid => value.isLeft();
 
   @override
   bool operator ==(Object o) => identical(this, o) || o is ValueObject<F, T> && o.value == value;

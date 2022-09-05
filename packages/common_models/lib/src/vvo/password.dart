@@ -8,19 +8,19 @@ class Password extends ValueObject<PasswordFailure, String> {
     if (value.isEmpty) {
       return Password._(left(PasswordFailure.empty()));
     }
-    if (value.length < VVOConfig.passwordVVOConfig.minLength) {
+    if (value.length < VVOConfig.password.minLength) {
       return Password._(left(PasswordFailure.tooShort()));
     }
-    if (VVOConfig.passwordVVOConfig.checkForUppercase && !value.contains(_patternUppercase)) {
+    if (VVOConfig.password.checkForUppercase && !value.contains(_patternUppercase)) {
       return Password._(left(PasswordFailure.noUppercaseCharsFound()));
     }
-    if (VVOConfig.passwordVVOConfig.checkForLowercase && !value.contains(_patternLowercase)) {
+    if (VVOConfig.password.checkForLowercase && !value.contains(_patternLowercase)) {
       return Password._(left(PasswordFailure.noLowercaseCharsFound()));
     }
-    if (VVOConfig.passwordVVOConfig.checkForDigits && !value.contains(_patternDigits)) {
+    if (VVOConfig.password.checkForDigits && !value.contains(_patternDigits)) {
       return Password._(left(PasswordFailure.noDigitsFound()));
     }
-    if (VVOConfig.passwordVVOConfig.checkForSpecialCharacters &&
+    if (VVOConfig.password.checkForSpecialCharacters &&
         !value.contains(_patternSpecialCharacters)) {
       return Password._(left(PasswordFailure.noSpecialCharsFound()));
     }

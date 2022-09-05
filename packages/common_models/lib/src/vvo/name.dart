@@ -8,7 +8,7 @@ class Name extends ValueObject<NameFailure, String> {
     if (name.trim().isEmpty) {
       return Name._(left(NameFailure.empty()));
     }
-    if (name.length < VVOConfig.nameVVOConfig.minLength) {
+    if (name.length < VVOConfig.name.minLength) {
       return Name._(left(NameFailure.tooShort()));
     }
     return Name._(right(name));

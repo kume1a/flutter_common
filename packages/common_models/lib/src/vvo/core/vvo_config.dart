@@ -1,6 +1,7 @@
 class VVOConfig {
-  static _PasswordVVOConfig passwordVVOConfig = _PasswordVVOConfig();
-  static _NameVVOConfig nameVVOConfig = _NameVVOConfig();
+  static _PasswordVVOConfig password = _PasswordVVOConfig();
+  static _NameVVOConfig name = _NameVVOConfig();
+  static _VerificationCodeConfig verificationCode = _VerificationCodeConfig();
 }
 
 class _PasswordVVOConfig {
@@ -13,4 +14,8 @@ class _PasswordVVOConfig {
 
 class _NameVVOConfig {
   int minLength = 0;
+}
+
+class _VerificationCodeConfig {
+  int length = 4;
 }

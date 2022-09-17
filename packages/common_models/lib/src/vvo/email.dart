@@ -5,14 +5,14 @@ import 'core/value_object.dart';
 class Email extends ValueObject<ValueFailure, String> {
   factory Email(String email) {
     if (email.isEmpty) {
-      return Email._(left(ValueFailure.empty()));
+      return Email._(left(ValueFailure.empty));
     } else if (!_emailPattern.hasMatch(email)) {
-      return Email._(left(ValueFailure.invalid()));
+      return Email._(left(ValueFailure.invalid));
     }
     return Email._(right(email));
   }
 
-  factory Email.empty() => Email._(left(ValueFailure.empty()));
+  factory Email.empty() => Email._(left(ValueFailure.empty));
 
   Email._(Either<ValueFailure, String> value) : super(value);
 

@@ -1,26 +1,21 @@
-abstract class PercentFailure {
-  const PercentFailure._();
-
-  factory PercentFailure.empty() => const _Empty._();
-
-  factory PercentFailure.invalid() => const _Invalid._();
-
-  factory PercentFailure.outOfRange() => const _OutOfRange._();
+enum PercentFailure {
+  empty,
+  invalid,
+  outOfRange;
 
   T when<T>({
     required T Function() empty,
     required T Function() invalid,
     required T Function() outOfRange,
   }) {
-    if (this is _Empty) {
-      return empty();
-    } else if (this is _Invalid) {
-      return invalid();
-    } else if (this is _OutOfRange) {
-      return outOfRange();
+    switch (this) {
+      case PercentFailure.empty:
+        return empty();
+      case PercentFailure.invalid:
+        return invalid();
+      case PercentFailure.outOfRange:
+        return outOfRange();
     }
-
-    throw Exception('unsupported subclass');
   }
 
   T maybeWhen<T>({
@@ -35,46 +30,4 @@ abstract class PercentFailure {
       outOfRange: outOfRange ?? orElse,
     );
   }
-}
-
-class _Empty extends PercentFailure {
-  const _Empty._() : super._();
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) || other is _Empty && runtimeType == other.runtimeType;
-
-  @override
-  int get hashCode => 0;
-
-  @override
-  String toString() => 'PercentFailure._Empty';
-}
-
-class _Invalid extends PercentFailure {
-  const _Invalid._() : super._();
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) || other is _Empty && runtimeType == other.runtimeType;
-
-  @override
-  int get hashCode => 0;
-
-  @override
-  String toString() => 'PercentFailure._Invalid';
-}
-
-class _OutOfRange extends PercentFailure {
-  const _OutOfRange._() : super._();
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) || other is _Empty && runtimeType == other.runtimeType;
-
-  @override
-  int get hashCode => 0;
-
-  @override
-  String toString() => 'PercentFailure._OutOfRange';
 }

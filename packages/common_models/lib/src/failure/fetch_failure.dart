@@ -1,26 +1,21 @@
-abstract class FetchFailure {
-  const FetchFailure._();
-
-  factory FetchFailure.server() => const _Server._();
-
-  factory FetchFailure.network() => const _Network._();
-
-  factory FetchFailure.unknown() => const _Unknown._();
+enum FetchFailure {
+  network,
+  server,
+  unknown;
 
   T when<T>({
     required T Function() server,
     required T Function() network,
     required T Function() unknown,
   }) {
-    if (this is _Server) {
-      return server();
-    } else if (this is _Network) {
-      return network();
-    } else if (this is _Unknown) {
-      return unknown();
+    switch (this) {
+      case FetchFailure.network:
+        return network();
+      case FetchFailure.server:
+        return server();
+      case FetchFailure.unknown:
+        return unknown();
     }
-
-    throw Exception('unsupported subclass');
   }
 
   T maybeWhen<T>({
@@ -35,46 +30,4 @@ abstract class FetchFailure {
       unknown: unknown ?? orElse,
     );
   }
-}
-
-class _Server extends FetchFailure {
-  const _Server._() : super._();
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) || other is _Server && runtimeType == other.runtimeType;
-
-  @override
-  int get hashCode => 0;
-
-  @override
-  String toString() => 'FetchFailure._Server';
-}
-
-class _Network extends FetchFailure {
-  const _Network._() : super._();
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) || other is _Network && runtimeType == other.runtimeType;
-
-  @override
-  int get hashCode => 0;
-
-  @override
-  String toString() => 'FetchFailure._Network';
-}
-
-class _Unknown extends FetchFailure {
-  const _Unknown._() : super._();
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) || other is _Unknown && runtimeType == other.runtimeType;
-
-  @override
-  int get hashCode => 0;
-
-  @override
-  String toString() => 'FetchFailure._Unknown';
 }

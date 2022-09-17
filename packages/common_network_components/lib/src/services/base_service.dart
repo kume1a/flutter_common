@@ -52,17 +52,17 @@ abstract class BaseService {
   ) async {
     return safeCall(
       call: call,
-      onNetworkError: () => FetchFailure.network(),
+      onNetworkError: () => FetchFailure.network,
       onResponseError: (Response<dynamic>? response) {
         if (response != null && response.statusCode != null) {
           final int statusCode = response.statusCode!;
           if (statusCode >= 500 && statusCode < 600) {
-            return FetchFailure.server();
+            return FetchFailure.server;
           }
         }
-        return FetchFailure.unknown();
+        return FetchFailure.unknown;
       },
-      onUnknownError: (Object? e) => FetchFailure.unknown(),
+      onUnknownError: (Object? e) => FetchFailure.unknown,
     );
   }
 
@@ -70,8 +70,8 @@ abstract class BaseService {
   Future<Either<SimpleActionFailure, T>> safeSimpleCall<T>(Future<T> Function() call) async {
     return safeCall(
       call: call,
-      onNetworkError: () => SimpleActionFailure.network(),
-      onUnknownError: (_) => SimpleActionFailure.unknown(),
+      onNetworkError: () => SimpleActionFailure.network,
+      onUnknownError: (_) => SimpleActionFailure.unknown,
     );
   }
 }

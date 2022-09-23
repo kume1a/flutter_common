@@ -21,7 +21,7 @@ abstract class ValueObject<F, T> {
 
   bool get invalid => _value.isLeft();
 
-  String? failureToString(String Function(F) mapper) => _value.fold(
+  String? failureToString(String? Function(F) mapper) => _value.fold(
         (F l) => mapper(l),
         (_) => null,
       );

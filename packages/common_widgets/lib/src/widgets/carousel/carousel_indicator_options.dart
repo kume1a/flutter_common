@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'page_indicator.dart';
+import '../page_indicator/page_indicator.dart';
 
 class CarouselIndicatorOptions {
   CarouselIndicatorOptions({

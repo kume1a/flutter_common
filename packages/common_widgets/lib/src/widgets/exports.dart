@@ -6,6 +6,7 @@ export 'dashed_rect.dart';
 export 'list/exports.dart';
 export 'minimal_date_picker.dart';
 export 'overlay_loading_indicator.dart';
+export 'page_indicator/exports.dart';
 export 'pinput.dart';
 export 'read_more.dart';
 export 'safe_image.dart';

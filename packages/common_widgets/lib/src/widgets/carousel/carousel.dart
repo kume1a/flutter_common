@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../page_indicator/page_indicator.dart';
+import '../page_indicator/scrolling_dots_effect.dart';
 import 'carousel_indicator_options.dart';
-import 'page_indicator.dart';
 
 class Carousel extends StatefulWidget {
   const Carousel({
@@ -38,7 +39,6 @@ class _CarouselState extends State<Carousel> {
 
     pageController = PageController(viewportFraction: widget.viewPortFraction);
   }
-
 
   @override
   void dispose() {
@@ -77,7 +77,8 @@ class _CarouselState extends State<Carousel> {
                   try {
                     itemOffset = pageController.page! - index;
                   } catch (e) {
-                    final BuildContext storageContext = pageController.position.context.storageContext;
+                    final BuildContext storageContext =
+                        pageController.position.context.storageContext;
                     final double? previousSavedPosition =
                         PageStorage.of(storageContext)?.readState(storageContext) as double?;
                     if (previousSavedPosition != null) {
@@ -86,7 +87,8 @@ class _CarouselState extends State<Carousel> {
                       itemOffset = index.toDouble();
                     }
                   }
-                  final double distortionRatio = (1 - (itemOffset.abs() * widget.distortionValue)).clamp(0.0, 1.0);
+                  final double distortionRatio =
+                      (1 - (itemOffset.abs() * widget.distortionValue)).clamp(0.0, 1.0);
                   final double distortionValue = Curves.easeOut.transform(distortionRatio);
 
                   if (widget.scrollDirection == Axis.horizontal) {

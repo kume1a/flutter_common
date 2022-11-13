@@ -17,15 +17,17 @@ abstract class Either<L, R> {
 
   L get leftOrThrow => fold(_id, (R r) => throw Exception('leftOrThrow called on Right'));
 
+  bool get isLeft => fold((_) => true, (_) => false);
+
+  bool get isRight => fold((_) => false, (_) => true);
+
+  int get length => fold((_) => 0, (_) => 1);
+
   R getOrElse(R Function() dflt) => fold((_) => dflt(), _id);
 
   R operator |(R dflt) => getOrElse(() => dflt);
 
   Either<L2, R> leftMap<L2>(L2 Function(L l) f) => fold((L l) => left(f(l)), right);
-
-  bool isLeft() => fold((_) => true, (_) => false);
-
-  bool isRight() => fold((_) => false, (_) => true);
 
   Either<R, L> swap() => fold(right, left);
 
@@ -63,8 +65,6 @@ abstract class Either<L, R> {
 
   B foldRightWithIndex<B>(B z, B Function(int i, R r, B previous) f) =>
       fold((_) => z, (R a) => f(0, a, z));
-
-  int length() => fold((_) => 0, (_) => 1);
 }
 
 class _Left<L, R> extends Either<L, R> {

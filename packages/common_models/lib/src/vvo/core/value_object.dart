@@ -17,9 +17,9 @@ abstract class ValueObject<F, T> {
 
   T getOrElse(T orElse) => _value.getOrElse(() => orElse);
 
-  bool get valid => _value.isRight();
+  bool get valid => _value.isRight;
 
-  bool get invalid => _value.isLeft();
+  bool get invalid => _value.isLeft;
 
   String? failureToString(String? Function(F) mapper) => _value.fold(
         (F l) => mapper(l),

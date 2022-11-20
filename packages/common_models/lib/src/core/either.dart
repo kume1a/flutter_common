@@ -11,7 +11,9 @@ abstract class Either<L, R> {
 
   Either<L, R> orElse(Either<L, R> Function() other) => fold((_) => other(), (_) => this);
 
-  R? get get => fold((L l) => null, _id);
+  R? get rightOrNull => fold((L l) => null, _id);
+
+  L? get leftOrNull => fold(_id, (_) => null);
 
   R get rightOrThrow => getOrElse(() => throw Exception('rightOrThrow called on Left'));
 

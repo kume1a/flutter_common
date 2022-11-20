@@ -81,7 +81,7 @@ abstract class DataState<F, T> {
         orElse: () => throw Exception('getOrThrow called on !success'),
       );
 
-  T? get get => maybeWhen(
+  T? get getOrNull => maybeWhen(
         success: (T data) => data,
         failure: (F failure, T? data) => data,
         orElse: () => null,

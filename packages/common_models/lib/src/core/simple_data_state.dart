@@ -81,7 +81,7 @@ abstract class SimpleDataState<T> {
         orElse: () => throw Exception('getOrThrow called on no data'),
       );
 
-  T? get get => maybeWhen(
+  T? get getOrNull => maybeWhen(
         success: (T data) => data,
         failure: (T? data) => data,
         orElse: () => null,

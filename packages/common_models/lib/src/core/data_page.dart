@@ -42,4 +42,54 @@ class DataPage<T> {
 
   @override
   String toString() => 'DataPage{items: $items, count: $count}';
+
+  DataPage<T> insert(int index, T item) {
+    final List<T> items = List<T>.of(this.items);
+
+    items.insert(index, item);
+
+    return copyWith(
+      items: items,
+      count: count + 1,
+    );
+  }
+
+  DataPage<T> replace(bool Function(T e) where, T item) {
+    final int index = this.items.indexWhere(where);
+    if (index == -1) {
+      return this;
+    }
+
+    final List<T> items = List<T>.of(this.items);
+    items.removeAt(index);
+    items.insert(index, item);
+    return copyWith(items: items);
+  }
+
+  DataPage<T> removeWhere(bool Function(T e) test) {
+    final List<T> items = List<T>.of(this.items);
+    items.removeWhere(test);
+
+    final int lengthDiff = this.items.length - items.length;
+
+    return copyWith(
+      items: items,
+      count: count - lengthDiff,
+    );
+  }
+
+  DataPage<T> removeOne(T item) {
+    final List<T> items = List<T>.of(this.items);
+    final int index = items.indexOf(item);
+    if (index == -1) {
+      return this;
+    }
+
+    items.removeAt(index);
+
+    return copyWith(
+      items: items,
+      count: count - 1,
+    );
+  }
 }

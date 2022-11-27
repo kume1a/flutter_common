@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-enum _ContainerType { circular, square }
-
 const Color _defaultColor = Color(0xFFE0E0E0);
 
 class BlankContainer extends StatelessWidget {
@@ -9,50 +7,52 @@ class BlankContainer extends StatelessWidget {
     Key? key,
     required this.width,
     required this.height,
-    this.borderRadius = BorderRadius.zero,
+    this.borderRadius,
     this.color = _defaultColor,
-  })  : _containerType = _ContainerType.square,
-        radius = null,
-        super(key: key);
+    this.padding,
+    this.margin,
+  }) : super(key: key);
 
   const BlankContainer.circular({
     Key? key,
-    required this.radius,
+    required double radius,
     this.color = _defaultColor,
-  })  : _containerType = _ContainerType.circular,
-        width = null,
-        height = null,
+    this.padding,
+    this.margin,
+  })  : width = radius * 2,
+        height = radius * 2,
         borderRadius = null,
         super(key: key);
 
-  final _ContainerType _containerType;
+  const BlankContainer.square({
+    Key? key,
+    required double size,
+    this.borderRadius,
+    this.color = _defaultColor,
+    this.padding,
+    this.margin,
+  })  : width = size,
+        height = size,
+        super(key: key);
+
   final BorderRadius? borderRadius;
+  final EdgeInsets? padding;
+  final EdgeInsets? margin;
   final double? width;
   final double? height;
-  final double? radius;
   final Color? color;
 
   @override
   Widget build(BuildContext context) {
-    switch (_containerType) {
-      case _ContainerType.circular:
-        return Container(
-          width: radius! / 2,
-          height: radius! / 2,
-          decoration: BoxDecoration(
-            color: color,
-            shape: BoxShape.circle,
-          ),
-        );
-      case _ContainerType.square:
-        return Container(
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: borderRadius,
-          ),
-        );
-    }
+    return Container(
+      width: width,
+      height: height,
+      padding: padding,
+      margin: margin,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: borderRadius,
+      ),
+    );
   }
 }

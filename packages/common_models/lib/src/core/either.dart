@@ -9,6 +9,8 @@ abstract class Either<L, R> {
 
   B fold<B>(B Function(L l) ifLeft, B Function(R r) ifRight);
 
+  Future<B> foldAsync<B>(Future<B> Function(L l) ifLeft, Future<B> Function(R r) ifRight);
+
   Either<L, R> orElse(Either<L, R> Function() other) => fold((_) => other(), (_) => this);
 
   R? get rightOrNull => fold((L l) => null, _id);
@@ -35,28 +37,12 @@ abstract class Either<L, R> {
 
   Either<L, R2> map<R2>(R2 Function(R r) f) => fold(left, (R r) => right(f(r)));
 
-  Either<L, R2> bind<R2>(_Function1<R, Either<L, R2>> f) => fold(left, f);
+  Future<Either<L, R2>> mapAsync<R2>(Future<R2> Function(R r) f) =>
+      foldAsync((L l) async => left(l), (R r) async => right(await f(r)));
 
   Either<L, R2> flatMap<R2>(_Function1<R, Either<L, R2>> f) => fold(left, f);
 
   Either<L, R2> andThen<R2>(Either<L, R2> next) => fold(left, (_) => next);
-
-  Either<L, R> filter(bool Function(R r) predicate, L Function() fallback) =>
-      fold((_) => this, (R r) => predicate(r) ? this : left(fallback()));
-
-  Either<L, R> where(bool Function(R r) predicate, L Function() fallback) =>
-      filter(predicate, fallback);
-
-  @override
-  String toString() => fold((L l) => 'Left($l)', (R r) => 'Right($r)');
-
-  Either<L, B> mapWithIndex<B>(B Function(int i, R r) f) => map((R r) => f(0, r));
-
-  bool all(bool Function(R r) f) => map(f) | true;
-
-  bool every(bool Function(R r) f) => all(f);
-
-  bool any(bool Function(R r) f) => map(f) | false;
 
   B foldLeft<B>(B z, B Function(B previous, R r) f) => fold((_) => z, (R a) => f(z, a));
 
@@ -67,6 +53,9 @@ abstract class Either<L, R> {
 
   B foldRightWithIndex<B>(B z, B Function(int i, R r, B previous) f) =>
       fold((_) => z, (R a) => f(0, a, z));
+
+  @override
+  String toString() => fold((L l) => 'Left($l)', (R r) => 'Right($r)');
 }
 
 class _Left<L, R> extends Either<L, R> {
@@ -78,6 +67,13 @@ class _Left<L, R> extends Either<L, R> {
 
   @override
   B fold<B>(B Function(L l) ifLeft, B Function(R r) ifRight) => ifLeft(_l);
+
+  @override
+  Future<B> foldAsync<B>(
+    Future<B> Function(L l) ifLeft,
+    Future<B> Function(R r) ifRight,
+  ) async =>
+      ifLeft(_l);
 
   @override
   bool operator ==(Object other) =>
@@ -96,6 +92,13 @@ class _Right<L, R> extends Either<L, R> {
 
   @override
   B fold<B>(B Function(L l) ifLeft, B Function(R r) ifRight) => ifRight(_r);
+
+  @override
+  Future<B> foldAsync<B>(
+    Future<B> Function(L l) ifLeft,
+    Future<B> Function(R r) ifRight,
+  ) async =>
+      ifRight(_r);
 
   @override
   bool operator ==(Object other) =>

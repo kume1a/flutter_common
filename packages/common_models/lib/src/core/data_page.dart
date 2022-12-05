@@ -54,15 +54,20 @@ class DataPage<T> {
     );
   }
 
-  DataPage<T> replace(bool Function(T e) where, T item) {
+  DataPage<T> replace(
+    bool Function(T e) where,
+    T Function(T old) replacementResolver,
+  ) {
     final int index = this.items.indexWhere(where);
     if (index == -1) {
       return this;
     }
 
+    final T oldItem = this.items[index];
+
     final List<T> items = List<T>.of(this.items);
     items.removeAt(index);
-    items.insert(index, item);
+    items.insert(index, replacementResolver(oldItem));
     return copyWith(items: items);
   }
 

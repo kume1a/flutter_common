@@ -129,6 +129,6 @@ class PagedList<T> extends StatelessWidget {
       onScrolledToEnd.call();
       return loadingBuilder != null ? loadingBuilder!.call(context) : const DefaultPagingLoadingIndicator();
     }
-    return itemBuilder.call(context, data[index]);
+    return itemBuilder.call(context, index, data[index]);
   }
 }

@@ -133,7 +133,7 @@ class RefreshableList<T> extends StatelessWidget {
   ) =>
       index == (data?.length ?? 0)
           ? _buildRefreshIndicator(context)
-          : itemBuilder.call(context, data![index]);
+          : itemBuilder.call(context, index, data![index]);
 
   Widget _buildRefreshIndicator(BuildContext context) => refreshBuilder != null
       ? refreshBuilder!.call(context)

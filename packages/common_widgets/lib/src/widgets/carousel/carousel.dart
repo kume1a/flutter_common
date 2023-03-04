@@ -80,7 +80,7 @@ class _CarouselState extends State<Carousel> {
                     final BuildContext storageContext =
                         pageController.position.context.storageContext;
                     final double? previousSavedPosition =
-                        PageStorage.of(storageContext)?.readState(storageContext) as double?;
+                        PageStorage.of(storageContext).readState(storageContext) as double?;
                     if (previousSavedPosition != null) {
                       itemOffset = previousSavedPosition - index.toDouble();
                     } else {

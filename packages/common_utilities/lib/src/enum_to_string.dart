@@ -32,10 +32,10 @@ class EnumToString {
   }
 
   static List<String> toList<T>(List<T> enumValues) {
-    final List<String> _enumList = enumValues.map((T t) => EnumToString.convertToString(t)).toList();
+    final List<String> enumList = enumValues.map((T t) => EnumToString.convertToString(t)).toList();
 
     final List<String> output = <String>[];
-    for (final String value in _enumList) {
+    for (final String value in enumList) {
       output.add(value);
     }
     return output;

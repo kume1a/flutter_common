@@ -93,24 +93,27 @@ class _ReadMoreTextState extends State<ReadMoreText> {
     final TextOverflow overflow = defaultTextStyle.overflow;
     final Locale? locale = widget.locale ?? Localizations.maybeLocaleOf(context);
 
-    final Color colorClickableText = widget.colorClickableText ?? Theme.of(context).secondaryHeaderColor;
-    final TextStyle? _defaultLessStyle = widget.lessStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
-    final TextStyle? _defaultMoreStyle = widget.moreStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
-    final TextStyle? _defaultDelimiterStyle = widget.delimiterStyle ?? effectiveTextStyle;
+    final Color colorClickableText =
+        widget.colorClickableText ?? Theme.of(context).secondaryHeaderColor;
+    final TextStyle? defaultLessStyle =
+        widget.lessStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
+    final TextStyle? defaultMoreStyle =
+        widget.moreStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
+    final TextStyle? defaultDelimiterStyle = widget.delimiterStyle ?? effectiveTextStyle;
 
     final TextSpan link = TextSpan(
       text: _readMore ? widget.trimCollapsedText : widget.trimExpandedText,
-      style: _readMore ? _defaultMoreStyle : _defaultLessStyle,
+      style: _readMore ? defaultMoreStyle : defaultLessStyle,
       recognizer: TapGestureRecognizer()..onTap = _onTapLink,
     );
 
-    final TextSpan _delimiter = TextSpan(
+    final TextSpan delimiter = TextSpan(
       text: _readMore
           ? widget.trimCollapsedText.isNotEmpty
               ? widget.delimiter
               : ''
           : '',
-      style: _defaultDelimiterStyle,
+      style: defaultDelimiterStyle,
       recognizer: TapGestureRecognizer()..onTap = _onTapLink,
     );
 
@@ -139,7 +142,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
         final Size linkSize = textPainter.size;
 
         // Layout and measure delimiter
-        textPainter.text = _delimiter;
+        textPainter.text = delimiter;
         textPainter.layout(maxWidth: maxWidth);
         final Size delimiterSize = textPainter.size;
 
@@ -176,7 +179,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
               textSpan = TextSpan(
                 style: effectiveTextStyle,
                 text: _readMore ? widget.data.substring(0, widget.trimLength) : widget.data,
-                children: <TextSpan>[_delimiter, link],
+                children: <TextSpan>[delimiter, link],
               );
             } else {
               textSpan = TextSpan(
@@ -190,9 +193,10 @@ class _ReadMoreTextState extends State<ReadMoreText> {
               textSpan = TextSpan(
                 style: effectiveTextStyle,
                 text: _readMore
-                    ? widget.data.substring(0, endIndex) + (linkLongerThanLine ? _kLineSeparator : '')
+                    ? widget.data.substring(0, endIndex) +
+                        (linkLongerThanLine ? _kLineSeparator : '')
                     : widget.data,
-                children: <TextSpan>[_delimiter, link],
+                children: <TextSpan>[delimiter, link],
               );
             } else {
               textSpan = TextSpan(

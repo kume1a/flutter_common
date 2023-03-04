@@ -20,17 +20,15 @@ abstract class BaseService {
       log('BaseService.safeCall: ', error: e);
       try {
         switch (e.type) {
-          case DioErrorType.connectTimeout:
-            return left(onNetworkError());
+          case DioErrorType.connectionTimeout:
           case DioErrorType.sendTimeout:
-            return left(onNetworkError());
           case DioErrorType.receiveTimeout:
-            return left(onNetworkError());
-          case DioErrorType.response:
-            return left(onResponseError != null ? onResponseError(e.response) : onUnknownError(e));
+          case DioErrorType.connectionError:
           case DioErrorType.cancel:
             return left(onNetworkError());
-          case DioErrorType.other:
+          case DioErrorType.badResponse:
+            return left(onResponseError != null ? onResponseError(e.response) : onUnknownError(e));
+          default:
             if (e.error is SocketException) {
               return left(onNetworkError());
             }

@@ -46,7 +46,6 @@ enum ShimmerDirection { ltr, rtl, ttb, btt }
 ///
 /// * use one [Shimmer] to wrap list of [Widget]s instead of a list of many [Shimmer]s
 ///
-@immutable
 class Shimmer extends StatefulWidget {
   const Shimmer({
     Key? key,
@@ -76,20 +75,7 @@ class Shimmer extends StatefulWidget {
     begin: Alignment.topLeft,
     colors: <Color>[baseColor, baseColor, highlightColor, baseColor, baseColor],
     stops: const <double>[0.0, 0.35, 0.5, 0.65, 1.0],
-  ),
-        super(key: key);
-
-  Shimmer.fromDefaultColors({
-    Key? key,
-    required Widget child,
-    Color baseColor = const Color(0xFFD4D4D4),
-    Color highlightColor = Colors.white38,
-  }) : this.fromColors(
-    key: key,
-    child: child,
-    baseColor: baseColor,
-    highlightColor: highlightColor,
-  );
+  ), super(key: key);
 
   final Widget child;
   final Duration period;
@@ -112,7 +98,7 @@ class Shimmer extends StatefulWidget {
   }
 }
 
-class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
+class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin<Shimmer> {
   late AnimationController _controller;
   int _count = 0;
 
@@ -167,7 +153,6 @@ class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
   }
 }
 
-@immutable
 class _Shimmer extends SingleChildRenderObjectWidget {
   const _Shimmer({
     Widget? child,

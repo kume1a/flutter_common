@@ -30,31 +30,31 @@ Future<DateTime?> showMinimalistDatePicker({
   String? fieldHintText,
   String? fieldLabelText,
 }) async {
-  final DateTime _initialDate = DateUtils.dateOnly(initialDate);
-  final DateTime _firstDate = DateUtils.dateOnly(firstDate);
-  final DateTime _lastDate = DateUtils.dateOnly(lastDate);
+  final DateTime initialDate0 = DateUtils.dateOnly(initialDate);
+  final DateTime firstDate0 = DateUtils.dateOnly(firstDate);
+  final DateTime lastDate0 = DateUtils.dateOnly(lastDate);
   assert(
-    !_lastDate.isBefore(_firstDate),
-    'lastDate $_lastDate must be on or after firstDate $_firstDate.',
+    !lastDate0.isBefore(firstDate0),
+    'lastDate $lastDate0 must be on or after firstDate $firstDate0.',
   );
   assert(
-    !_initialDate.isBefore(_firstDate),
-    'initialDate $_initialDate must be on or after firstDate $_firstDate.',
+    !initialDate0.isBefore(firstDate0),
+    'initialDate $initialDate0 must be on or after firstDate $firstDate0.',
   );
   assert(
-    !_initialDate.isAfter(_lastDate),
-    'initialDate $_initialDate must be on or before lastDate $_lastDate.',
+    !initialDate0.isAfter(lastDate0),
+    'initialDate $initialDate0 must be on or before lastDate $lastDate0.',
   );
   assert(
-    selectableDayPredicate == null || selectableDayPredicate(_initialDate),
-    'Provided initialDate $_initialDate must satisfy provided selectableDayPredicate.',
+    selectableDayPredicate == null || selectableDayPredicate(initialDate0),
+    'Provided initialDate $initialDate0 must satisfy provided selectableDayPredicate.',
   );
   assert(debugCheckHasMaterialLocalizations(context));
 
   Widget dialog = MinimalDatePickerDialog(
-    initialDate: _initialDate,
-    firstDate: _firstDate,
-    lastDate: _lastDate,
+    initialDate: initialDate0,
+    firstDate: firstDate0,
+    lastDate: lastDate0,
     currentDate: currentDate,
     selectableDayPredicate: selectableDayPredicate,
     cancelText: cancelText,
@@ -407,16 +407,16 @@ class _MinimalCalendarDatePickerState extends State<_MinimalCalendarDatePicker> 
   void _handleYearChanged(DateTime value) {
     _vibrate();
 
-    DateTime _value = value;
+    DateTime value0 = value;
     if (value.isBefore(widget.firstDate)) {
-      _value = widget.firstDate;
+      value0 = widget.firstDate;
     } else if (value.isAfter(widget.lastDate)) {
-      _value = widget.lastDate;
+      value0 = widget.lastDate;
     }
 
     setState(() {
       _mode = DatePickerMode.day;
-      _handleMonthChanged(_value);
+      _handleMonthChanged(value0);
     });
   }
 

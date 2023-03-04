@@ -8,7 +8,7 @@ import '../local/auth_key_store.dart';
 import '../utils/jwt_decoder.dart';
 import 'abstract_token_header_interceptor_flow.dart';
 
-const int kNetworkTimeout = 20000;
+const Duration _kNetworkTimeoutDuration = Duration(seconds: 20);
 
 class TokenHeaderInterceptor extends Interceptor {
   TokenHeaderInterceptor({
@@ -19,9 +19,9 @@ class TokenHeaderInterceptor extends Interceptor {
     _dio = dio ??
         Dio(
           BaseOptions(
-            connectTimeout: kNetworkTimeout,
-            receiveTimeout: kNetworkTimeout,
-            sendTimeout: kNetworkTimeout,
+            connectTimeout: _kNetworkTimeoutDuration,
+            receiveTimeout: _kNetworkTimeoutDuration,
+            sendTimeout: _kNetworkTimeoutDuration,
           ),
         );
   }

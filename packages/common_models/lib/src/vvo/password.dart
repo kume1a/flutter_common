@@ -11,6 +11,12 @@ class Password extends ValueObject<PasswordFailure, String> {
     if (value.length < VVOConfig.password.minLength) {
       return Password._(left(PasswordFailure.tooShort));
     }
+    if (value.length > VVOConfig.password.maxLength) {
+      return Password._(left(PasswordFailure.tooLong));
+    }
+    if (value.contains(_patternWhitespace)){
+      return Password._(left(PasswordFailure.containsWhitespace));
+    }
     if (VVOConfig.password.checkForUppercase && !value.contains(_patternUppercase)) {
       return Password._(left(PasswordFailure.noUppercaseCharsFound));
     }
@@ -32,6 +38,7 @@ class Password extends ValueObject<PasswordFailure, String> {
 
   Password._(Either<PasswordFailure, String> value) : super(value);
 
+  static final Pattern _patternWhitespace = RegExp(r'\s');
   static final Pattern _patternUppercase = RegExp('[A-Z]');
   static final Pattern _patternLowercase = RegExp('[a-z]');
   static final Pattern _patternDigits = RegExp('[0-9]');

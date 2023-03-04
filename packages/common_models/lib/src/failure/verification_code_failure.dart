@@ -1,27 +1,27 @@
-enum SimpleContentValueFailure {
+enum VerificationCodeFailure {
   empty,
-  tooLong;
+  invalid;
 
   T when<T>({
     required T Function() empty,
-    required T Function() tooLong,
+    required T Function() invalid,
   }) {
     switch (this) {
-      case SimpleContentValueFailure.empty:
+      case VerificationCodeFailure.empty:
         return empty();
-      case SimpleContentValueFailure.tooLong:
-        return tooLong();
+      case VerificationCodeFailure.invalid:
+        return invalid();
     }
   }
 
   T maybeWhen<T>({
     required T Function() orElse,
     T Function()? empty,
-    T Function()? tooLong,
+    T Function()? invalid,
   }) {
     return when(
       empty: empty ?? orElse,
-      tooLong: tooLong ?? orElse,
+      invalid: invalid ?? orElse,
     );
   }
 }

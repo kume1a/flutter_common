@@ -7,10 +7,12 @@ class Name extends ValueObject<NameFailure, String> {
   factory Name(String name) {
     if (name.trim().isEmpty) {
       return Name._(left(NameFailure.empty));
-    }
-    if (name.length < VVOConfig.name.minLength) {
+    } else if (name.length < VVOConfig.name.minLength) {
       return Name._(left(NameFailure.tooShort));
+    } else if (name.length > VVOConfig.name.maxLength) {
+      return Name._(left(NameFailure.tooLong));
     }
+
     return Name._(right(name));
   }
 

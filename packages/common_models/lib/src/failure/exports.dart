@@ -1,3 +1,4 @@
+export 'email_failure.dart';
 export 'fetch_failure.dart';
 export 'name_failure.dart';
 export 'password_failure.dart';

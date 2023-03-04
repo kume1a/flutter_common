@@ -41,6 +41,6 @@ class Password extends ValueObject<PasswordFailure, String> {
   static final Pattern _patternWhitespace = RegExp(r'\s');
   static final Pattern _patternUppercase = RegExp('[A-Z]');
   static final Pattern _patternLowercase = RegExp('[a-z]');
-  static final Pattern _patternDigits = RegExp('[0-9]');
+  static final Pattern _patternDigits = RegExp(r'\d');
   static final Pattern _patternSpecialCharacters = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
 }

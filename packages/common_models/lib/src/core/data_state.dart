@@ -110,6 +110,26 @@ abstract class DataState<F, T> {
       orElse: () => this,
     );
   }
+
+  DataState<F3, T3> merge<F2, T2, F3, T3>(
+    DataState<F2, T2> other,
+    F3 Function(F?, F2?) failureResolver,
+    T3 Function(T, T2) dataResolver,
+  ) {
+    return when(
+      idle: () => DataState<F3, T3>.idle(),
+      loading: () => DataState<F3, T3>.loading(),
+      failure: (F failure, _) => DataState<F3, T3>.failure(failureResolver(failure, null)),
+      success: (T data) {
+        return other.when(
+          idle: () => DataState<F3, T3>.idle(),
+          success: (T2 otherData) => DataState<F3, T3>.success(dataResolver(data, otherData)),
+          loading: () => DataState<F3, T3>.loading(),
+          failure: (F2 otherFailure, _) => DataState<F3, T3>.failure(failureResolver(null, otherFailure)),
+        );
+      },
+    );
+  }
 }
 
 class _Idle<F, T> extends DataState<F, T> {

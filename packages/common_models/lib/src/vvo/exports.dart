@@ -1,11 +1,11 @@
 export 'core/value_object.dart';
 export 'core/vvo_config.dart';
 export 'email.dart';
+export 'money.dart';
 export 'name.dart';
 export 'password.dart';
 export 'percent.dart';
 export 'phone_number.dart';
-export 'price.dart';
 export 'repeated_password.dart';
 export 'simple_content_value.dart';
 export 'url.dart';

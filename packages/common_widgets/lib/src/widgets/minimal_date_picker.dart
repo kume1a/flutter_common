@@ -176,12 +176,12 @@ class _MinimalDatePickerDialogState extends State<MinimalDatePickerDialog> with 
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             minWidth: 0,
             height: 0,
-            textColor: theme.textTheme.bodyText1?.color,
+            textColor: theme.textTheme.bodyLarge?.color,
             child: Text(widget.cancelText ?? localizations.cancelButtonLabel),
           ),
           MaterialButton(
             onPressed: () => Navigator.pop(context, _selectedDate.value),
-            textColor: theme.textTheme.bodyText1?.color,
+            textColor: theme.textTheme.bodyLarge?.color,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             minWidth: 0,
             height: 0,
@@ -276,6 +276,7 @@ class _MinimalCalendarDatePicker extends StatefulWidget {
     required DateTime lastDate,
     DateTime? currentDate,
     required this.onDateChanged,
+    // ignore: unused_element
     this.onDisplayedMonthChanged,
     this.initialCalendarMode = DatePickerMode.day,
     this.selectableDayPredicate,
@@ -396,8 +397,7 @@ class _MinimalCalendarDatePickerState extends State<_MinimalCalendarDatePicker> 
 
   void _handleMonthChanged(DateTime date) {
     setState(() {
-      if (_currentDisplayedMonthDate.year != date.year ||
-          _currentDisplayedMonthDate.month != date.month) {
+      if (_currentDisplayedMonthDate.year != date.year || _currentDisplayedMonthDate.month != date.month) {
         _currentDisplayedMonthDate = DateTime(date.year, date.month);
         widget.onDisplayedMonthChanged?.call(_currentDisplayedMonthDate);
       }
@@ -453,6 +453,7 @@ class _MinimalCalendarDatePickerState extends State<_MinimalCalendarDatePicker> 
             initialDate: _currentDisplayedMonthDate,
             selectedDate: _selectedDate,
             onChanged: _handleYearChanged,
+            dragStartBehavior: DragStartBehavior.down,
           ),
         );
     }
@@ -512,7 +513,7 @@ class _DatePickerModeToggleButton extends StatelessWidget {
           child: Text(
             title,
             overflow: TextOverflow.ellipsis,
-            style: textTheme.subtitle2?.copyWith(
+            style: textTheme.titleSmall?.copyWith(
               color: controlColor,
             ),
           ),
@@ -570,22 +571,17 @@ class _MonthPickerState extends State<_MonthPicker> {
     _currentMonth = widget.initialMonth;
     _previousMonthDate = DateUtils.addMonthsToMonthDate(_currentMonth, -1);
     _nextMonthDate = DateUtils.addMonthsToMonthDate(_currentMonth, 1);
-    _pageController =
-        PageController(initialPage: DateUtils.monthDelta(widget.firstDate, _currentMonth));
+    _pageController = PageController(initialPage: DateUtils.monthDelta(widget.firstDate, _currentMonth));
     _shortcutMap = const <ShortcutActivator, Intent>{
-      SingleActivator(LogicalKeyboardKey.arrowLeft):
-          DirectionalFocusIntent(TraversalDirection.left),
-      SingleActivator(LogicalKeyboardKey.arrowRight):
-          DirectionalFocusIntent(TraversalDirection.right),
-      SingleActivator(LogicalKeyboardKey.arrowDown):
-          DirectionalFocusIntent(TraversalDirection.down),
+      SingleActivator(LogicalKeyboardKey.arrowLeft): DirectionalFocusIntent(TraversalDirection.left),
+      SingleActivator(LogicalKeyboardKey.arrowRight): DirectionalFocusIntent(TraversalDirection.right),
+      SingleActivator(LogicalKeyboardKey.arrowDown): DirectionalFocusIntent(TraversalDirection.down),
       SingleActivator(LogicalKeyboardKey.arrowUp): DirectionalFocusIntent(TraversalDirection.up),
     };
     _actionMap = <Type, Action<Intent>>{
       NextFocusIntent: CallbackAction<NextFocusIntent>(onInvoke: _handleGridNextFocus),
       PreviousFocusIntent: CallbackAction<PreviousFocusIntent>(onInvoke: _handleGridPreviousFocus),
-      DirectionalFocusIntent:
-          CallbackAction<DirectionalFocusIntent>(onInvoke: _handleDirectionFocus),
+      DirectionalFocusIntent: CallbackAction<DirectionalFocusIntent>(onInvoke: _handleDirectionFocus),
     };
     _dayGridFocus = FocusNode(debugLabel: 'Day Grid');
   }
@@ -791,8 +787,7 @@ class _MonthPickerState extends State<_MonthPicker> {
 
   DateTime? _nextDateInDirection(DateTime date, TraversalDirection direction) {
     final TextDirection textDirection = Directionality.of(context);
-    DateTime nextDate =
-        DateUtils.addDaysToDate(date, _dayDirectionOffset(direction, textDirection));
+    DateTime nextDate = DateUtils.addDaysToDate(date, _dayDirectionOffset(direction, textDirection));
     while (!nextDate.isBefore(widget.firstDate) && !nextDate.isAfter(widget.lastDate)) {
       if (_isSelectable(nextDate)) {
         return nextDate;
@@ -931,8 +926,7 @@ class _DayPickerState extends State<_DayPicker> {
   @override
   void initState() {
     super.initState();
-    final int daysInMonth =
-        DateUtils.getDaysInMonth(widget.displayedMonth.year, widget.displayedMonth.month);
+    final int daysInMonth = DateUtils.getDaysInMonth(widget.displayedMonth.year, widget.displayedMonth.month);
     _dayFocusNodes = List<FocusNode>.generate(
       daysInMonth,
       (int index) => FocusNode(skipTraversal: true, debugLabel: 'Day ${index + 1}'),
@@ -1001,7 +995,7 @@ class _DayPickerState extends State<_DayPicker> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final MaterialLocalizations localizations = MaterialLocalizations.of(context);
     final TextTheme textTheme = Theme.of(context).textTheme;
-    final TextStyle dayStyle = textTheme.caption!;
+    final TextStyle dayStyle = textTheme.bodySmall!;
     final Color enabledDayColor = colorScheme.onSurface.withOpacity(0.87);
     final Color disabledDayColor = colorScheme.onSurface.withOpacity(0.38);
     final Color selectedDayColor = colorScheme.onPrimary;
@@ -1076,8 +1070,7 @@ class _DayPickerState extends State<_DayPicker> {
               // day of month before the rest of the date, as they are looking
               // for the day of month. To do that we prepend day of month to the
               // formatted full date.
-              label:
-                  '${localizations.formatDecimal(day)}, ${localizations.formatFullDate(dayToBuild)}',
+              label: '${localizations.formatDecimal(day)}, ${localizations.formatFullDate(dayToBuild)}',
               selected: isSelectedDay,
               excludeSemantics: true,
               child: dayWidget,
@@ -1141,7 +1134,7 @@ class _YearPicker extends StatefulWidget {
     DateTime? initialDate,
     required this.selectedDate,
     required this.onChanged,
-    this.dragStartBehavior = DragStartBehavior.start,
+    required this.dragStartBehavior,
   })  : assert(!firstDate.isAfter(lastDate)),
         currentDate = DateUtils.dateOnly(currentDate ?? DateTime.now()),
         initialDate = DateUtils.dateOnly(initialDate ?? selectedDate),
@@ -1168,8 +1161,7 @@ class _YearPickerState extends State<_YearPicker> {
   @override
   void initState() {
     super.initState();
-    _scrollController =
-        ScrollController(initialScrollOffset: _scrollOffsetForYear(widget.selectedDate));
+    _scrollController = ScrollController(initialScrollOffset: _scrollOffsetForYear(widget.selectedDate));
   }
 
   @override
@@ -1211,7 +1203,7 @@ class _YearPickerState extends State<_YearPicker> {
     } else {
       textColor = colorScheme.onSurface.withOpacity(0.87);
     }
-    final TextStyle? itemStyle = textTheme.bodyText1?.apply(color: textColor);
+    final TextStyle? itemStyle = textTheme.bodyLarge?.apply(color: textColor);
 
     BoxDecoration? decoration;
     if (isSelected) {

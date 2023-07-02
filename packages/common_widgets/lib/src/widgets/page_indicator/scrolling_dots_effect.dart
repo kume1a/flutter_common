@@ -67,7 +67,7 @@ class ScrollingDotsEffect extends BasicIndicatorEffect {
       final int firstVisibleDot = (current < switchPoint || count - 1 < maxVisibleDots)
           ? 0
           : min(current - switchPoint, count - maxVisibleDots).floor();
-      final int lastVisibleDot = min(firstVisibleDot + maxVisibleDots, count - 1).floor();
+      final int lastVisibleDot = min(firstVisibleDot + maxVisibleDots, count - 1);
       double offset = 0.0;
       for (int index = firstVisibleDot; index <= lastVisibleDot; index++) {
         if (dx <= (offset += dotWidth + spacing)) {

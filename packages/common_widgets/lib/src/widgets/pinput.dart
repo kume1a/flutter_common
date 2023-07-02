@@ -285,11 +285,14 @@ class PinPutState extends State<PinPut> with WidgetsBindingObserver, SingleTicke
     _textControllerValue = ValueNotifier<String>(_controller!.value.text);
     _controller?.addListener(_textChangeListener);
     _focusNode?.addListener(() {
-      if (mounted) setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     });
 
     if (widget.withCursor) {
-      _cursorAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+      _cursorAnimationController =
+          AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
       _cursorAnimation = Tween<double>(begin: 0.0, end: 1.0)
           .animate(CurvedAnimation(curve: Curves.linear, parent: _cursorAnimationController!));
 
@@ -314,14 +317,20 @@ class PinPutState extends State<PinPut> with WidgetsBindingObserver, SingleTicke
       } catch (e) {
         _textControllerValue = ValueNotifier<String>(_controller!.value.text);
       }
-      if (pin.length == widget.fieldsCount) widget.onSubmit?.call(pin);
+      if (pin.length == widget.fieldsCount) {
+        widget.onSubmit?.call(pin);
+      }
     }
   }
 
   @override
   void dispose() {
-    if (widget.controller == null) _controller!.dispose();
-    if (widget.focusNode == null) _focusNode!.dispose();
+    if (widget.controller == null) {
+      _controller!.dispose();
+    }
+    if (widget.focusNode == null) {
+      _focusNode!.dispose();
+    }
 
     _cursorAnimationController?.dispose();
     _textControllerValue?.dispose();
@@ -355,8 +364,12 @@ class PinPutState extends State<PinPut> with WidgetsBindingObserver, SingleTicke
 
   void _handleTap() {
     final FocusScopeNode focus = FocusScope.of(context);
-    if (_focusNode!.hasFocus) _focusNode!.unfocus();
-    if (focus.hasFocus) focus.unfocus();
+    if (_focusNode!.hasFocus) {
+      _focusNode!.unfocus();
+    }
+    if (focus.hasFocus) {
+      focus.unfocus();
+    }
     focus.requestFocus(FocusNode());
     Future<void>.delayed(Duration.zero, () => focus.requestFocus(_focusNode));
     widget.onTap?.call();
@@ -477,7 +490,9 @@ class PinPutState extends State<PinPut> with WidgetsBindingObserver, SingleTicke
   }
 
   BoxDecoration? _fieldDecoration(int index) {
-    if (!widget.enabled) return widget.disabledDecoration;
+    if (!widget.enabled) {
+      return widget.disabledDecoration;
+    }
     if (index < selectedIndex && _focusNode!.hasFocus) {
       return widget.submittedFieldDecoration;
     }

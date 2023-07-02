@@ -5,8 +5,12 @@ analyzer:
     missing_required_param: error
     missing_return: error
     prefer_relative_imports: warning
-    public_member_api_docs: ignore
     always_use_package_imports: ignore
+    use_setters_to_change_properties: ignore
+    public_member_api_docs: ignore
+    depend_on_referenced_packages: ignore
+    invalid_annotation_target: ignore
+    require_trailing_commas: ignore
   exclude:
     - lib/**/*.g.dart
     - lib/**/*.config.dart
@@ -19,6 +23,13 @@ linter:
     avoid_classes_with_only_static_members: false
     sort_constructors_first: true
     prefer_single_quotes: true
-    always_specify_types: true
     prefer_relative_imports: true
-    always_use_package_imports: false
+    use_setters_to_change_properties: false
+    cancel_subscriptions: true
+    close_sinks: true
+    empty_statements: true
+    hash_and_equals: true
+    always_put_control_body_on_new_line: true
+    avoid_final_parameters: true
+    avoid_shadowing_type_parameters: true
+    avoid_escaping_inner_quotes: false

@@ -50,6 +50,7 @@ class ReadMoreText extends StatefulWidget {
   final TextStyle? lessStyle;
 
   ///Called when state change between expanded/compress
+  // ignore: avoid_positional_boolean_parameters
   final Function(bool val)? callback;
 
   final String delimiter;
@@ -93,8 +94,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
     final TextOverflow overflow = defaultTextStyle.overflow;
     final Locale? locale = widget.locale ?? Localizations.maybeLocaleOf(context);
 
-    final Color colorClickableText =
-        widget.colorClickableText ?? Theme.of(context).secondaryHeaderColor;
+    final Color colorClickableText = widget.colorClickableText ?? Theme.of(context).secondaryHeaderColor;
     final TextStyle? defaultLessStyle =
         widget.lessStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
     final TextStyle? defaultMoreStyle =
@@ -193,8 +193,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
               textSpan = TextSpan(
                 style: effectiveTextStyle,
                 text: _readMore
-                    ? widget.data.substring(0, endIndex) +
-                        (linkLongerThanLine ? _kLineSeparator : '')
+                    ? widget.data.substring(0, endIndex) + (linkLongerThanLine ? _kLineSeparator : '')
                     : widget.data,
                 children: <TextSpan>[delimiter, link],
               );

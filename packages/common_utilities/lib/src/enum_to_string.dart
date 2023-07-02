@@ -8,7 +8,7 @@ class EnumToString {
 
   static String convertToString(dynamic enumItem) {
     assert(enumItem != null);
-    assert(_isEnum(enumItem), '$enumItem of type ${enumItem.runtimeType.toString()} is not an enum item');
+    assert(_isEnum(enumItem), '$enumItem of type ${enumItem.runtimeType} is not an enum item');
     return enumItem.toString().split('.')[1];
   }
 

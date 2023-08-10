@@ -9,6 +9,10 @@ abstract class Either<L, R> {
 
   B fold<B>(B Function(L l) ifLeft, B Function(R r) ifRight);
 
+  B? ifLeft<B>(B Function(L l) ifLeft) => fold(ifLeft, (r) => null);
+
+  B? ifRight<B>(B Function(R r) ifRight) => fold((_) => null, ifRight);
+
   Future<B> foldAsync<B>(Future<B> Function(L l) ifLeft, Future<B> Function(R r) ifRight);
 
   Either<L, R> orElse(Either<L, R> Function() other) => fold((_) => other(), (_) => this);
@@ -46,13 +50,11 @@ abstract class Either<L, R> {
 
   B foldLeft<B>(B z, B Function(B previous, R r) f) => fold((_) => z, (R a) => f(z, a));
 
-  B foldLeftWithIndex<B>(B z, B Function(B previous, int i, R r) f) =>
-      fold((_) => z, (R a) => f(z, 0, a));
+  B foldLeftWithIndex<B>(B z, B Function(B previous, int i, R r) f) => fold((_) => z, (R a) => f(z, 0, a));
 
   B foldRight<B>(B z, B Function(R r, B previous) f) => fold((_) => z, (R a) => f(a, z));
 
-  B foldRightWithIndex<B>(B z, B Function(int i, R r, B previous) f) =>
-      fold((_) => z, (R a) => f(0, a, z));
+  B foldRightWithIndex<B>(B z, B Function(int i, R r, B previous) f) => fold((_) => z, (R a) => f(0, a, z));
 
   @override
   String toString() => fold((L l) => 'Left($l)', (R r) => 'Right($r)');
@@ -76,8 +78,7 @@ class _Left<L, R> extends Either<L, R> {
       ifLeft(_l);
 
   @override
-  bool operator ==(Object other) =>
-      other is _Left && const DeepCollectionEquality().equals(other._l, _l);
+  bool operator ==(Object other) => other is _Left && const DeepCollectionEquality().equals(other._l, _l);
 
   @override
   int get hashCode => _l.hashCode;
@@ -101,8 +102,7 @@ class _Right<L, R> extends Either<L, R> {
       ifRight(_r);
 
   @override
-  bool operator ==(Object other) =>
-      other is _Right && const DeepCollectionEquality().equals(other._r, _r);
+  bool operator ==(Object other) => other is _Right && const DeepCollectionEquality().equals(other._r, _r);
 
   @override
   int get hashCode => _r.hashCode;

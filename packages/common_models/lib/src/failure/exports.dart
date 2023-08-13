@@ -7,3 +7,4 @@ export 'repeated_password_failure.dart';
 export 'simple_action_failure.dart';
 export 'simple_content_value_failure.dart';
 export 'value_failure.dart';
+export 'get_entity_failure.dart';

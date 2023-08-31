@@ -1,5 +1,6 @@
 import '../core/either.dart';
 import '../failure/password_failure.dart';
+import '../regexp.dart';
 import 'core/value_object.dart';
 import 'core/vvo_config.dart';
 
@@ -14,20 +15,19 @@ class Password extends ValueObject<PasswordFailure, String> {
     if (value.length > VVOConfig.password.maxLength) {
       return Password._(left(PasswordFailure.tooLong));
     }
-    if (value.contains(_patternWhitespace)){
+    if (value.contains(patternWhitespace)) {
       return Password._(left(PasswordFailure.containsWhitespace));
     }
-    if (VVOConfig.password.checkForUppercase && !value.contains(_patternUppercase)) {
+    if (VVOConfig.password.checkForUppercase && !value.contains(patternUppercase)) {
       return Password._(left(PasswordFailure.noUppercaseCharsFound));
     }
-    if (VVOConfig.password.checkForLowercase && !value.contains(_patternLowercase)) {
+    if (VVOConfig.password.checkForLowercase && !value.contains(patternLowercase)) {
       return Password._(left(PasswordFailure.noLowercaseCharsFound));
     }
-    if (VVOConfig.password.checkForDigits && !value.contains(_patternDigits)) {
+    if (VVOConfig.password.checkForDigits && !value.contains(patternDigits)) {
       return Password._(left(PasswordFailure.noDigitsFound));
     }
-    if (VVOConfig.password.checkForSpecialCharacters &&
-        !value.contains(_patternSpecialCharacters)) {
+    if (VVOConfig.password.checkForSpecialCharacters && !value.contains(patternSpecialCharacters)) {
       return Password._(left(PasswordFailure.noSpecialCharsFound));
     }
 
@@ -37,10 +37,4 @@ class Password extends ValueObject<PasswordFailure, String> {
   factory Password.empty() => Password._(left(PasswordFailure.empty));
 
   Password._(Either<PasswordFailure, String> value) : super(value);
-
-  static final Pattern _patternWhitespace = RegExp(r'\s');
-  static final Pattern _patternUppercase = RegExp('[A-Z]');
-  static final Pattern _patternLowercase = RegExp('[a-z]');
-  static final Pattern _patternDigits = RegExp(r'\d');
-  static final Pattern _patternSpecialCharacters = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
 }

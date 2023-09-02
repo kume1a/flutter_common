@@ -12,7 +12,7 @@ class Email extends ValueObject<EmailFailure, String> {
       return Email._(left(EmailFailure.tooLong));
     } else if (email.contains(patternWhitespace)) {
       return Email._(left(EmailFailure.containsWhitespace));
-    } else if (!patternEmail.hasMatch(email)) {
+    } else if (!patternExactEmail.hasMatch(email)) {
       return Email._(left(EmailFailure.invalid));
     }
     return Email._(right(email));

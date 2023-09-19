@@ -31,11 +31,11 @@ class Email extends ValueObject<EmailFailure, String> {
       return Email._(left(EmailFailure.tooLong));
     }
 
-    if (options.containsWhitespace && value.contains(patternWhitespace)) {
+    if (options.containsWhitespace && value.isNotEmpty && value.contains(patternWhitespace)) {
       return Email._(left(EmailFailure.containsWhitespace));
     }
 
-    if (options.invalid && !patternExactEmail.hasMatch(value)) {
+    if (options.invalid && value.isNotEmpty && !patternExactEmail.hasMatch(value)) {
       return Email._(left(EmailFailure.invalid));
     }
 

@@ -35,7 +35,7 @@ class Password extends ValueObject<PasswordFailure, String> {
       return Password._(left(PasswordFailure.empty));
     }
 
-    if (options.tooShort && value.length < VVOConfig.password.minLength) {
+    if (options.tooShort && value.isNotEmpty && value.length < VVOConfig.password.minLength) {
       return Password._(left(PasswordFailure.tooShort));
     }
 

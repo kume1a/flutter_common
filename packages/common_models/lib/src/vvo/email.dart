@@ -20,26 +20,26 @@ class ValidateEmailOptions {
 
 class Email extends ValueObject<EmailFailure, String> {
   factory Email(
-    String email, {
+    String value, {
     ValidateEmailOptions options = const ValidateEmailOptions(),
   }) {
-    if (options.empty && email.isEmpty) {
+    if (options.empty && value.isEmpty) {
       return Email._(left(EmailFailure.empty));
     }
 
-    if (options.tooLong && email.length > VVOConfig.value.maxLength) {
+    if (options.tooLong && value.isNotEmpty && value.length > VVOConfig.value.maxLength) {
       return Email._(left(EmailFailure.tooLong));
     }
 
-    if (options.containsWhitespace && email.contains(patternWhitespace)) {
+    if (options.containsWhitespace && value.contains(patternWhitespace)) {
       return Email._(left(EmailFailure.containsWhitespace));
     }
 
-    if (options.invalid && !patternExactEmail.hasMatch(email)) {
+    if (options.invalid && !patternExactEmail.hasMatch(value)) {
       return Email._(left(EmailFailure.invalid));
     }
 
-    return Email._(right(email));
+    return Email._(right(value));
   }
 
   factory Email.empty() => Email._(left(EmailFailure.empty));

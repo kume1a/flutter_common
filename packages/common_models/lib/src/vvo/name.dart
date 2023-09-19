@@ -17,22 +17,22 @@ class ValidateNameOptions {
 
 class Name extends ValueObject<NameFailure, String> {
   factory Name(
-    String name, {
+    String value, {
     ValidateNameOptions options = const ValidateNameOptions(),
   }) {
-    if (options.empty && name.trim().isEmpty) {
+    if (options.empty && value.trim().isEmpty) {
       return Name._(left(NameFailure.empty));
     }
 
-    if (options.tooShort && name.length < VVOConfig.name.minLength) {
+    if (options.tooShort && value.isNotEmpty && value.length < VVOConfig.name.minLength) {
       return Name._(left(NameFailure.tooShort));
     }
 
-    if (options.tooLong && name.length > VVOConfig.name.maxLength) {
+    if (options.tooLong && value.length > VVOConfig.name.maxLength) {
       return Name._(left(NameFailure.tooLong));
     }
 
-    return Name._(right(name));
+    return Name._(right(value));
   }
 
   factory Name.empty() => Name._(left(NameFailure.empty));

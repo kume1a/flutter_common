@@ -8,6 +8,7 @@ class SimpleContentValue extends ValueObject<SimpleContentValueFailure, String> 
     if (value.trim().isEmpty) {
       return SimpleContentValue._(left(SimpleContentValueFailure.empty));
     }
+
     if (value.length > VVOConfig.simpleContent.maxLength) {
       return SimpleContentValue._(left(SimpleContentValueFailure.tooLong));
     }

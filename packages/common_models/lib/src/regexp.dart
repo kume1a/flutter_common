@@ -13,4 +13,4 @@ final patternUrl = RegExp(_patternUrlRegexp);
 final patternExactUrl = RegExp('^$_patternUrlRegexp' + r'$');
 
 final patternEmail = RegExp(_patternEmailRegexp);
-final patternExactEmail = RegExp(_patternEmailRegexp);
+final patternExactEmail = RegExp('^$_patternEmailRegexp' + r'$');

@@ -7,9 +7,11 @@ class RepeatedPassword extends ValueObject<RepeatedPasswordFailure, String> {
     if (repeatedPassword.isEmpty) {
       return RepeatedPassword._(left(RepeatedPasswordFailure.empty));
     }
+
     if (password != repeatedPassword) {
       return RepeatedPassword._(left(RepeatedPasswordFailure.doesNotMatch));
     }
+
     return RepeatedPassword._(right(repeatedPassword));
   }
 

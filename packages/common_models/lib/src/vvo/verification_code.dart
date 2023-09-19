@@ -7,7 +7,9 @@ class VerificationCode extends ValueObject<ValueFailure, String> {
   factory VerificationCode(String verificationCode) {
     if (verificationCode.trim().isEmpty) {
       return VerificationCode._(left(ValueFailure.empty));
-    } else if (verificationCode.length != VVOConfig.verificationCode.length) {
+    }
+
+    if (verificationCode.length != VVOConfig.verificationCode.length) {
       return VerificationCode._(left(ValueFailure.invalid));
     }
 

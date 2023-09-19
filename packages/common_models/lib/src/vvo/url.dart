@@ -7,9 +7,12 @@ class Url extends ValueObject<ValueFailure, String> {
   factory Url(String url) {
     if (url.isEmpty) {
       return Url._(left(ValueFailure.empty));
-    } else if (!patternUrl.hasMatch(url)) {
+    }
+
+    if (!patternUrl.hasMatch(url)) {
       return Url._(left(ValueFailure.invalid));
     }
+
     return Url._(right(url));
   }
 

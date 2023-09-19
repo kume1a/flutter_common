@@ -4,17 +4,41 @@ import '../regexp.dart';
 import 'core/value_object.dart';
 import 'core/vvo_config.dart';
 
+class ValidateEmailOptions {
+  const ValidateEmailOptions({
+    this.empty = true,
+    this.tooLong = true,
+    this.containsWhitespace = true,
+    this.invalid = true,
+  });
+
+  final bool empty;
+  final bool tooLong;
+  final bool containsWhitespace;
+  final bool invalid;
+}
+
 class Email extends ValueObject<EmailFailure, String> {
-  factory Email(String email) {
-    if (email.isEmpty) {
+  factory Email(
+    String email, {
+    ValidateEmailOptions options = const ValidateEmailOptions(),
+  }) {
+    if (options.empty && email.isEmpty) {
       return Email._(left(EmailFailure.empty));
-    } else if (email.length > VVOConfig.value.maxLength) {
+    }
+
+    if (options.tooLong && email.length > VVOConfig.value.maxLength) {
       return Email._(left(EmailFailure.tooLong));
-    } else if (email.contains(patternWhitespace)) {
+    }
+
+    if (options.containsWhitespace && email.contains(patternWhitespace)) {
       return Email._(left(EmailFailure.containsWhitespace));
-    } else if (!patternExactEmail.hasMatch(email)) {
+    }
+
+    if (options.invalid && !patternExactEmail.hasMatch(email)) {
       return Email._(left(EmailFailure.invalid));
     }
+
     return Email._(right(email));
   }
 

@@ -3,13 +3,32 @@ import '../failure/name_failure.dart';
 import 'core/value_object.dart';
 import 'core/vvo_config.dart';
 
+class ValidateNameOptions {
+  const ValidateNameOptions({
+    this.empty = true,
+    this.tooShort = true,
+    this.tooLong = true,
+  });
+
+  final bool empty;
+  final bool tooShort;
+  final bool tooLong;
+}
+
 class Name extends ValueObject<NameFailure, String> {
-  factory Name(String name) {
-    if (name.trim().isEmpty) {
+  factory Name(
+    String name, {
+    ValidateNameOptions options = const ValidateNameOptions(),
+  }) {
+    if (options.empty && name.trim().isEmpty) {
       return Name._(left(NameFailure.empty));
-    } else if (name.length < VVOConfig.name.minLength) {
+    }
+
+    if (options.tooShort && name.length < VVOConfig.name.minLength) {
       return Name._(left(NameFailure.tooShort));
-    } else if (name.length > VVOConfig.name.maxLength) {
+    }
+
+    if (options.tooLong && name.length > VVOConfig.name.maxLength) {
       return Name._(left(NameFailure.tooLong));
     }
 

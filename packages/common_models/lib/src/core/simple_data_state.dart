@@ -64,10 +64,13 @@ abstract class SimpleDataState<T> {
     throw Exception('unsupported subclass');
   }
 
-  bool get isSuccess => maybeWhen(
-        success: (_) => true,
-        orElse: () => false,
-      );
+  bool get isIdle => maybeWhen(idle: () => true, orElse: () => false);
+
+  bool get isLoading => maybeWhen(loading: () => true, orElse: () => false);
+
+  bool get isFailure => maybeWhen(failure: (_) => true, orElse: () => false);
+
+  bool get isSuccess => maybeWhen(success: (_) => true, orElse: () => false);
 
   bool get hasData => maybeWhen(
         success: (_) => true,

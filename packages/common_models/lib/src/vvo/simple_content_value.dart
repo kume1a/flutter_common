@@ -18,5 +18,5 @@ class SimpleContentValue extends ValueObject<SimpleContentValueFailure, String> 
 
   factory SimpleContentValue.empty() => SimpleContentValue._(left(SimpleContentValueFailure.empty));
 
-  SimpleContentValue._(Either<SimpleContentValueFailure, String> value) : super(value);
+  SimpleContentValue._(super.value);
 }

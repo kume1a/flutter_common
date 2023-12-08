@@ -74,5 +74,5 @@ class Password extends ValueObject<PasswordFailure, String> {
 
   factory Password.empty() => Password._(left(PasswordFailure.empty));
 
-  Password._(Either<PasswordFailure, String> value) : super(value);
+  Password._(super.value);
 }

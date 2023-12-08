@@ -7,50 +7,51 @@ import 'package:meta/meta.dart';
 
 abstract class BaseService {
   @protected
-  Future<Either<F, T>> safeCall<F, T>({
+  Future<Either<F, T>> callCatch<F, T>({
     required Future<T> Function() call,
-    required F Function() onNetworkError,
-    required F Function(Object? e) onUnknownError,
+    required F networkError,
+    required F unknownError,
     F Function(Response<dynamic>? response)? onResponseError,
   }) async {
     try {
       final T result = await call();
       return right(result);
-    } on DioError catch (e) {
-      log('BaseService.safeCall: ', error: e);
+    } on DioException catch (e) {
+      log('', error: e);
       try {
         switch (e.type) {
-          case DioErrorType.connectionTimeout:
-          case DioErrorType.sendTimeout:
-          case DioErrorType.receiveTimeout:
-          case DioErrorType.connectionError:
-          case DioErrorType.cancel:
-            return left(onNetworkError());
-          case DioErrorType.badResponse:
-            return left(onResponseError != null ? onResponseError(e.response) : onUnknownError(e));
+          case DioExceptionType.connectionTimeout:
+          case DioExceptionType.sendTimeout:
+          case DioExceptionType.receiveTimeout:
+          case DioExceptionType.connectionError:
+          case DioExceptionType.cancel:
+            return left(networkError);
+          case DioExceptionType.badResponse:
+            return left(onResponseError != null ? onResponseError(e.response) : unknownError);
           default:
             if (e.error is SocketException) {
-              return left(onNetworkError());
+              return left(networkError);
             }
-            return left(onUnknownError(e));
+            return left(unknownError);
         }
       } catch (err) {
-        log('BaseService.safeCall: ', error: e);
-        return left(onUnknownError(e));
+        log('', error: e);
+        return left(unknownError);
       }
     } catch (e) {
-      log('BaseService.safeCall: ', error: e);
-      return left(onUnknownError(e));
+      log('', error: e);
+      return left(unknownError);
     }
   }
 
   @protected
-  Future<Either<FetchFailure, T>> safeFetch<T>(
+  Future<Either<FetchFailure, T>> callCatchWithFetchFailure<T>(
     Future<T> Function() call,
   ) async {
-    return safeCall(
+    return callCatch(
       call: call,
-      onNetworkError: () => FetchFailure.network,
+      networkError: FetchFailure.network,
+      unknownError: FetchFailure.unknown,
       onResponseError: (Response<dynamic>? response) {
         if (response != null && response.statusCode != null) {
           final int statusCode = response.statusCode!;
@@ -60,16 +61,17 @@ abstract class BaseService {
         }
         return FetchFailure.unknown;
       },
-      onUnknownError: (Object? e) => FetchFailure.unknown,
     );
   }
 
   @protected
-  Future<Either<SimpleActionFailure, T>> safeSimpleCall<T>(Future<T> Function() call) async {
-    return safeCall(
+  Future<Either<SimpleActionFailure, T>> callCatchWithSimpleActionFailure<T>(
+    Future<T> Function() call,
+  ) async {
+    return callCatch(
       call: call,
-      onNetworkError: () => SimpleActionFailure.network,
-      onUnknownError: (_) => SimpleActionFailure.unknown,
+      networkError: SimpleActionFailure.network,
+      unknownError: SimpleActionFailure.unknown,
     );
   }
 }

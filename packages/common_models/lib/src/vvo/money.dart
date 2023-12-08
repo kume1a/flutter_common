@@ -39,5 +39,5 @@ class Money extends ValueObject<MoneyFailure, double> {
 
   factory Money.empty() => Money._(left(MoneyFailure.empty));
 
-  Money._(Either<MoneyFailure, double> value) : super(value);
+  Money._(super.value);
 }

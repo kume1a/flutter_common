@@ -27,9 +27,9 @@ class PrettyLogInterceptor extends Interceptor {
 
   @override
   void onRequest(
-      RequestOptions options,
-      RequestInterceptorHandler handler,
-      ) {
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) {
     final StringBuffer output = StringBuffer();
     output.writeln('*** Request ***');
     output.writeln(_keyValue('uri', options.uri));
@@ -52,8 +52,7 @@ class PrettyLogInterceptor extends Interceptor {
       output.writeln('data:');
       if (options.data != null && options.data is FormData) {
         final FormData formData = options.data as FormData;
-        output
-            .writeln('\tformData files: \n${formData.files.map((MapEntry<String, MultipartFile> e) {
+        output.writeln('\tformData files: \n${formData.files.map((MapEntry<String, MultipartFile> e) {
           const String dvr = '\n\t\t\t';
           return '\t\t${e.key}: ${dvr}length: $dvr${e.value.length}${dvr}fileName: ${e.value.filename}${dvr}headers: ${e.value.headers}${dvr}contentType: ${e.value.contentType}\n';
         })}');
@@ -82,7 +81,7 @@ class PrettyLogInterceptor extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     if (error) {
       final StringBuffer output = StringBuffer();
 
@@ -111,7 +110,7 @@ class PrettyLogInterceptor extends Interceptor {
 
       output.writeln('headers:');
       response.headers
-      // ignore: avoid_dynamic_calls
+          // ignore: avoid_dynamic_calls
           .forEach((String key, dynamic v) => output.writeln(_keyValue(' $key', v.join('\r\n\t'))));
     }
     if (responseBody) {

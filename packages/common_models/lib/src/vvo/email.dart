@@ -44,5 +44,5 @@ class Email extends ValueObject<EmailFailure, String> {
 
   factory Email.empty() => Email._(left(EmailFailure.empty));
 
-  Email._(Either<EmailFailure, String> value) : super(value);
+  Email._(super.value);
 }

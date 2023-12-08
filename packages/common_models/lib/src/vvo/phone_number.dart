@@ -5,7 +5,7 @@ import '../failure/value_failure.dart';
 import 'core/value_object.dart';
 
 class PhoneNumber extends ValueObject<ValueFailure, String> {
-  PhoneNumber._(Either<ValueFailure, String> value) : super(value);
+  PhoneNumber._(super.value);
 
   factory PhoneNumber.empty() => PhoneNumber._(left(ValueFailure.empty));
 

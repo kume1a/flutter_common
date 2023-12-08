@@ -37,5 +37,5 @@ class Name extends ValueObject<NameFailure, String> {
 
   factory Name.empty() => Name._(left(NameFailure.empty));
 
-  const Name._(Either<NameFailure, String> value) : super(value);
+  const Name._(super.value);
 }

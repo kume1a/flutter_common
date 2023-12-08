@@ -25,5 +25,5 @@ class PositiveInt extends ValueObject<ValueFailure, int> {
 
   factory PositiveInt.empty() => PositiveInt._(left(ValueFailure.empty));
 
-  PositiveInt._(Either<ValueFailure, int> value) : super(value);
+  PositiveInt._(super.value);
 }

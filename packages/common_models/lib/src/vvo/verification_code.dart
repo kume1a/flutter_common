@@ -18,5 +18,5 @@ class VerificationCode extends ValueObject<ValueFailure, String> {
 
   factory VerificationCode.empty() => VerificationCode._(left(ValueFailure.empty));
 
-  VerificationCode._(Either<ValueFailure, String> value) : super(value);
+  VerificationCode._(super.value);
 }

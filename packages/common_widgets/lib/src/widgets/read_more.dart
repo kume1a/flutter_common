@@ -88,26 +88,24 @@ class _ReadMoreTextState extends State<ReadMoreText> {
       effectiveTextStyle = defaultTextStyle.style.merge(widget.style);
     }
 
-    final TextAlign textAlign = widget.textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start;
-    final TextDirection textDirection = widget.textDirection ?? Directionality.of(context);
-    final double textScaleFactor = widget.textScaleFactor ?? MediaQuery.textScaleFactorOf(context);
-    final TextOverflow overflow = defaultTextStyle.overflow;
-    final Locale? locale = widget.locale ?? Localizations.maybeLocaleOf(context);
+    final textAlign = widget.textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start;
+    final textDirection = widget.textDirection ?? Directionality.of(context);
+    final textScaleFactor = widget.textScaleFactor ?? MediaQuery.textScaleFactorOf(context);
+    final overflow = defaultTextStyle.overflow;
+    final locale = widget.locale ?? Localizations.maybeLocaleOf(context);
 
-    final Color colorClickableText = widget.colorClickableText ?? Theme.of(context).secondaryHeaderColor;
-    final TextStyle? defaultLessStyle =
-        widget.lessStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
-    final TextStyle? defaultMoreStyle =
-        widget.moreStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
-    final TextStyle? defaultDelimiterStyle = widget.delimiterStyle ?? effectiveTextStyle;
+    final colorClickableText = widget.colorClickableText ?? Theme.of(context).secondaryHeaderColor;
+    final defaultLessStyle = widget.lessStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
+    final defaultMoreStyle = widget.moreStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
+    final defaultDelimiterStyle = widget.delimiterStyle ?? effectiveTextStyle;
 
-    final TextSpan link = TextSpan(
+    final link = TextSpan(
       text: _readMore ? widget.trimCollapsedText : widget.trimExpandedText,
       style: _readMore ? defaultMoreStyle : defaultLessStyle,
       recognizer: TapGestureRecognizer()..onTap = _onTapLink,
     );
 
-    final TextSpan delimiter = TextSpan(
+    final delimiter = TextSpan(
       text: _readMore
           ? widget.trimCollapsedText.isNotEmpty
               ? widget.delimiter
@@ -209,8 +207,8 @@ class _ReadMoreTextState extends State<ReadMoreText> {
         return RichText(
           textAlign: textAlign,
           textDirection: textDirection,
-          textScaleFactor: textScaleFactor,
           text: textSpan,
+          textScaler: TextScaler.linear(textScaleFactor),
         );
       },
     );

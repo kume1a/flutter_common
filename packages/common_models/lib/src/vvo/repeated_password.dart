@@ -17,5 +17,5 @@ class RepeatedPassword extends ValueObject<RepeatedPasswordFailure, String> {
 
   factory RepeatedPassword.empty() => RepeatedPassword._(left(RepeatedPasswordFailure.empty));
 
-  RepeatedPassword._(Either<RepeatedPasswordFailure, String> value) : super(value);
+  RepeatedPassword._(super.value);
 }

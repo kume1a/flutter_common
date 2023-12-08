@@ -18,5 +18,5 @@ class Url extends ValueObject<ValueFailure, String> {
 
   factory Url.empty() => Url._(left(ValueFailure.empty));
 
-  Url._(Either<ValueFailure, String> value) : super(value);
+  Url._(super.value);
 }

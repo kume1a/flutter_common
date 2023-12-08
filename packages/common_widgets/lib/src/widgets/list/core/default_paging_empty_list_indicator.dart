@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DefaultPagingEmptyListIndicator extends StatelessWidget {
-  const DefaultPagingEmptyListIndicator({Key? key}) : super(key: key);
+  const DefaultPagingEmptyListIndicator({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'blank_container.dart';
 
 class SafeImage extends StatelessWidget {
   const SafeImage({
-    Key? key,
+    super.key,
     required this.url,
     this.width,
     this.height,
@@ -13,11 +13,10 @@ class SafeImage extends StatelessWidget {
     this.fit = BoxFit.cover,
   })  : placeholderAssetPath = null,
         assetWidth = null,
-        assetHeight = null,
-        super(key: key);
+        assetHeight = null;
 
   const SafeImage.withAssetPlaceholder({
-    Key? key,
+    super.key,
     required this.url,
     required this.placeholderAssetPath,
     this.width,
@@ -26,8 +25,7 @@ class SafeImage extends StatelessWidget {
     this.assetWidth,
     this.assetHeight,
     this.fit = BoxFit.cover,
-  })  : placeholderColor = null,
-        super(key: key);
+  }) : placeholderColor = null;
 
   final String? url;
   final double? width;

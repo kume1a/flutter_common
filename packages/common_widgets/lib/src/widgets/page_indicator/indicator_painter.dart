@@ -4,15 +4,14 @@ import 'indicator_effect.dart';
 
 abstract class BasicIndicatorPainter extends IndicatorPainter {
   BasicIndicatorPainter(
-    double offset,
+    super.offset,
     this.count,
     this._effect,
   )   : dotRadius = Radius.circular(_effect.radius),
         dotPaint = Paint()
           ..color = _effect.dotColor
           ..style = _effect.paintStyle
-          ..strokeWidth = _effect.strokeWidth,
-        super(offset);
+          ..strokeWidth = _effect.strokeWidth;
 
   /// The count of pages
   final int count;

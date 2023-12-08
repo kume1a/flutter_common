@@ -11,10 +11,6 @@ analyzer:
     depend_on_referenced_packages: ignore
     invalid_annotation_target: ignore
     require_trailing_commas: ignore
-  exclude:
-    - lib/**/*.g.dart
-    - lib/**/*.config.dart
-    - lib/**/*.freezed.dart
 
 linter:
   rules:

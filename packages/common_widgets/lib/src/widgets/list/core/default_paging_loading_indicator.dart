@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DefaultPagingLoadingIndicator extends StatelessWidget {
-  const DefaultPagingLoadingIndicator({Key? key}) : super(key: key);
+  const DefaultPagingLoadingIndicator({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,7 @@ const String _kLineSeparator = '\u2028';
 class ReadMoreText extends StatefulWidget {
   const ReadMoreText(
     this.data, {
-    Key? key,
+    super.key,
     this.trimExpandedText = 'show less',
     this.trimCollapsedText = 'read more',
     this.colorClickableText,
@@ -30,7 +30,7 @@ class ReadMoreText extends StatefulWidget {
     this.delimiter = '$_kEllipsis ',
     this.delimiterStyle,
     this.callback,
-  }) : super(key: key);
+  });
 
   /// Used on TrimMode.Length
   final int trimLength;
@@ -185,7 +185,6 @@ class _ReadMoreTextState extends State<ReadMoreText> {
                 text: widget.data,
               );
             }
-            break;
           case TrimMode.line:
             if (textPainter.didExceedMaxLines) {
               textSpan = TextSpan(
@@ -201,7 +200,6 @@ class _ReadMoreTextState extends State<ReadMoreText> {
                 text: widget.data,
               );
             }
-            break;
         }
 
         return RichText(

@@ -6,12 +6,12 @@ typedef OnDotClicked = void Function(int index);
 
 class PageIndicator extends AnimatedWidget {
   const PageIndicator({
-    Key? key,
+    super.key,
     required this.controller,
     required this.count,
     required this.effect,
     this.onDotClicked,
-  }) : super(key: key, listenable: controller);
+  }) : super(listenable: controller);
 
   final PageController controller;
   final IndicatorEffect effect;
@@ -43,9 +43,8 @@ class Indicator extends StatelessWidget {
     required this.count,
     required this.effect,
     this.onDotClicked,
-    Key? key,
-  })  : _size = effect.calculateSize(count),
-        super(key: key);
+    super.key,
+  }) : _size = effect.calculateSize(count);
 
   final double offset;
   final IndicatorEffect effect;
@@ -84,16 +83,11 @@ class AnimatedPageIndicator extends ImplicitlyAnimatedWidget {
     required this.count,
     this.onDotClicked,
     required this.effect,
-    Curve curve = Curves.easeInOut,
-    Duration duration = const Duration(milliseconds: 300),
-    VoidCallback? onEnd,
-    Key? key,
-  }) : super(
-          key: key,
-          duration: duration,
-          curve: curve,
-          onEnd: onEnd,
-        );
+    super.curve = Curves.easeInOut,
+    super.duration = const Duration(milliseconds: 300),
+    super.onEnd,
+    super.key,
+  });
 
   final int activeIndex;
   final IndicatorEffect effect;

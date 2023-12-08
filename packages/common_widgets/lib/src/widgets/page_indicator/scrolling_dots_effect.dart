@@ -11,26 +11,16 @@ class ScrollingDotsEffect extends BasicIndicatorEffect {
     this.activeDotScale = 1.3,
     this.maxVisibleDots = 5,
     this.fixedCenter = false,
-    double dotWidth = 16.0,
-    double dotHeight = 16.0,
-    double spacing = 8.0,
-    double radius = 16,
-    Color dotColor = Colors.grey,
-    Color activeDotColor = Colors.indigo,
-    double strokeWidth = 1.0,
-    PaintingStyle paintStyle = PaintingStyle.fill,
+    super.dotWidth = 16.0,
+    super.dotHeight = 16.0,
+    super.spacing = 8.0,
+    super.radius = 16,
+    super.dotColor = Colors.grey,
+    super.activeDotColor = Colors.indigo,
+    super.strokeWidth = 1.0,
+    super.paintStyle = PaintingStyle.fill,
   })  : assert(activeDotScale >= 0.0),
-        assert(maxVisibleDots >= 5 && maxVisibleDots % 2 != 0),
-        super(
-          dotWidth: dotWidth,
-          dotHeight: dotHeight,
-          spacing: spacing,
-          radius: radius,
-          strokeWidth: strokeWidth,
-          paintStyle: paintStyle,
-          dotColor: dotColor,
-          activeDotColor: activeDotColor,
-        );
+        assert(maxVisibleDots >= 5 && maxVisibleDots % 2 != 0);
 
   /// The active dot strokeWidth
   /// this is ignored if [fixedCenter] is false

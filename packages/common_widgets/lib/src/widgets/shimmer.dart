@@ -48,14 +48,14 @@ enum ShimmerDirection { ltr, rtl, ttb, btt }
 ///
 class Shimmer extends StatefulWidget {
   const Shimmer({
-    Key? key,
+    super.key,
     required this.child,
     required this.gradient,
     this.direction = ShimmerDirection.ltr,
     this.period = const Duration(milliseconds: 1500),
     this.loop = 0,
     this.enabled = true,
-  }) : super(key: key);
+  });
 
   ///
   /// A convenient constructor provides an easy and convenient way to create a
@@ -63,7 +63,7 @@ class Shimmer extends StatefulWidget {
   /// `highlightColor`.
   ///
   Shimmer.fromColors({
-    Key? key,
+    super.key,
     required this.child,
     required Color baseColor,
     required Color highlightColor,
@@ -71,11 +71,11 @@ class Shimmer extends StatefulWidget {
     this.direction = ShimmerDirection.ltr,
     this.loop = 0,
     this.enabled = true,
-  })  : gradient = LinearGradient(
-    begin: Alignment.topLeft,
-    colors: <Color>[baseColor, baseColor, highlightColor, baseColor, baseColor],
-    stops: const <double>[0.0, 0.35, 0.5, 0.65, 1.0],
-  ), super(key: key);
+  }) : gradient = LinearGradient(
+          begin: Alignment.topLeft,
+          colors: <Color>[baseColor, baseColor, highlightColor, baseColor, baseColor],
+          stops: const <double>[0.0, 0.35, 0.5, 0.65, 1.0],
+        );
 
   final Widget child;
   final Duration period;
@@ -155,11 +155,11 @@ class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin<S
 
 class _Shimmer extends SingleChildRenderObjectWidget {
   const _Shimmer({
-    Widget? child,
+    super.child,
     required this.percent,
     required this.direction,
     required this.gradient,
-  }) : super(child: child);
+  });
 
   final double percent;
   final ShimmerDirection direction;

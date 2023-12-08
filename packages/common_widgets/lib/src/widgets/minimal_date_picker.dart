@@ -87,7 +87,7 @@ Future<DateTime?> showMinimalistDatePicker({
 
 class MinimalDatePickerDialog extends StatefulWidget {
   MinimalDatePickerDialog({
-    Key? key,
+    super.key,
     required DateTime initialDate,
     required DateTime firstDate,
     required DateTime lastDate,
@@ -100,8 +100,7 @@ class MinimalDatePickerDialog extends StatefulWidget {
   })  : initialDate = DateUtils.dateOnly(initialDate),
         firstDate = DateUtils.dateOnly(firstDate),
         lastDate = DateUtils.dateOnly(lastDate),
-        currentDate = DateUtils.dateOnly(currentDate ?? DateTime.now()),
-        super(key: key) {
+        currentDate = DateUtils.dateOnly(currentDate ?? DateTime.now()) {
     assert(
       !this.lastDate.isBefore(this.firstDate),
       'lastDate ${this.lastDate} must be on or after firstDate ${this.firstDate}.',
@@ -213,7 +212,7 @@ class _MinimalDatePickerDialogState extends State<MinimalDatePickerDialog> with 
         curve: Curves.easeIn,
         child: MediaQuery(
           data: MediaQuery.of(context).copyWith(
-            textScaleFactor: textScaleFactor,
+            textScaler: TextScaler.linear(textScaleFactor),
           ),
           child: Builder(
             builder: (BuildContext context) {
@@ -270,7 +269,7 @@ const double _subHeaderHeight = 52.0;
 
 class _MinimalCalendarDatePicker extends StatefulWidget {
   _MinimalCalendarDatePicker({
-    Key? key,
+    super.key,
     required DateTime initialDate,
     required DateTime firstDate,
     required DateTime lastDate,
@@ -283,8 +282,7 @@ class _MinimalCalendarDatePicker extends StatefulWidget {
   })  : initialDate = DateUtils.dateOnly(initialDate),
         firstDate = DateUtils.dateOnly(firstDate),
         lastDate = DateUtils.dateOnly(lastDate),
-        currentDate = DateUtils.dateOnly(currentDate ?? DateTime.now()),
-        super(key: key) {
+        currentDate = DateUtils.dateOnly(currentDate ?? DateTime.now()) {
     assert(
       !this.lastDate.isBefore(this.firstDate),
       'lastDate ${this.lastDate} must be on or after firstDate ${this.firstDate}.',
@@ -370,7 +368,6 @@ class _MinimalCalendarDatePickerState extends State<_MinimalCalendarDatePicker> 
       case TargetPlatform.linux:
       case TargetPlatform.windows:
         HapticFeedback.vibrate();
-        break;
       case TargetPlatform.iOS:
       case TargetPlatform.macOS:
         break;
@@ -525,7 +522,7 @@ class _DatePickerModeToggleButton extends StatelessWidget {
 
 class _MonthPicker extends StatefulWidget {
   _MonthPicker({
-    Key? key,
+    super.key,
     required this.initialMonth,
     required this.currentDate,
     required this.firstDate,
@@ -536,8 +533,7 @@ class _MonthPicker extends StatefulWidget {
     this.selectableDayPredicate,
   })  : assert(!firstDate.isAfter(lastDate)),
         assert(!selectedDate.isBefore(firstDate)),
-        assert(!selectedDate.isAfter(lastDate)),
-        super(key: key);
+        assert(!selectedDate.isAfter(lastDate));
 
   final DateTime initialMonth;
   final DateTime currentDate;
@@ -874,10 +870,10 @@ class _MonthPickerState extends State<_MonthPicker> {
 
 class _FocusedDate extends InheritedWidget {
   const _FocusedDate({
-    Key? key,
-    required Widget child,
+    super.key,
+    required super.child,
     this.date,
-  }) : super(key: key, child: child);
+  });
 
   final DateTime? date;
 
@@ -894,7 +890,7 @@ class _FocusedDate extends InheritedWidget {
 
 class _DayPicker extends StatefulWidget {
   _DayPicker({
-    Key? key,
+    super.key,
     required this.currentDate,
     required this.displayedMonth,
     required this.firstDate,
@@ -904,8 +900,7 @@ class _DayPicker extends StatefulWidget {
     this.selectableDayPredicate,
   })  : assert(!firstDate.isAfter(lastDate)),
         assert(!selectedDate.isBefore(firstDate)),
-        assert(!selectedDate.isAfter(lastDate)),
-        super(key: key);
+        assert(!selectedDate.isAfter(lastDate));
 
   final DateTime selectedDate;
   final DateTime currentDate;
@@ -1127,7 +1122,7 @@ const _DayPickerGridDelegate _dayPickerGridDelegate = _DayPickerGridDelegate();
 
 class _YearPicker extends StatefulWidget {
   _YearPicker({
-    Key? key,
+    super.key,
     DateTime? currentDate,
     required this.firstDate,
     required this.lastDate,
@@ -1137,8 +1132,7 @@ class _YearPicker extends StatefulWidget {
     required this.dragStartBehavior,
   })  : assert(!firstDate.isAfter(lastDate)),
         currentDate = DateUtils.dateOnly(currentDate ?? DateTime.now()),
-        initialDate = DateUtils.dateOnly(initialDate ?? selectedDate),
-        super(key: key);
+        initialDate = DateUtils.dateOnly(initialDate ?? selectedDate);
 
   final DateTime currentDate;
   final DateTime firstDate;

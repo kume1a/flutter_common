@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class DefaultPagingRefreshIndicator extends StatelessWidget {
   const DefaultPagingRefreshIndicator({
-    Key? key,
+    super.key,
     required this.onRefreshPressed,
-  }) : super(key: key);
+  });
 
   final VoidCallback onRefreshPressed;
 

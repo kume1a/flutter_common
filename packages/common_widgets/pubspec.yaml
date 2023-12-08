@@ -4,18 +4,13 @@ version: 0.0.6
 publish_to: 'none'
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: '>=3.1.4 <4.0.0'
 
 dependencies:
-  diffutil_dart: ^3.0.0
   flutter:
     sdk: flutter
 
+  diffutil_dart: ^4.0.0
+
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-  lint: ^2.0.1
-
-flutter:
+  lint: ^2.2.0

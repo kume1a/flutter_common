@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 class PinPut extends StatefulWidget {
   const PinPut({
-    Key? key,
+    super.key,
     required this.fieldsCount,
     this.onSubmit,
     this.onSaved,
@@ -52,8 +52,7 @@ class PinPut extends StatefulWidget {
     this.textInputAction,
     this.toolbarOptions,
     this.mainAxisSize = MainAxisSize.max,
-  })  : assert(fieldsCount > 0),
-        super(key: key);
+  }) : assert(fieldsCount > 0);
 
   /// Displayed fields count. PIN code length.
   final int fieldsCount;

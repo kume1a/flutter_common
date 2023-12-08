@@ -5,7 +5,7 @@ const Duration _kDuration = Duration(milliseconds: 300);
 
 class ImplicitAnimatedList<T> extends StatefulWidget {
   const ImplicitAnimatedList({
-    Key? key,
+    super.key,
     required this.items,
     required this.itemBuilder,
     required this.keyingFunction,
@@ -18,7 +18,7 @@ class ImplicitAnimatedList<T> extends StatefulWidget {
     this.padding,
     this.insertDuration = _kDuration,
     this.removeDuration = _kDuration,
-  }) : super(key: key);
+  });
 
   final List<T> items;
   final Widget Function(BuildContext, T, Animation<double>) itemBuilder;

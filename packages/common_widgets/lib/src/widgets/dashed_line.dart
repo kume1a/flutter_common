@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class DashedLine extends StatelessWidget {
   const DashedLine({
-    Key? key,
+    super.key,
     required this.width,
     this.axis = Axis.horizontal,
     this.dashWidth = 4,
     this.spacing = 8,
     this.thickness = 1,
     this.color = Colors.black87,
-  }) : super(key: key);
+  });
 
   final double width;
   final Axis axis;

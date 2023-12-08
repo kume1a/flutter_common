@@ -7,7 +7,7 @@ import 'core/list_config.dart';
 
 class RefreshableList<T> extends StatelessWidget {
   const RefreshableList({
-    Key? key,
+    super.key,
     ListBuilderConfig? config,
     required this.data,
     required this.itemBuilder,
@@ -20,11 +20,10 @@ class RefreshableList<T> extends StatelessWidget {
         assert(
           (refreshBuilder == null && onRefreshPressed != null) ||
               (refreshBuilder != null && onRefreshPressed == null),
-        ),
-        super(key: key);
+        );
 
   const RefreshableList.sliver({
-    Key? key,
+    super.key,
     SliverBuilderConfig? config,
     required this.data,
     required this.itemBuilder,
@@ -37,8 +36,7 @@ class RefreshableList<T> extends StatelessWidget {
         assert(
           (refreshBuilder == null && onRefreshPressed != null) ||
               (refreshBuilder != null && onRefreshPressed == null),
-        ),
-        super(key: key);
+        );
 
   final ListBuilderConfig? listBuilderConfig;
   final SliverBuilderConfig? sliverBuilderConfig;

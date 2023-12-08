@@ -3,11 +3,11 @@ import 'package:flutter/rendering.dart';
 
 class ScrollListener extends StatelessWidget {
   const ScrollListener({
-    Key? key,
+    super.key,
     required this.child,
     this.onScrollUp,
     this.onScrollDown,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final VoidCallback? onScrollUp;

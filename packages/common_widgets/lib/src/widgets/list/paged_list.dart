@@ -8,7 +8,7 @@ import 'core/list_config.dart';
 
 class PagedList<T> extends StatelessWidget {
   const PagedList({
-    Key? key,
+    super.key,
     ListBuilderConfig? config,
     required this.data,
     required this.totalCount,
@@ -18,11 +18,10 @@ class PagedList<T> extends StatelessWidget {
     this.emptyListBuilder,
   })  : listType = ListType.builder,
         listBuilderConfig = config,
-        sliverBuilderConfig = null,
-        super(key: key);
+        sliverBuilderConfig = null;
 
   const PagedList.sliver({
-    Key? key,
+    super.key,
     SliverBuilderConfig? config,
     required this.data,
     required this.totalCount,
@@ -32,8 +31,7 @@ class PagedList<T> extends StatelessWidget {
     this.emptyListBuilder,
   })  : listType = ListType.sliverBuilder,
         sliverBuilderConfig = config,
-        listBuilderConfig = null,
-        super(key: key);
+        listBuilderConfig = null;
 
   final ListBuilderConfig? listBuilderConfig;
   final SliverBuilderConfig? sliverBuilderConfig;
@@ -65,7 +63,9 @@ class PagedList<T> extends StatelessWidget {
           );
         case ListType.builder:
           return SingleChildScrollView(
-            child: emptyListBuilder != null ? emptyListBuilder!.call(context) : const DefaultPagingEmptyListIndicator(),
+            child: emptyListBuilder != null
+                ? emptyListBuilder!.call(context)
+                : const DefaultPagingEmptyListIndicator(),
           );
       }
     }

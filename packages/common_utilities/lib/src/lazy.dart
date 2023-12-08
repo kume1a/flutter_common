@@ -21,15 +21,14 @@ class Lazy<T> {
   }
 
   @override
-  bool operator ==(dynamic other) =>
-      identical(this, other) || (other is Lazy && other._value == _value);
+  bool operator ==(dynamic other) => identical(this, other) || (other is Lazy && other._value == _value);
 
   @override
   int get hashCode => _value.hashCode;
 }
 
 class MutableLazy<T> extends Lazy<T> {
-  MutableLazy(InitFunction<T> function) : super(function);
+  MutableLazy(super.function);
 
   void reset() => _isValueCreated = false;
 

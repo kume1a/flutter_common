@@ -1,1 +1,1 @@
-export 'src/exports.dart';
+export 'src/index.dart';

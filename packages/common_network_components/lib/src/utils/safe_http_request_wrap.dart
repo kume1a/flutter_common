@@ -5,7 +5,7 @@ import 'package:common_models/common_models.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
-abstract class BaseService {
+mixin SafeHttpRequestWrap {
   @protected
   Future<Either<F, T>> callCatch<F, T>({
     required Future<T> Function() call,

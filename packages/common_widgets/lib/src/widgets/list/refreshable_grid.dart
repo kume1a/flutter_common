@@ -7,7 +7,7 @@ import 'core/list_config.dart';
 
 class RefreshableGrid<T> extends StatelessWidget {
   const RefreshableGrid({
-    Key? key,
+    super.key,
     ListBuilderConfig? config,
     required this.gridDelegate,
     required this.data,
@@ -21,11 +21,10 @@ class RefreshableGrid<T> extends StatelessWidget {
         assert(
           (refreshBuilder == null && onRefreshPressed != null) ||
               (refreshBuilder != null && onRefreshPressed == null),
-        ),
-        super(key: key);
+        );
 
   const RefreshableGrid.sliver({
-    Key? key,
+    super.key,
     SliverBuilderConfig? config,
     required this.gridDelegate,
     required this.data,
@@ -39,8 +38,7 @@ class RefreshableGrid<T> extends StatelessWidget {
         assert(
           (refreshBuilder == null && onRefreshPressed != null) ||
               (refreshBuilder != null && onRefreshPressed == null),
-        ),
-        super(key: key);
+        );
 
   final ListBuilderConfig? listBuilderConfig;
   final SliverBuilderConfig? sliverBuilderConfig;

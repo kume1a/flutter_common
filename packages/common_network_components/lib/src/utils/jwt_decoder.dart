@@ -24,10 +24,8 @@ class JwtDecoder {
         break;
       case 2:
         output += '==';
-        break;
       case 3:
         output += '=';
-        break;
       default:
         throw Exception('Illegal base64 string.');
     }
@@ -47,7 +45,8 @@ class JwtDecoder {
   static DateTime? getExpiryDate(String token) {
     final Map<String, dynamic> payload = parseJwt(token);
     if (payload['exp'] != null) {
-      return DateTime.fromMillisecondsSinceEpoch(0, isUtc: true).add(Duration(seconds: payload['exp'] as int));
+      return DateTime.fromMillisecondsSinceEpoch(0, isUtc: true)
+          .add(Duration(seconds: payload['exp'] as int));
     }
     return null;
   }

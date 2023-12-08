@@ -6,7 +6,7 @@ import 'carousel_indicator_options.dart';
 
 class Carousel extends StatefulWidget {
   const Carousel({
-    Key? key,
+    super.key,
     required this.height,
     required this.itemCount,
     required this.itemBuilder,
@@ -15,7 +15,7 @@ class Carousel extends StatefulWidget {
     this.viewPortFraction = .84,
     this.distortionValue = .3,
     this.indicatorOptions,
-  }) : super(key: key);
+  });
 
   final double height;
   final int itemCount;
@@ -77,8 +77,7 @@ class _CarouselState extends State<Carousel> {
                   try {
                     itemOffset = pageController.page! - index;
                   } catch (e) {
-                    final BuildContext storageContext =
-                        pageController.position.context.storageContext;
+                    final BuildContext storageContext = pageController.position.context.storageContext;
                     final double? previousSavedPosition =
                         PageStorage.of(storageContext).readState(storageContext) as double?;
                     if (previousSavedPosition != null) {

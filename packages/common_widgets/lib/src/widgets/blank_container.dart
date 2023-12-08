@@ -4,36 +4,34 @@ const Color _defaultColor = Color(0xFFE0E0E0);
 
 class BlankContainer extends StatelessWidget {
   const BlankContainer({
-    Key? key,
+    super.key,
     required this.width,
     required this.height,
     this.borderRadius,
     this.color = _defaultColor,
     this.padding,
     this.margin,
-  }) : super(key: key);
+  });
 
   const BlankContainer.circular({
-    Key? key,
+    super.key,
     required double radius,
     this.color = _defaultColor,
     this.padding,
     this.margin,
   })  : width = radius * 2,
         height = radius * 2,
-        borderRadius = null,
-        super(key: key);
+        borderRadius = null;
 
   const BlankContainer.square({
-    Key? key,
+    super.key,
     required double size,
     this.borderRadius,
     this.color = _defaultColor,
     this.padding,
     this.margin,
   })  : width = size,
-        height = size,
-        super(key: key);
+        height = size;
 
   final BorderRadius? borderRadius;
   final EdgeInsets? padding;

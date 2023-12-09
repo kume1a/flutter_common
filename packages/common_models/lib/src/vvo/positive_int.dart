@@ -1,4 +1,6 @@
-import '../../common_models.dart';
+import '../core/either.dart';
+import '../failure/value_failure.dart';
+import 'core/value_object.dart';
 
 class PositiveInt extends ValueObject<ValueFailure, int> {
   factory PositiveInt(String value) {

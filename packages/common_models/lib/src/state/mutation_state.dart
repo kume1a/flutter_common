@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
-import '../../common_models.dart';
+
+import '../core/either.dart';
 
 sealed class MutationState<F, T> {
   const MutationState._();

@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 
-import '../../common_models.dart';
-import 'either.dart';
+import '../core/either.dart';
 
 abstract class SimpleDataState<T> {
   const SimpleDataState._();

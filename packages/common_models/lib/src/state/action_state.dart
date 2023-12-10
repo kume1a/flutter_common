@@ -20,12 +20,12 @@ sealed class ActionState<F> {
     );
   }
 
-  R when<R>(
-    R Function() idle,
-    R Function() executing,
-    R Function() executed,
-    R Function(F failure) failed,
-  ) {
+  R when<R>({
+    required R Function() idle,
+    required R Function() executing,
+    required R Function() executed,
+    required R Function(F failure) failed,
+  }) {
     return switch (this) {
       _Idle<F> _ => idle(),
       _Executing<F> _ => executing(),
@@ -34,13 +34,13 @@ sealed class ActionState<F> {
     };
   }
 
-  R maybeWhen<R>(
+  R maybeWhen<R>({
+    required R Function() orElse,
     R Function()? idle,
     R Function()? executing,
     R Function()? executed,
     R Function(F failure)? failed,
-    R Function() orElse,
-  ) {
+  }) {
     return switch (this) {
       _Idle<F> _ => idle?.call() ?? orElse(),
       _Executing<F> _ => executing?.call() ?? orElse(),

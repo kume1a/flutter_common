@@ -20,12 +20,12 @@ sealed class MutationState<F, T> {
     );
   }
 
-  R when<R>(
-    R Function() idle,
-    R Function() executing,
-    R Function(T data) executed,
-    R Function(F failure) failed,
-  ) {
+  R when<R>({
+    required R Function() idle,
+    required R Function() executing,
+    required R Function(T data) executed,
+    required R Function(F failure) failed,
+  }) {
     return switch (this) {
       _Idle<F, T> _ => idle(),
       _Executing<F, T> _ => executing(),
@@ -34,13 +34,13 @@ sealed class MutationState<F, T> {
     };
   }
 
-  R maybeWhen<R>(
+  R maybeWhen<R>({
+    required R Function() orElse,
     R Function()? idle,
     R Function()? executing,
     R Function(T data)? executed,
     R Function(F failure)? failed,
-    R Function() orElse,
-  ) {
+  }) {
     return switch (this) {
       _Idle<F, T> _ => idle?.call() ?? orElse(),
       _Executing<F, T> _ => executing?.call() ?? orElse(),

@@ -4,3 +4,4 @@ export 'event_bus.dart';
 export 'extension/index.dart';
 export 'lazy.dart';
 export 'retry.dart';
+export 'subscription_composite.dart';

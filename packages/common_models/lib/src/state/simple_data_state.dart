@@ -63,6 +63,17 @@ abstract class SimpleDataState<T> {
     throw Exception('unsupported subclass');
   }
 
+  A ifData<A extends Object?>(
+    A Function(T data) ifData, {
+    required A Function() orElse,
+  }) {
+    return maybeWhen<A>(
+      success: (data) => ifData(data),
+      failure: (data) => data != null ? ifData(data) : orElse(),
+      orElse: orElse,
+    );
+  }
+
   bool get isIdle => maybeWhen(idle: () => true, orElse: () => false);
 
   bool get isLoading => maybeWhen(loading: () => true, orElse: () => false);

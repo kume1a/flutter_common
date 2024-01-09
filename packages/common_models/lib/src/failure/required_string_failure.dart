@@ -1,4 +1,4 @@
-enum SimpleContentValueFailure {
+enum RequiredStringFailure {
   empty,
   tooLong;
 
@@ -7,9 +7,9 @@ enum SimpleContentValueFailure {
     required T Function() tooLong,
   }) {
     switch (this) {
-      case SimpleContentValueFailure.empty:
+      case RequiredStringFailure.empty:
         return empty();
-      case SimpleContentValueFailure.tooLong:
+      case RequiredStringFailure.tooLong:
         return tooLong();
     }
   }

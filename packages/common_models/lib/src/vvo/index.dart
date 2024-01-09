@@ -9,6 +9,6 @@ export 'phone_number.dart';
 export 'positive_int.dart';
 export 'repeated_password.dart';
 export 'required_int.dart';
-export 'simple_content_value.dart';
+export 'required_string.dart';
 export 'url.dart';
 export 'verification_code.dart';

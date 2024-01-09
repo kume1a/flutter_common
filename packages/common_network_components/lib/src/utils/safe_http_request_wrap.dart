@@ -53,25 +53,29 @@ mixin SafeHttpRequestWrap {
       networkError: FetchFailure.network,
       unknownError: FetchFailure.unknown,
       onResponseError: (Response<dynamic>? response) {
-        if (response != null && response.statusCode != null) {
-          final int statusCode = response.statusCode!;
-          if (statusCode >= 500 && statusCode < 600) {
-            return FetchFailure.server;
-          }
+        if (response == null || response.statusCode == null) {
+          return FetchFailure.unknown;
         }
+
+        final int statusCode = response.statusCode!;
+
+        if (statusCode >= 500 && statusCode < 600) {
+          return FetchFailure.server;
+        }
+
         return FetchFailure.unknown;
       },
     );
   }
 
   @protected
-  Future<Either<SimpleActionFailure, T>> callCatchWithSimpleActionFailure<T>(
+  Future<Either<ActionFailure, T>> callCatchWithActionFailure<T>(
     Future<T> Function() call,
   ) async {
     return callCatch(
       call: call,
-      networkError: SimpleActionFailure.network,
-      unknownError: SimpleActionFailure.unknown,
+      networkError: ActionFailure.network,
+      unknownError: ActionFailure.unknown,
     );
   }
 }

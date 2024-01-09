@@ -8,11 +8,11 @@ environment:
 
 dependencies:
   dio: ^5.4.0
-  meta: ^1.10.0
+  meta: ^1.11.0
   common_models:
     git:
       url: https://github.com/kume1a/flutter_common.git
       path: packages/common_models
 
 dev_dependencies:
-  lint: ^2.2.0
+  lint: ^2.3.0

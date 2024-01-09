@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class ValidatedForm extends StatelessWidget {
   const ValidatedForm({
     super.key,
-    required this.child,
     required this.showErrors,
+    required this.child,
   });
 
-  final Widget child;
   final bool showErrors;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

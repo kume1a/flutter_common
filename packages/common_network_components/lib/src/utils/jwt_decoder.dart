@@ -9,6 +9,7 @@ class JwtDecoder {
 
     final String payload = _decodeBase64(parts[1]);
     final dynamic payloadMap = json.decode(payload);
+
     if (payloadMap is! Map<String, dynamic>) {
       throw const FormatException('Invalid payload.');
     }
@@ -34,7 +35,8 @@ class JwtDecoder {
   }
 
   static bool isExpired(String token) {
-    final DateTime? expirationDate = getExpiryDate(token);
+    final expirationDate = getExpiryDate(token);
+
     if (expirationDate != null) {
       return DateTime.now().isAfter(expirationDate);
     } else {
@@ -43,10 +45,12 @@ class JwtDecoder {
   }
 
   static DateTime? getExpiryDate(String token) {
-    final Map<String, dynamic> payload = parseJwt(token);
+    final payload = parseJwt(token);
+
     if (payload['exp'] != null) {
-      return DateTime.fromMillisecondsSinceEpoch(0, isUtc: true)
-          .add(Duration(seconds: payload['exp'] as int));
+      return DateTime.fromMillisecondsSinceEpoch(0, isUtc: true).add(
+        Duration(seconds: payload['exp'] as int),
+      );
     }
     return null;
   }

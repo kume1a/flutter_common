@@ -10,7 +10,7 @@ extension ListX<T> on List<T> {
 
     final T oldItem = this[index];
 
-    final List<T> items = List<T>.of(this);
+    final items = List<T>.of(this);
     items.removeAt(index);
     items.insert(index, replacementResolver(oldItem));
 

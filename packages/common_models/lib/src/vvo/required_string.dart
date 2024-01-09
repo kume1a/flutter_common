@@ -9,7 +9,7 @@ class RequiredString extends ValueObject<RequiredStringFailure, String> {
       return RequiredString._(left(RequiredStringFailure.empty));
     }
 
-    if (value.length > VVOConfig.simpleContent.maxLength) {
+    if (value.length > VVOConfig.requiredString.maxLength) {
       return RequiredString._(left(RequiredStringFailure.tooLong));
     }
 

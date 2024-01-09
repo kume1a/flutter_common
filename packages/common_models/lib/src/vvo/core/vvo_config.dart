@@ -3,7 +3,7 @@ class VVOConfig {
   static _NameConfig name = _NameConfig();
   static _VerificationCodeConfig verificationCode = _VerificationCodeConfig();
   static _ValueFailureConfig value = _ValueFailureConfig();
-  static _SimpleContentConfig simpleContent = _SimpleContentConfig();
+  static _RequiredStringConfig requiredString = _RequiredStringConfig();
 }
 
 class _PasswordConfig {
@@ -28,6 +28,6 @@ class _ValueFailureConfig {
   int maxLength = 255;
 }
 
-class _SimpleContentConfig {
+class _RequiredStringConfig {
   int maxLength = 255;
 }

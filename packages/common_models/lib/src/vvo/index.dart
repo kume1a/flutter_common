@@ -6,6 +6,7 @@ export 'name.dart';
 export 'password.dart';
 export 'percent.dart';
 export 'phone_number.dart';
+export 'positive_double.dart';
 export 'positive_int.dart';
 export 'repeated_password.dart';
 export 'required_int.dart';

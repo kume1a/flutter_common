@@ -1,4 +1,4 @@
-enum PositiveIntFailure {
+enum PositiveNumberFailure {
   empty,
   invalid,
   negative;
@@ -9,11 +9,11 @@ enum PositiveIntFailure {
     required T Function() negative,
   }) {
     switch (this) {
-      case PositiveIntFailure.empty:
+      case PositiveNumberFailure.empty:
         return empty();
-      case PositiveIntFailure.invalid:
+      case PositiveNumberFailure.invalid:
         return invalid();
-      case PositiveIntFailure.negative:
+      case PositiveNumberFailure.negative:
         return negative();
     }
   }

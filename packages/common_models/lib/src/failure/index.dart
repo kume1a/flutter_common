@@ -5,7 +5,7 @@ export 'get_entity_failure.dart';
 export 'name_failure.dart';
 export 'password_failure.dart';
 export 'percent_failure.dart';
-export 'positive_int_failure.dart';
+export 'positive_number_failure.dart';
 export 'repeated_password_failure.dart';
 export 'required_string_failure.dart';
 export 'value_failure.dart';

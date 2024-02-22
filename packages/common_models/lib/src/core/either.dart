@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 
 typedef _Function1<A, B> = B Function(A a);
@@ -114,11 +116,11 @@ Either<L, R> right<L, R>(R r) => _Right<L, R>(r);
 
 extension FutureEitherX<L, R> on Future<Either<L, R>> {
   Future<B> awaitFold<B>(
-    Future<B> Function(L l) ifLeft,
-    Future<B> Function(R r) ifRight,
+    FutureOr<B> Function(L l) ifLeft,
+    FutureOr<B> Function(R r) ifRight,
   ) async {
     final either = await this;
 
-    return either.foldAsync(ifLeft, ifRight);
+    return either.fold(ifLeft, ifRight);
   }
 }

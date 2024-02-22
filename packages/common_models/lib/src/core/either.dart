@@ -111,3 +111,14 @@ class _Right<L, R> extends Either<L, R> {
 Either<L, R> left<L, R>(L l) => _Left<L, R>(l);
 
 Either<L, R> right<L, R>(R r) => _Right<L, R>(r);
+
+extension FutureEitherX<L, R> on Future<Either<L, R>> {
+  Future<B> awaitFold<B>(
+    Future<B> Function(L l) ifLeft,
+    Future<B> Function(R r) ifRight,
+  ) async {
+    final either = await this;
+
+    return either.foldAsync(ifLeft, ifRight);
+  }
+}

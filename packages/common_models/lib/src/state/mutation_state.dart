@@ -48,6 +48,14 @@ sealed class MutationState<F, T> {
       final _Executed<F, T> result => executed?.call(result.data) ?? orElse(),
     };
   }
+
+  bool get isIdle => maybeWhen(orElse: () => false, idle: () => true);
+
+  bool get isExecuting => maybeWhen(orElse: () => false, executing: () => true);
+
+  bool get isFailed => maybeWhen(orElse: () => false, failed: (_) => true);
+
+  bool get isExecuted => maybeWhen(orElse: () => false, executed: (_) => true);
 }
 
 class _Idle<F, T> extends MutationState<F, T> {

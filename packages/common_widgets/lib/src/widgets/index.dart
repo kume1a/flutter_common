@@ -1,4 +1,5 @@
 export 'blank_container.dart';
+export 'button.dart';
 export 'carousel/exports.dart';
 export 'dashed_line.dart';
 export 'dashed_rect.dart';

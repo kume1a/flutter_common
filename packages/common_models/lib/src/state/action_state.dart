@@ -56,6 +56,8 @@ sealed class ActionState<F> {
   bool get isFailed => maybeWhen(orElse: () => false, failed: (_) => true);
 
   bool get isExecuted => maybeWhen(orElse: () => false, executed: () => true);
+
+  F? get failureOrNull => maybeWhen(orElse: () => null, failed: (f) => f);
 }
 
 class _Idle<F> extends ActionState<F> {

@@ -56,6 +56,10 @@ sealed class MutationState<F, T> {
   bool get isFailed => maybeWhen(orElse: () => false, failed: (_) => true);
 
   bool get isExecuted => maybeWhen(orElse: () => false, executed: (_) => true);
+
+  F? get failureOrNull => maybeWhen(orElse: () => null, failed: (f) => f);
+
+  T? get dataOrNull => maybeWhen(orElse: () => null, executed: (d) => d);
 }
 
 class _Idle<F, T> extends MutationState<F, T> {

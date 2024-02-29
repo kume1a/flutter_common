@@ -20,6 +20,14 @@ class Percent extends ValueObject<PercentFailure, double> {
     return Percent._(right(percentValue));
   }
 
+  factory Percent.fromDouble(double value) {
+    if (value < 0 || value > 100) {
+      return Percent._(left(PercentFailure.outOfRange));
+    }
+
+    return Percent._(right(value));
+  }
+
   factory Percent.empty() => Percent._(left(PercentFailure.empty));
 
   Percent._(super.value);

@@ -6,7 +6,7 @@ abstract interface class FactoryWithParam<T, P> {
   T create(P param);
 }
 
-abstract interface class AsycFactory<T> {
+abstract interface class AsyncFactory<T> {
   Future<T> create();
 }
 

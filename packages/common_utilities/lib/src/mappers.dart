@@ -2,6 +2,12 @@ DateTime? tryMapDate(String? dateString) {
   return dateString != null ? DateTime.tryParse(dateString)?.toLocal() : null;
 }
 
+DateTime? tryMapDateMillis(int? millisecondsSinceEpoch) {
+  return millisecondsSinceEpoch != null
+      ? DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch).toLocal()
+      : null;
+}
+
 MODEL? tryMap<MODEL, SCHEMA>(SCHEMA? schema, MODEL Function(SCHEMA schema) mapper) {
   return schema != null ? mapper(schema) : null;
 }

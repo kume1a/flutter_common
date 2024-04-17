@@ -1,8 +1,8 @@
-export 'action_failure.dart';
 export 'email_failure.dart';
 export 'fetch_failure.dart';
 export 'get_entity_failure.dart';
 export 'name_failure.dart';
+export 'network_action_failure.dart';
 export 'password_failure.dart';
 export 'percent_failure.dart';
 export 'positive_number_failure.dart';

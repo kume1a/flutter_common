@@ -17,7 +17,6 @@ mixin SafeHttpRequestWrap {
       final T result = await call();
       return right(result);
     } on DioException catch (e) {
-      log('', error: e);
       try {
         switch (e.type) {
           case DioExceptionType.connectionTimeout:
@@ -45,37 +44,13 @@ mixin SafeHttpRequestWrap {
   }
 
   @protected
-  Future<Either<FetchFailure, T>> callCatchHandleFetch<T>(
+  Future<Either<NetworkCallError, T>> callCatchHandleNetworkCallError<T>(
     Future<T> Function() call,
   ) async {
     return callCatch(
       call: call,
-      networkError: FetchFailure.network,
-      unknownError: FetchFailure.unknown,
-      onResponseError: (Response<dynamic>? response) {
-        if (response == null || response.statusCode == null) {
-          return FetchFailure.unknown;
-        }
-
-        final int statusCode = response.statusCode!;
-
-        if (statusCode >= 500 && statusCode < 600) {
-          return FetchFailure.server;
-        }
-
-        return FetchFailure.unknown;
-      },
-    );
-  }
-
-  @protected
-  Future<Either<NetworkActionFailure, T>> callCatchHandleAction<T>(
-    Future<T> Function() call,
-  ) async {
-    return callCatch(
-      call: call,
-      networkError: NetworkActionFailure.network,
-      unknownError: NetworkActionFailure.unknown,
+      networkError: NetworkCallError.network,
+      unknownError: NetworkCallError.unknown,
     );
   }
 }

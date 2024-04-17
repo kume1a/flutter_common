@@ -1,5 +1,5 @@
 import '../core/either.dart';
-import '../failure/email_failure.dart';
+import '../error/email_error.dart';
 import '../regexp.dart';
 import 'core/value_object.dart';
 import 'core/vvo_config.dart';
@@ -18,31 +18,31 @@ class ValidateEmailOptions {
   final bool invalid;
 }
 
-class Email extends ValueObject<EmailFailure, String> {
+class Email extends ValueObject<EmailError, String> {
   factory Email(
     String value, {
     ValidateEmailOptions options = const ValidateEmailOptions(),
   }) {
     if (options.empty && value.isEmpty) {
-      return Email._(left(EmailFailure.empty));
+      return Email._(left(EmailError.empty));
     }
 
     if (options.tooLong && value.isNotEmpty && value.length > VVOConfig.value.maxLength) {
-      return Email._(left(EmailFailure.tooLong));
+      return Email._(left(EmailError.tooLong));
     }
 
     if (options.containsWhitespace && value.isNotEmpty && value.contains(patternWhitespace)) {
-      return Email._(left(EmailFailure.containsWhitespace));
+      return Email._(left(EmailError.containsWhitespace));
     }
 
     if (options.invalid && value.isNotEmpty && !patternExactEmail.hasMatch(value)) {
-      return Email._(left(EmailFailure.invalid));
+      return Email._(left(EmailError.invalid));
     }
 
     return Email._(right(value));
   }
 
-  factory Email.empty() => Email._(left(EmailFailure.empty));
+  factory Email.empty() => Email._(left(EmailError.empty));
 
   Email._(super.value);
 }

@@ -1,4 +1,4 @@
-enum EmailFailure {
+enum EmailError {
   empty,
   tooLong,
   invalid,
@@ -11,13 +11,13 @@ enum EmailFailure {
     required T Function() containsWhitespace,
   }) {
     switch (this) {
-      case EmailFailure.empty:
+      case EmailError.empty:
         return empty();
-      case EmailFailure.tooLong:
+      case EmailError.tooLong:
         return tooLong();
-      case EmailFailure.invalid:
+      case EmailError.invalid:
         return invalid();
-      case EmailFailure.containsWhitespace:
+      case EmailError.containsWhitespace:
         return containsWhitespace();
     }
   }

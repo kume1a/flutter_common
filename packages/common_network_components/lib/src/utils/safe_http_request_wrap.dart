@@ -45,7 +45,7 @@ mixin SafeHttpRequestWrap {
   }
 
   @protected
-  Future<Either<FetchFailure, T>> callCatchWithFetchFailure<T>(
+  Future<Either<FetchFailure, T>> callCatchHandleFetch<T>(
     Future<T> Function() call,
   ) async {
     return callCatch(
@@ -69,13 +69,13 @@ mixin SafeHttpRequestWrap {
   }
 
   @protected
-  Future<Either<ActionFailure, T>> callCatchWithActionFailure<T>(
+  Future<Either<NetworkActionFailure, T>> callCatchHandleAction<T>(
     Future<T> Function() call,
   ) async {
     return callCatch(
       call: call,
-      networkError: ActionFailure.network,
-      unknownError: ActionFailure.unknown,
+      networkError: NetworkActionFailure.network,
+      unknownError: NetworkActionFailure.unknown,
     );
   }
 }

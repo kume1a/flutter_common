@@ -2,18 +2,18 @@ import 'package:collection/collection.dart';
 
 import '../core/either.dart';
 
-sealed class ActionState<F> {
+sealed class ActionState<E> {
   const ActionState._();
 
-  factory ActionState.idle() => _Idle<F>._();
+  factory ActionState.idle() => _Idle<E>._();
 
-  factory ActionState.executing() => _Executing<F>._();
+  factory ActionState.executing() => _Executing<E>._();
 
-  factory ActionState.failed(F failure) => _Failed<F>._(failure);
+  factory ActionState.failed(E err) => _Failed<E>._(err);
 
-  factory ActionState.executed() => _Executed<F>._();
+  factory ActionState.executed() => _Executed<E>._();
 
-  factory ActionState.fromEither(Either<F, dynamic> either) {
+  factory ActionState.fromEither(Either<E, dynamic> either) {
     return either.fold(
       (l) => ActionState.failed(l),
       (r) => ActionState.executed(),
@@ -24,13 +24,13 @@ sealed class ActionState<F> {
     required R Function() idle,
     required R Function() executing,
     required R Function() executed,
-    required R Function(F failure) failed,
+    required R Function(E err) failed,
   }) {
     return switch (this) {
-      _Idle<F> _ => idle(),
-      _Executing<F> _ => executing(),
-      final _Failed<F> result => failed(result.failure),
-      _Executed<F> _ => executed(),
+      _Idle<E> _ => idle(),
+      _Executing<E> _ => executing(),
+      final _Failed<E> result => failed(result.err),
+      _Executed<E> _ => executed(),
     };
   }
 
@@ -39,13 +39,13 @@ sealed class ActionState<F> {
     R Function()? idle,
     R Function()? executing,
     R Function()? executed,
-    R Function(F failure)? failed,
+    R Function(E err)? failed,
   }) {
     return switch (this) {
-      _Idle<F> _ => idle?.call() ?? orElse(),
-      _Executing<F> _ => executing?.call() ?? orElse(),
-      final _Failed<F> result => failed?.call(result.failure) ?? orElse(),
-      _Executed<F> _ => executed?.call() ?? orElse(),
+      _Idle<E> _ => idle?.call() ?? orElse(),
+      _Executing<E> _ => executing?.call() ?? orElse(),
+      final _Failed<E> result => failed?.call(result.err) ?? orElse(),
+      _Executed<E> _ => executed?.call() ?? orElse(),
     };
   }
 
@@ -57,7 +57,7 @@ sealed class ActionState<F> {
 
   bool get isExecuted => maybeWhen(orElse: () => false, executed: () => true);
 
-  F? get failureOrNull => maybeWhen(orElse: () => null, failed: (f) => f);
+  E? get errOrNull => maybeWhen(orElse: () => null, failed: (err) => err);
 }
 
 class _Idle<F> extends ActionState<F> {
@@ -88,26 +88,26 @@ class _Executing<F> extends ActionState<F> {
   String toString() => 'ActionState._Executing';
 }
 
-class _Failed<F> extends ActionState<F> {
-  const _Failed._(this.failure) : super._();
+class _Failed<E> extends ActionState<E> {
+  const _Failed._(this.err) : super._();
 
-  final F failure;
+  final E err;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is _Failed<F> &&
+      other is _Failed<E> &&
           runtimeType == other.runtimeType &&
-          const DeepCollectionEquality().equals(failure, other.failure);
+          const DeepCollectionEquality().equals(err, other.err);
 
   @override
   int get hashCode => Object.hash(
         runtimeType,
-        const DeepCollectionEquality().hash(failure),
+        const DeepCollectionEquality().hash(err),
       );
 
   @override
-  String toString() => 'ActionState._Failed{failure: $failure}';
+  String toString() => 'ActionState._Failed{err: $err}';
 }
 
 class _Executed<F> extends ActionState<F> {

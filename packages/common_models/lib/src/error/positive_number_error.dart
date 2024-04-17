@@ -1,20 +1,20 @@
-enum PercentFailure {
+enum PositiveNumberError {
   empty,
   invalid,
-  outOfRange;
+  negative;
 
   T when<T>({
     required T Function() empty,
     required T Function() invalid,
-    required T Function() outOfRange,
+    required T Function() negative,
   }) {
     switch (this) {
-      case PercentFailure.empty:
+      case PositiveNumberError.empty:
         return empty();
-      case PercentFailure.invalid:
+      case PositiveNumberError.invalid:
         return invalid();
-      case PercentFailure.outOfRange:
-        return outOfRange();
+      case PositiveNumberError.negative:
+        return negative();
     }
   }
 
@@ -22,12 +22,12 @@ enum PercentFailure {
     required T Function() orElse,
     T Function()? empty,
     T Function()? invalid,
-    T Function()? outOfRange,
+    T Function()? negative,
   }) {
     return when(
       empty: empty ?? orElse,
       invalid: invalid ?? orElse,
-      outOfRange: outOfRange ?? orElse,
+      negative: negative ?? orElse,
     );
   }
 }

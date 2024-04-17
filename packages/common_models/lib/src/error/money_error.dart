@@ -1,4 +1,4 @@
-enum MoneyFailure {
+enum MoneyError {
   empty,
   invalid,
   lessThanMin,
@@ -11,13 +11,13 @@ enum MoneyFailure {
     required T Function() moreThanMax,
   }) {
     switch (this) {
-      case MoneyFailure.empty:
+      case MoneyError.empty:
         return empty();
-      case MoneyFailure.invalid:
+      case MoneyError.invalid:
         return invalid();
-      case MoneyFailure.lessThanMin:
+      case MoneyError.lessThanMin:
         return lessThanMin();
-      case MoneyFailure.moreThanMax:
+      case MoneyError.moreThanMax:
         return moreThanMax();
     }
   }

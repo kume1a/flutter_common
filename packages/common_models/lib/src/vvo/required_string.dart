@@ -1,22 +1,22 @@
 import '../core/either.dart';
-import '../failure/required_string_failure.dart';
+import '../error/required_string_error.dart';
 import 'core/value_object.dart';
 import 'core/vvo_config.dart';
 
-class RequiredString extends ValueObject<RequiredStringFailure, String> {
+class RequiredString extends ValueObject<RequiredStringError, String> {
   factory RequiredString(String value) {
     if (value.trim().isEmpty) {
-      return RequiredString._(left(RequiredStringFailure.empty));
+      return RequiredString._(left(RequiredStringError.empty));
     }
 
     if (value.length > VVOConfig.requiredString.maxLength) {
-      return RequiredString._(left(RequiredStringFailure.tooLong));
+      return RequiredString._(left(RequiredStringError.tooLong));
     }
 
     return RequiredString._(right(value));
   }
 
-  factory RequiredString.empty() => RequiredString._(left(RequiredStringFailure.empty));
+  factory RequiredString.empty() => RequiredString._(left(RequiredStringError.empty));
 
   RequiredString._(super.value);
 }

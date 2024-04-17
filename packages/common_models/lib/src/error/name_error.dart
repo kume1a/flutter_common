@@ -1,15 +1,19 @@
-enum RequiredStringFailure {
+enum NameError {
   empty,
+  tooShort,
   tooLong;
 
   T when<T>({
     required T Function() empty,
+    required T Function() tooShort,
     required T Function() tooLong,
   }) {
     switch (this) {
-      case RequiredStringFailure.empty:
+      case NameError.empty:
         return empty();
-      case RequiredStringFailure.tooLong:
+      case NameError.tooShort:
+        return tooShort();
+      case NameError.tooLong:
         return tooLong();
     }
   }
@@ -17,10 +21,12 @@ enum RequiredStringFailure {
   T maybeWhen<T>({
     required T Function() orElse,
     T Function()? empty,
+    T Function()? tooShort,
     T Function()? tooLong,
   }) {
     return when(
       empty: empty ?? orElse,
+      tooShort: tooShort ?? orElse,
       tooLong: tooLong ?? orElse,
     );
   }

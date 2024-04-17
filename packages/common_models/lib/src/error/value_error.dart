@@ -1,20 +1,16 @@
-enum PositiveNumberFailure {
+enum ValueError {
   empty,
-  invalid,
-  negative;
+  invalid;
 
   T when<T>({
     required T Function() empty,
     required T Function() invalid,
-    required T Function() negative,
   }) {
     switch (this) {
-      case PositiveNumberFailure.empty:
+      case ValueError.empty:
         return empty();
-      case PositiveNumberFailure.invalid:
+      case ValueError.invalid:
         return invalid();
-      case PositiveNumberFailure.negative:
-        return negative();
     }
   }
 
@@ -22,12 +18,10 @@ enum PositiveNumberFailure {
     required T Function() orElse,
     T Function()? empty,
     T Function()? invalid,
-    T Function()? negative,
   }) {
     return when(
       empty: empty ?? orElse,
       invalid: invalid ?? orElse,
-      negative: negative ?? orElse,
     );
   }
 }

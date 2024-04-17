@@ -1,4 +1,4 @@
-enum PasswordFailure {
+enum PasswordError {
   empty,
   tooShort,
   tooLong,
@@ -19,21 +19,21 @@ enum PasswordFailure {
     required T Function() containsWhitespace,
   }) {
     switch (this) {
-      case PasswordFailure.empty:
+      case PasswordError.empty:
         return empty();
-      case PasswordFailure.tooShort:
+      case PasswordError.tooShort:
         return tooShort();
-      case PasswordFailure.tooLong:
+      case PasswordError.tooLong:
         return tooLong();
-      case PasswordFailure.noUppercaseCharsFound:
+      case PasswordError.noUppercaseCharsFound:
         return noUppercaseCharsFound();
-      case PasswordFailure.noLowercaseCharsFound:
+      case PasswordError.noLowercaseCharsFound:
         return noLowercaseCharsFound();
-      case PasswordFailure.noDigitsFound:
+      case PasswordError.noDigitsFound:
         return noDigitsFound();
-      case PasswordFailure.noSpecialCharsFound:
+      case PasswordError.noSpecialCharsFound:
         return noSpecialCharsFound();
-      case PasswordFailure.containsWhitespace:
+      case PasswordError.containsWhitespace:
         return containsWhitespace();
     }
   }

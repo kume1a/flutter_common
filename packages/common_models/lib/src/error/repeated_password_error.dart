@@ -1,4 +1,4 @@
-enum RepeatedPasswordFailure {
+enum RepeatedPasswordError {
   empty,
   doesNotMatch;
 
@@ -7,9 +7,9 @@ enum RepeatedPasswordFailure {
     required T Function() doesNotMatch,
   }) {
     switch (this) {
-      case RepeatedPasswordFailure.empty:
+      case RepeatedPasswordError.empty:
         return empty();
-      case RepeatedPasswordFailure.doesNotMatch:
+      case RepeatedPasswordError.doesNotMatch:
         return doesNotMatch();
     }
   }

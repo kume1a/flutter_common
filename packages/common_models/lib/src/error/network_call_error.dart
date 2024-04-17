@@ -1,4 +1,4 @@
-enum NetworkActionFailure {
+enum NetworkCallError {
   network,
   unknown;
 
@@ -7,9 +7,9 @@ enum NetworkActionFailure {
     required T Function() unknown,
   }) {
     switch (this) {
-      case NetworkActionFailure.network:
+      case NetworkCallError.network:
         return network();
-      case NetworkActionFailure.unknown:
+      case NetworkCallError.unknown:
         return unknown();
     }
   }

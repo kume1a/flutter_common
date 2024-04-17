@@ -1,4 +1,4 @@
-enum GetEntityFailure {
+enum GetEntityError {
   network,
   unknown,
   notFound;
@@ -9,11 +9,11 @@ enum GetEntityFailure {
     required T Function() notFound,
   }) {
     switch (this) {
-      case GetEntityFailure.network:
+      case GetEntityError.network:
         return network();
-      case GetEntityFailure.unknown:
+      case GetEntityError.unknown:
         return unknown();
-      case GetEntityFailure.notFound:
+      case GetEntityError.notFound:
         return notFound();
     }
   }

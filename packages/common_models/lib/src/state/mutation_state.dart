@@ -2,18 +2,18 @@ import 'package:collection/collection.dart';
 
 import '../core/either.dart';
 
-sealed class MutationState<F, T> {
+sealed class MutationState<E, T> {
   const MutationState._();
 
-  factory MutationState.idle() => _Idle<F, T>._();
+  factory MutationState.idle() => _Idle<E, T>._();
 
-  factory MutationState.executing() => _Executing<F, T>._();
+  factory MutationState.executing() => _Executing<E, T>._();
 
-  factory MutationState.failed(F failure) => _Failed<F, T>._(failure);
+  factory MutationState.failed(E err) => _Failed<E, T>._(err);
 
-  factory MutationState.executed(T data) => _Executed<F, T>._(data);
+  factory MutationState.executed(T data) => _Executed<E, T>._(data);
 
-  factory MutationState.fromEither(Either<F, T> either) {
+  factory MutationState.fromEither(Either<E, T> either) {
     return either.fold(
       (l) => MutationState.failed(l),
       (r) => MutationState.executed(r),
@@ -24,13 +24,13 @@ sealed class MutationState<F, T> {
     required R Function() idle,
     required R Function() executing,
     required R Function(T data) executed,
-    required R Function(F failure) failed,
+    required R Function(E err) failed,
   }) {
     return switch (this) {
-      _Idle<F, T> _ => idle(),
-      _Executing<F, T> _ => executing(),
-      final _Failed<F, T> result => failed(result.failure),
-      final _Executed<F, T> result => executed(result.data),
+      _Idle<E, T> _ => idle(),
+      _Executing<E, T> _ => executing(),
+      final _Failed<E, T> result => failed(result.err),
+      final _Executed<E, T> result => executed(result.data),
     };
   }
 
@@ -39,13 +39,13 @@ sealed class MutationState<F, T> {
     R Function()? idle,
     R Function()? executing,
     R Function(T data)? executed,
-    R Function(F failure)? failed,
+    R Function(E err)? failed,
   }) {
     return switch (this) {
-      _Idle<F, T> _ => idle?.call() ?? orElse(),
-      _Executing<F, T> _ => executing?.call() ?? orElse(),
-      final _Failed<F, T> result => failed?.call(result.failure) ?? orElse(),
-      final _Executed<F, T> result => executed?.call(result.data) ?? orElse(),
+      _Idle<E, T> _ => idle?.call() ?? orElse(),
+      _Executing<E, T> _ => executing?.call() ?? orElse(),
+      final _Failed<E, T> result => failed?.call(result.err) ?? orElse(),
+      final _Executed<E, T> result => executed?.call(result.data) ?? orElse(),
     };
   }
 
@@ -57,7 +57,7 @@ sealed class MutationState<F, T> {
 
   bool get isExecuted => maybeWhen(orElse: () => false, executed: (_) => true);
 
-  F? get failureOrNull => maybeWhen(orElse: () => null, failed: (f) => f);
+  E? get errOrNull => maybeWhen(orElse: () => null, failed: (err) => err);
 
   T? get dataOrNull => maybeWhen(orElse: () => null, executed: (d) => d);
 }
@@ -91,25 +91,25 @@ class _Executing<F, T> extends MutationState<F, T> {
 }
 
 class _Failed<F, T> extends MutationState<F, T> {
-  const _Failed._(this.failure) : super._();
+  const _Failed._(this.err) : super._();
 
-  final F failure;
+  final F err;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is _Failed<F, T> &&
           runtimeType == other.runtimeType &&
-          const DeepCollectionEquality().equals(failure, other.failure);
+          const DeepCollectionEquality().equals(err, other.err);
 
   @override
   int get hashCode => Object.hash(
         runtimeType,
-        const DeepCollectionEquality().hash(failure),
+        const DeepCollectionEquality().hash(err),
       );
 
   @override
-  String toString() => 'MutationState._Failed{failure: $failure}';
+  String toString() => 'MutationState._Failed{err: $err}';
 }
 
 class _Executed<F, T> extends MutationState<F, T> {

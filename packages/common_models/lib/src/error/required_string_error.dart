@@ -1,27 +1,27 @@
-enum ValueFailure {
+enum RequiredStringError {
   empty,
-  invalid;
+  tooLong;
 
   T when<T>({
     required T Function() empty,
-    required T Function() invalid,
+    required T Function() tooLong,
   }) {
     switch (this) {
-      case ValueFailure.empty:
+      case RequiredStringError.empty:
         return empty();
-      case ValueFailure.invalid:
-        return invalid();
+      case RequiredStringError.tooLong:
+        return tooLong();
     }
   }
 
   T maybeWhen<T>({
     required T Function() orElse,
     T Function()? empty,
-    T Function()? invalid,
+    T Function()? tooLong,
   }) {
     return when(
       empty: empty ?? orElse,
-      invalid: invalid ?? orElse,
+      tooLong: tooLong ?? orElse,
     );
   }
 }

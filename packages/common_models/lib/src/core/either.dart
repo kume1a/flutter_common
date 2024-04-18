@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 
-typedef _Function1<A, B> = B Function(A a);
-
 A _id<A>(A a) => a;
 
 abstract class Either<L, R> {
@@ -45,18 +43,6 @@ abstract class Either<L, R> {
 
   Future<Either<L, R2>> mapAsync<R2>(Future<R2> Function(R r) f) =>
       foldAsync((L l) async => left(l), (R r) async => right(await f(r)));
-
-  Either<L, R2> flatMap<R2>(_Function1<R, Either<L, R2>> f) => fold(left, f);
-
-  Either<L, R2> andThen<R2>(Either<L, R2> next) => fold(left, (_) => next);
-
-  B foldLeft<B>(B z, B Function(B previous, R r) f) => fold((_) => z, (R a) => f(z, a));
-
-  B foldLeftWithIndex<B>(B z, B Function(B previous, int i, R r) f) => fold((_) => z, (R a) => f(z, 0, a));
-
-  B foldRight<B>(B z, B Function(R r, B previous) f) => fold((_) => z, (R a) => f(a, z));
-
-  B foldRightWithIndex<B>(B z, B Function(int i, R r, B previous) f) => fold((_) => z, (R a) => f(0, a, z));
 
   @override
   String toString() => fold((L l) => 'Left($l)', (R r) => 'Right($r)');

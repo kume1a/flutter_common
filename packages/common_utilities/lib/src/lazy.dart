@@ -21,7 +21,7 @@ class Lazy<T> {
   }
 
   @override
-  bool operator ==(dynamic other) => identical(this, other) || (other is Lazy && other._value == _value);
+  bool operator ==(Object other) => identical(this, other) || (other is Lazy<T> && other._value == _value);
 
   @override
   int get hashCode => _value.hashCode;

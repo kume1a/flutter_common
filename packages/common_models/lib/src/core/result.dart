@@ -91,7 +91,7 @@ Result<T> resultErr<T>() => _Err<T>();
 
 Result<T> resultSuccess<T>(T data) => _Success<T>(data);
 
-extension FutureEitherX<R> on Future<Result<R>> {
+extension FutureResultX<R> on Future<Result<R>> {
   Future<B> awaitFold<B>(
     FutureOr<B> Function() ifErr,
     FutureOr<B> Function(R r) ifSuccess,

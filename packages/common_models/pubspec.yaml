@@ -9,6 +9,7 @@ environment:
 dependencies:
   collection: ^1.17.1
   libphonenumber_plugin: ^0.3.3
+  meta: ^1.10.0
 
 dev_dependencies:
   lint: ^2.2.0

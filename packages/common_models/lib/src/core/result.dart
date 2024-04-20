@@ -9,6 +9,10 @@ A _id<A>(A a) => a;
 abstract class Result<T> {
   const Result();
 
+  factory Result.success(T data) = _Success<T>;
+
+  factory Result.err() = _Err<T>;
+
   B fold<B>(B Function() ifErr, B Function(T data) ifSuccess);
 
   B? ifErr<B>(B Function() ifErr) => fold(ifErr, (_) => null);
@@ -30,13 +34,13 @@ abstract class Result<T> {
   T operator |(T dflt) => getOrElse(() => dflt);
 
   Result<T2> map<T2>(T2 Function(T data) f) => fold(
-        resultErr,
-        (T r) => resultSuccess(f(r)),
+        Result.err,
+        (T r) => Result.success(f(r)),
       );
 
   Future<Result<T2>> mapAsync<T2>(Future<T2> Function(T r) f) => foldAsync(
-        () => Future.value(resultErr()),
-        (T r) async => resultSuccess(await f(r)),
+        () => Future.value(Result.err()),
+        (T r) async => Result.success(await f(r)),
       );
 
   @override
@@ -89,10 +93,6 @@ class _Success<T> extends Result<T> {
   int get hashCode => _data.hashCode;
 }
 
-Result<T> resultErr<T>() => _Err<T>();
-
-Result<T> resultSuccess<T>(T data) => _Success<T>(data);
-
 extension FutureResultX<R> on Future<Result<R>> {
   Future<B> awaitFold<B>(
     FutureOr<B> Function() ifErr,
@@ -109,10 +109,10 @@ mixin ResultWrap {
   Future<Result<T>> wrapWithResult<T>(Future<T> Function() call) async {
     try {
       final T result = await call();
-      return resultSuccess(result);
+      return Result.success(result);
     } catch (e) {
       log('', error: e);
-      return resultErr();
+      return Result.err();
     }
   }
 }

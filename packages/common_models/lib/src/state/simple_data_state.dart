@@ -100,7 +100,7 @@ abstract class SimpleDataState<T> {
         orElse: () => null,
       );
 
-  FutureOr<SimpleDataState<T>> modifyData(
+  FutureOr<SimpleDataState<T>> map(
     FutureOr<T?> Function(T data) modifier,
   ) async {
     return maybeWhen(

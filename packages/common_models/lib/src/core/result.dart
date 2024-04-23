@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:collection/collection.dart';
-import 'package:meta/meta.dart';
 
 A _id<A>(A a) => a;
 
@@ -101,18 +99,5 @@ extension FutureResultX<R> on Future<Result<R>> {
     final result = await this;
 
     return result.fold(ifErr, ifSuccess);
-  }
-}
-
-mixin ResultWrap {
-  @protected
-  Future<Result<T>> wrapWithResult<T>(Future<T> Function() call) async {
-    try {
-      final T result = await call();
-      return Result.success(result);
-    } catch (e) {
-      log('', error: e);
-      return Result.err();
-    }
   }
 }

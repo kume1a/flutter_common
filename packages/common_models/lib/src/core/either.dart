@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 
+import 'result.dart';
+
 A _id<A>(A a) => a;
 
 abstract class Either<L, R> {
@@ -43,6 +45,8 @@ abstract class Either<L, R> {
 
   Future<Either<L, R2>> mapAsync<R2>(Future<R2> Function(R r) f) =>
       foldAsync((L l) async => left(l), (R r) async => right(await f(r)));
+
+  Result<R> toResult() => fold((_) => Result.err(), Result.success);
 
   @override
   String toString() => fold((L l) => 'Left($l)', (R r) => 'Right($r)');

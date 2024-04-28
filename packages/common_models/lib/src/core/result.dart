@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 
+import 'empty_result.dart';
+
 A _id<A>(A a) => a;
 
 abstract class Result<T> {
@@ -40,6 +42,8 @@ abstract class Result<T> {
         () => Future.value(Result.err()),
         (T r) async => Result.success(await f(r)),
       );
+
+  EmptyResult toEmptyResult() => fold(() => EmptyResult.err(), (_) => EmptyResult.success());
 
   @override
   String toString() => fold(() => 'Result.Err()', (T data) => 'Result.Success($data)');

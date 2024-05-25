@@ -7,8 +7,8 @@ import 'package:meta/meta.dart';
 
 mixin SafeHttpRequestWrap {
   @protected
-  Future<Either<F, T>> callCatch<F, T>({
-    required Future<T> Function() call,
+  Future<Either<F, T>> callCatch<F, T>(
+    Future<T> Function() call, {
     required F networkError,
     required F unknownError,
     F Function(Response<dynamic>? response)? onResponseError,
@@ -48,9 +48,20 @@ mixin SafeHttpRequestWrap {
     Future<T> Function() call,
   ) async {
     return callCatch(
-      call: call,
+      call,
       networkError: NetworkCallError.network,
       unknownError: NetworkCallError.unknown,
+      onResponseError: (response) {
+        if (response?.statusCode == null) {
+          return NetworkCallError.unknown;
+        }
+
+        if (response!.statusCode! >= 500) {
+          return NetworkCallError.internalServer;
+        }
+
+        return NetworkCallError.unknown;
+      },
     );
   }
 }

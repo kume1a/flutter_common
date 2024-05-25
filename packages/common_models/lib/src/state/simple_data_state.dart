@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '../core/either.dart';
+import '../core/result.dart';
 
 abstract class SimpleDataState<T> {
   const SimpleDataState._();
@@ -17,6 +18,11 @@ abstract class SimpleDataState<T> {
 
   factory SimpleDataState.fromEither(Either<dynamic, T> either) => either.fold(
         (_) => SimpleDataState<T>.failure(),
+        (T r) => SimpleDataState<T>.success(r),
+      );
+
+  factory SimpleDataState.fromResult(Result<T> result) => result.fold(
+        () => SimpleDataState<T>.failure(),
         (T r) => SimpleDataState<T>.success(r),
       );
 

@@ -45,3 +45,21 @@ List<MODEL> mapListOrEmpty<MODEL, SCHEMA>(
 MODEL? tryMapOptional<MODEL, SCHEMA>(SCHEMA? schema, MODEL? Function(SCHEMA? schema) mapper) {
   return schema != null ? mapper(schema) : null;
 }
+
+abstract base class EnumMapper<MODEL, SCHEMA> {
+  abstract Map<SCHEMA, MODEL> values;
+
+  SCHEMA? enumToSchema(MODEL? model) {
+    for (final entry in values.entries) {
+      if (entry.value == model) {
+        return entry.key;
+      }
+    }
+
+    return null;
+  }
+
+  MODEL? schemaToEnum(SCHEMA? l) {
+    return values[l];
+  }
+}

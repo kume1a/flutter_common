@@ -74,6 +74,12 @@ abstract class DataState<E, T> {
     );
   }
 
+  T dataOrElse(T Function() orElse) => maybeWhen(
+        success: (data) => data,
+        failure: (_, data) => data ?? orElse(),
+        orElse: orElse,
+      );
+
   bool get isIdle => maybeWhen(idle: () => true, orElse: () => false);
 
   bool get isLoading => maybeWhen(loading: () => true, orElse: () => false);

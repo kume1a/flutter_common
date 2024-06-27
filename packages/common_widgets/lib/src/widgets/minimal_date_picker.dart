@@ -870,7 +870,6 @@ class _MonthPickerState extends State<_MonthPicker> {
 
 class _FocusedDate extends InheritedWidget {
   const _FocusedDate({
-    super.key,
     required super.child,
     this.date,
   });

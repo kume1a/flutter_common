@@ -1,7 +1,5 @@
 import 'dart:async';
 
-A _id<A>(A a) => a;
-
 abstract class EmptyResult {
   const EmptyResult();
 

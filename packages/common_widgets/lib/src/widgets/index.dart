@@ -3,6 +3,7 @@ export 'button.dart';
 export 'carousel/exports.dart';
 export 'dashed_line.dart';
 export 'dashed_rect.dart';
+export 'dialog/index.dart';
 export 'list/exports.dart';
 export 'minimal_date_picker.dart';
 export 'page_indicator/exports.dart';

@@ -11,7 +11,7 @@ class BlankContainer extends StatelessWidget {
     this.color = _defaultColor,
     this.padding,
     this.margin,
-  });
+  }) : _shape = BoxShape.rectangle;
 
   const BlankContainer.circular({
     super.key,
@@ -21,7 +21,8 @@ class BlankContainer extends StatelessWidget {
     this.margin,
   })  : width = radius * 2,
         height = radius * 2,
-        borderRadius = null;
+        borderRadius = null,
+        _shape = BoxShape.circle;
 
   const BlankContainer.square({
     super.key,
@@ -31,7 +32,8 @@ class BlankContainer extends StatelessWidget {
     this.padding,
     this.margin,
   })  : width = size,
-        height = size;
+        height = size,
+        _shape = BoxShape.rectangle;
 
   final BorderRadius? borderRadius;
   final EdgeInsets? padding;
@@ -39,6 +41,8 @@ class BlankContainer extends StatelessWidget {
   final double? width;
   final double? height;
   final Color? color;
+
+  final BoxShape _shape;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +54,7 @@ class BlankContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: borderRadius,
+        shape: _shape,
       ),
     );
   }

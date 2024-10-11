@@ -5,8 +5,8 @@ const Color _defaultColor = Color(0xFFE0E0E0);
 class BlankContainer extends StatelessWidget {
   const BlankContainer({
     super.key,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     this.borderRadius,
     this.color = _defaultColor,
     this.padding,

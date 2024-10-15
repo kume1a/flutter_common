@@ -1,4 +1,4 @@
-import 'package:libphonenumber_plugin/libphonenumber_plugin.dart';
+import 'package:libphonenumber/libphonenumber.dart';
 
 import '../core/either.dart';
 import '../error/value_error.dart';
@@ -16,7 +16,11 @@ class PhoneNumber extends ValueObject<ValueError, String> {
       return PhoneNumber._(left(ValueError.invalid));
     }
 
-    final bool isValid = await PhoneNumberUtil.isValidPhoneNumber(phoneNumber, isoCode) ?? false;
+    final bool isValid = await PhoneNumberUtil.isValidPhoneNumber(
+          phoneNumber: phoneNumber,
+          isoCode: isoCode,
+        ) ??
+        false;
 
     if (!isValid) {
       return PhoneNumber._(left(ValueError.invalid));

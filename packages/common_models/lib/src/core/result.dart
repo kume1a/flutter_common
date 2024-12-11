@@ -6,7 +6,7 @@ import 'empty_result.dart';
 
 A _id<A>(A a) => a;
 
-abstract class Result<T> {
+sealed class Result<T> {
   const Result();
 
   factory Result.success(T data) = _Success<T>;

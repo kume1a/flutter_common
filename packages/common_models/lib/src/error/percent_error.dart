@@ -8,14 +8,11 @@ enum PercentError {
     required T Function() invalid,
     required T Function() outOfRange,
   }) {
-    switch (this) {
-      case PercentError.empty:
-        return empty();
-      case PercentError.invalid:
-        return invalid();
-      case PercentError.outOfRange:
-        return outOfRange();
-    }
+    return switch (this) {
+      PercentError.empty => empty(),
+      PercentError.invalid => invalid(),
+      PercentError.outOfRange => outOfRange(),
+    };
   }
 
   T maybeWhen<T>({

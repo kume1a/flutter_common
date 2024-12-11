@@ -18,24 +18,16 @@ enum PasswordError {
     required T Function() noSpecialCharsFound,
     required T Function() containsWhitespace,
   }) {
-    switch (this) {
-      case PasswordError.empty:
-        return empty();
-      case PasswordError.tooShort:
-        return tooShort();
-      case PasswordError.tooLong:
-        return tooLong();
-      case PasswordError.noUppercaseCharsFound:
-        return noUppercaseCharsFound();
-      case PasswordError.noLowercaseCharsFound:
-        return noLowercaseCharsFound();
-      case PasswordError.noDigitsFound:
-        return noDigitsFound();
-      case PasswordError.noSpecialCharsFound:
-        return noSpecialCharsFound();
-      case PasswordError.containsWhitespace:
-        return containsWhitespace();
-    }
+    return switch (this) {
+      PasswordError.empty => empty(),
+      PasswordError.tooShort => tooShort(),
+      PasswordError.tooLong => tooLong(),
+      PasswordError.noUppercaseCharsFound => noUppercaseCharsFound(),
+      PasswordError.noLowercaseCharsFound => noLowercaseCharsFound(),
+      PasswordError.noDigitsFound => noDigitsFound(),
+      PasswordError.noSpecialCharsFound => noSpecialCharsFound(),
+      PasswordError.containsWhitespace => containsWhitespace(),
+    };
   }
 
   T maybeWhen<T>({

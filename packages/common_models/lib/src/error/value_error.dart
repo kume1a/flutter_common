@@ -6,12 +6,10 @@ enum ValueError {
     required T Function() empty,
     required T Function() invalid,
   }) {
-    switch (this) {
-      case ValueError.empty:
-        return empty();
-      case ValueError.invalid:
-        return invalid();
-    }
+    return switch (this) {
+      ValueError.empty => empty(),
+      ValueError.invalid => invalid(),
+    };
   }
 
   T maybeWhen<T>({

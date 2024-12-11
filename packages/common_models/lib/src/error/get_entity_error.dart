@@ -8,14 +8,11 @@ enum GetEntityError {
     required T Function() unknown,
     required T Function() notFound,
   }) {
-    switch (this) {
-      case GetEntityError.network:
-        return network();
-      case GetEntityError.unknown:
-        return unknown();
-      case GetEntityError.notFound:
-        return notFound();
-    }
+    return switch (this) {
+      GetEntityError.network => network(),
+      GetEntityError.unknown => unknown(),
+      GetEntityError.notFound => notFound(),
+    };
   }
 
   T maybeWhen<T>({

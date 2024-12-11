@@ -6,12 +6,10 @@ enum RequiredStringError {
     required T Function() empty,
     required T Function() tooLong,
   }) {
-    switch (this) {
-      case RequiredStringError.empty:
-        return empty();
-      case RequiredStringError.tooLong:
-        return tooLong();
-    }
+    return switch (this) {
+      RequiredStringError.empty => empty(),
+      RequiredStringError.tooLong => tooLong(),
+    };
   }
 
   T maybeWhen<T>({

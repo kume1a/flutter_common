@@ -6,7 +6,12 @@ class DataPage<T> {
     required this.count,
   });
 
-  factory DataPage.empty() => DataPage<T>(items: List<T>.empty(growable: true), count: 0);
+  factory DataPage.empty() {
+    return DataPage<T>(
+      items: List<T>.empty(growable: true),
+      count: 0,
+    );
+  }
 
   final List<T> items;
   final int count;
@@ -15,10 +20,6 @@ class DataPage<T> {
     List<T>? items,
     int? count,
   }) {
-    if (const DeepCollectionEquality().equals(items, this.items) && count == this.count) {
-      return this;
-    }
-
     return DataPage<T>(
       items: items ?? this.items,
       count: count ?? this.count,
@@ -83,7 +84,7 @@ class DataPage<T> {
     );
   }
 
-  DataPage<T> removeOne(T item) {
+  DataPage<T> remove(T item) {
     final List<T> items = List<T>.of(this.items);
     final int index = items.indexOf(item);
     if (index == -1) {

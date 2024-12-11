@@ -6,12 +6,10 @@ enum RepeatedPasswordError {
     required T Function() empty,
     required T Function() doesNotMatch,
   }) {
-    switch (this) {
-      case RepeatedPasswordError.empty:
-        return empty();
-      case RepeatedPasswordError.doesNotMatch:
-        return doesNotMatch();
-    }
+    return switch (this) {
+      RepeatedPasswordError.empty => empty(),
+      RepeatedPasswordError.doesNotMatch => doesNotMatch(),
+    };
   }
 
   T maybeWhen<T>({

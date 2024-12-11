@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../core/enums/list_type.dart';
+import '../core/enums.dart';
 import '../core/typedefs.dart';
 import 'core/default_paging_empty_list_indicator.dart';
 import 'core/default_paging_loading_indicator.dart';
@@ -56,7 +56,7 @@ class PagedGrid<T> extends StatelessWidget {
         case ListType.sliverBuilder:
           return SliverList(
             delegate: SliverChildListDelegate(
-              <Widget>[
+              [
                 if (emptyListBuilder != null)
                   emptyListBuilder!.call(context)
                 else

@@ -10,16 +10,12 @@ enum EmailError {
     required T Function() invalid,
     required T Function() containsWhitespace,
   }) {
-    switch (this) {
-      case EmailError.empty:
-        return empty();
-      case EmailError.tooLong:
-        return tooLong();
-      case EmailError.invalid:
-        return invalid();
-      case EmailError.containsWhitespace:
-        return containsWhitespace();
-    }
+    return switch (this) {
+      EmailError.empty => empty(),
+      EmailError.tooLong => tooLong(),
+      EmailError.invalid => invalid(),
+      EmailError.containsWhitespace => containsWhitespace(),
+    };
   }
 
   T maybeWhen<T>({

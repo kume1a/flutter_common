@@ -8,14 +8,11 @@ enum NameError {
     required T Function() tooShort,
     required T Function() tooLong,
   }) {
-    switch (this) {
-      case NameError.empty:
-        return empty();
-      case NameError.tooShort:
-        return tooShort();
-      case NameError.tooLong:
-        return tooLong();
-    }
+    return switch (this) {
+      NameError.empty => empty(),
+      NameError.tooShort => tooShort(),
+      NameError.tooLong => tooLong(),
+    };
   }
 
   T maybeWhen<T>({

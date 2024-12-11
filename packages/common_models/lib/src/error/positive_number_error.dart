@@ -8,14 +8,11 @@ enum PositiveNumberError {
     required T Function() invalid,
     required T Function() negative,
   }) {
-    switch (this) {
-      case PositiveNumberError.empty:
-        return empty();
-      case PositiveNumberError.invalid:
-        return invalid();
-      case PositiveNumberError.negative:
-        return negative();
-    }
+    return switch (this) {
+      PositiveNumberError.empty => empty(),
+      PositiveNumberError.invalid => invalid(),
+      PositiveNumberError.negative => negative(),
+    };
   }
 
   T maybeWhen<T>({

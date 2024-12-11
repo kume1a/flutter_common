@@ -6,7 +6,7 @@ import 'result.dart';
 
 A _id<A>(A a) => a;
 
-abstract class Either<L, R> {
+sealed class Either<L, R> {
   const Either();
 
   B fold<B>(B Function(L l) ifLeft, B Function(R r) ifRight);

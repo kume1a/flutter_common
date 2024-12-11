@@ -8,14 +8,11 @@ enum NetworkCallError {
     required T Function() unknown,
     required T Function() internalServer,
   }) {
-    switch (this) {
-      case NetworkCallError.network:
-        return network();
-      case NetworkCallError.unknown:
-        return unknown();
-      case NetworkCallError.internalServer:
-        return internalServer();
-    }
+    return switch (this) {
+      NetworkCallError.network => network(),
+      NetworkCallError.unknown => unknown(),
+      NetworkCallError.internalServer => internalServer(),
+    };
   }
 
   T maybeWhen<T>({

@@ -10,16 +10,12 @@ enum MoneyError {
     required T Function() lessThanMin,
     required T Function() moreThanMax,
   }) {
-    switch (this) {
-      case MoneyError.empty:
-        return empty();
-      case MoneyError.invalid:
-        return invalid();
-      case MoneyError.lessThanMin:
-        return lessThanMin();
-      case MoneyError.moreThanMax:
-        return moreThanMax();
-    }
+    return switch (this) {
+      MoneyError.empty => empty(),
+      MoneyError.invalid => invalid(),
+      MoneyError.lessThanMin => lessThanMin(),
+      MoneyError.moreThanMax => moreThanMax(),
+    };
   }
 
   T maybeWhen<T>({

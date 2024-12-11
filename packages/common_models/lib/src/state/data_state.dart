@@ -4,16 +4,16 @@ import 'package:collection/collection.dart';
 
 import '../core/either.dart';
 
-abstract class DataState<E, T> {
-  const DataState._();
+sealed class DataState<E, T> {
+  const DataState();
 
-  factory DataState.success(T data) => _Success<E, T>._(data);
+  factory DataState.success(T data) => _Success<E, T>(data);
 
-  factory DataState.idle() => _Idle<E, T>._();
+  factory DataState.idle() => _Idle<E, T>();
 
-  factory DataState.loading() => _Loading<E, T>._();
+  factory DataState.loading() => _Loading<E, T>();
 
-  factory DataState.failure(E err, [T? data]) => _Failure<E, T>._(err, data);
+  factory DataState.failure(E err, [T? data]) => _Failure<E, T>(err, data);
 
   factory DataState.fromEither(Either<E, T> either) => either.fold(
         (E l) => DataState<E, T>.failure(l),
@@ -155,7 +155,7 @@ abstract class DataState<E, T> {
 }
 
 class _Idle<F, T> extends DataState<F, T> {
-  const _Idle._() : super._();
+  const _Idle() : super();
 
   @override
   bool operator ==(Object other) =>
@@ -169,7 +169,7 @@ class _Idle<F, T> extends DataState<F, T> {
 }
 
 class _Success<F, T> extends DataState<F, T> {
-  const _Success._(this.data) : super._();
+  const _Success(this.data) : super();
 
   final T data;
 
@@ -188,7 +188,7 @@ class _Success<F, T> extends DataState<F, T> {
 }
 
 class _Loading<F, T> extends DataState<F, T> {
-  const _Loading._() : super._();
+  const _Loading() : super();
 
   @override
   bool operator ==(Object other) =>
@@ -202,10 +202,10 @@ class _Loading<F, T> extends DataState<F, T> {
 }
 
 class _Failure<F, T> extends DataState<F, T> {
-  const _Failure._(
+  const _Failure(
     this.err,
     this.data,
-  ) : super._();
+  ) : super();
 
   final F err;
   final T? data;

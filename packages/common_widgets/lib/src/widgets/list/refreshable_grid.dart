@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../core/enums/list_type.dart';
+import '../core/enums.dart';
 import '../core/typedefs.dart';
 import 'core/default_paging_refresh_indicator.dart';
 import 'core/list_config.dart';

@@ -1,6 +1,6 @@
 export 'blank_container.dart';
 export 'button.dart';
-export 'carousel/exports.dart';
+export 'carousel/index.dart';
 export 'dashed_line.dart';
 export 'dashed_rect.dart';
 export 'dialog/index.dart';

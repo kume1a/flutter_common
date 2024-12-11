@@ -1,6 +1,6 @@
 import 'dart:async';
 
-abstract class EmptyResult {
+sealed class EmptyResult {
   const EmptyResult();
 
   factory EmptyResult.success() = _Success;

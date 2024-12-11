@@ -49,6 +49,20 @@ sealed class MutationState<E, T> {
     };
   }
 
+  R? whenOrNull<R>({
+    R Function()? idle,
+    R Function()? executing,
+    R Function(T data)? executed,
+    R Function(E err)? failed,
+  }) {
+    return switch (this) {
+      _Idle<E, T> _ => idle?.call(),
+      _Executing<E, T> _ => executing?.call(),
+      final _Failed<E, T> result => failed?.call(result.err),
+      final _Executed<E, T> result => executed?.call(result.data),
+    };
+  }
+
   bool get isIdle => maybeWhen(orElse: () => false, idle: () => true);
 
   bool get isExecuting => maybeWhen(orElse: () => false, executing: () => true);

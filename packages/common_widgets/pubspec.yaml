@@ -10,7 +10,5 @@ dependencies:
   flutter:
     sdk: flutter
 
-  diffutil_dart: ^4.0.0
-
 dev_dependencies:
   lint: ^2.2.0

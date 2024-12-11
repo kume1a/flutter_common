@@ -32,19 +32,13 @@ abstract class SimpleDataState<T> {
     required A Function() loading,
     required A Function(T? data) failure,
   }) {
-    if (this is _Idle<T>) {
-      return idle();
-    } else if (this is _Success<T>) {
-      final _Success<T> value = this as _Success<T>;
-      return success(value.data);
-    } else if (this is _Loading<T>) {
-      return loading();
-    } else if (this is _Failure<T>) {
-      final _Failure<T> value = this as _Failure<T>;
-      return failure(value.data);
-    }
-
-    throw Exception('unsupported subclass');
+    return switch (this) {
+      _Idle<T> _ => idle(),
+      final _Success<T> value => success(value.data),
+      _Loading<T> _ => loading(),
+      final _Failure<T> value => failure(value.data),
+      _ => throw Exception('unsupported subclass'),
+    };
   }
 
   A maybeWhen<A extends Object?>({
@@ -54,19 +48,28 @@ abstract class SimpleDataState<T> {
     A Function()? loading,
     A Function(T? data)? failure,
   }) {
-    if (this is _Idle<T>) {
-      return idle != null ? idle() : orElse();
-    } else if (this is _Success<T>) {
-      final _Success<T> value = this as _Success<T>;
-      return success != null ? success(value.data) : orElse();
-    } else if (this is _Loading<T>) {
-      return loading != null ? loading() : orElse();
-    } else if (this is _Failure<T>) {
-      final _Failure<T> value = this as _Failure<T>;
-      return failure != null ? failure(value.data) : orElse();
-    }
+    return switch (this) {
+      _Idle<T> _ => idle != null ? idle() : orElse(),
+      final _Success<T> value => success != null ? success(value.data) : orElse(),
+      _Loading<T> _ => loading != null ? loading() : orElse(),
+      final _Failure<T> value => failure != null ? failure(value.data) : orElse(),
+      _ => throw Exception('unsupported subclass'),
+    };
+  }
 
-    throw Exception('unsupported subclass');
+  A? whenOrNull<A extends Object?>({
+    A Function()? idle,
+    A Function(T data)? success,
+    A Function()? loading,
+    A Function(T? data)? failure,
+  }) {
+    return switch (this) {
+      _Idle<T> _ => idle?.call(),
+      final _Success<T> value => success?.call(value.data),
+      _Loading<T> _ => loading?.call(),
+      final _Failure<T> value => failure?.call(value.data),
+      _ => throw Exception('unsupported subclass'),
+    };
   }
 
   A ifData<A extends Object?>(

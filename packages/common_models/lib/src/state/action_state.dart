@@ -49,6 +49,20 @@ sealed class ActionState<E> {
     };
   }
 
+  R? whenOrNull<R>({
+    R Function()? idle,
+    R Function()? executing,
+    R Function()? executed,
+    R Function(E err)? failed,
+  }) {
+    return switch (this) {
+      _Idle<E> _ => idle?.call(),
+      _Executing<E> _ => executing?.call(),
+      final _Failed<E> result => failed?.call(result.err),
+      _Executed<E> _ => executed?.call(),
+    };
+  }
+
   bool get isIdle => maybeWhen(orElse: () => false, idle: () => true);
 
   bool get isExecuting => maybeWhen(orElse: () => false, executing: () => true);

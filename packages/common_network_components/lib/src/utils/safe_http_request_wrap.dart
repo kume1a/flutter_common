@@ -46,7 +46,7 @@ mixin SafeHttpRequestWrap {
   @protected
   Future<Either<NetworkCallError, T>> callCatchHandleNetworkCallError<T>(
     Future<T> Function() call,
-  ) async {
+  ) {
     return callCatch(
       call,
       networkError: NetworkCallError.network,

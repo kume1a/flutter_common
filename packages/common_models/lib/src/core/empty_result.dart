@@ -54,7 +54,7 @@ class _Success extends EmptyResult {
   Future<B> foldAsync<B>(
     Future<B> Function() ifErr,
     Future<B> Function() ifSuccess,
-  ) async =>
+  ) =>
       ifSuccess();
 
   @override

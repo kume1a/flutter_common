@@ -84,7 +84,7 @@ class _Success<T> extends Result<T> {
   Future<B> foldAsync<B>(
     Future<B> Function() ifErr,
     Future<B> Function(T data) ifSuccess,
-  ) async =>
+  ) =>
       ifSuccess(_data);
 
   @override

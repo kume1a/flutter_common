@@ -66,7 +66,7 @@ class _Left<L, R> extends Either<L, R> {
   Future<B> foldAsync<B>(
     Future<B> Function(L l) ifLeft,
     Future<B> Function(R r) ifRight,
-  ) async =>
+  ) =>
       ifLeft(_l);
 
   @override
@@ -90,7 +90,7 @@ class _Right<L, R> extends Either<L, R> {
   Future<B> foldAsync<B>(
     Future<B> Function(L l) ifLeft,
     Future<B> Function(R r) ifRight,
-  ) async =>
+  ) =>
       ifRight(_r);
 
   @override

@@ -31,7 +31,6 @@ sealed class DataState<E, T> {
       final _Success<E, T> value => success(value.data),
       _Loading<E, T> _ => loading(),
       final _Failure<E, T> value => failure(value.err, value.data),
-      _ => throw Exception('unsupported subclass'),
     };
   }
 
@@ -47,7 +46,6 @@ sealed class DataState<E, T> {
       final _Success<E, T> value => success != null ? success(value.data) : orElse(),
       _Loading<E, T> _ => loading != null ? loading() : orElse(),
       final _Failure<E, T> value => failure != null ? failure(value.err, value.data) : orElse(),
-      _ => throw Exception('unsupported subclass'),
     };
   }
 
@@ -62,7 +60,6 @@ sealed class DataState<E, T> {
       final _Success<E, T> value => success?.call(value.data),
       _Loading<E, T> _ => loading?.call(),
       final _Failure<E, T> value => failure?.call(value.err, value.data),
-      _ => throw Exception('unsupported subclass'),
     };
   }
 
@@ -111,7 +108,7 @@ sealed class DataState<E, T> {
 
   FutureOr<DataState<E, T>> map(
     FutureOr<T?> Function(T data) modifier,
-  ) async {
+  ) {
     return maybeWhen(
       success: (T data) async {
         final T? newData = await modifier.call(data);

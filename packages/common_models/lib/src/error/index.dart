@@ -7,4 +7,5 @@ export 'percent_error.dart';
 export 'positive_number_error.dart';
 export 'repeated_password_error.dart';
 export 'required_string_error.dart';
+export 'update_entity_error.dart';
 export 'value_error.dart';

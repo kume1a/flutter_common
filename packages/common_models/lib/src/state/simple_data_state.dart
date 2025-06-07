@@ -112,7 +112,7 @@ sealed class SimpleDataState<T> {
         orElse: () => null,
       );
 
-  FutureOr<SimpleDataState<T>> map(
+  FutureOr<SimpleDataState<T>> mapAsync(
     FutureOr<T?> Function(T data) modifier,
   ) {
     return maybeWhen(
@@ -126,6 +126,28 @@ sealed class SimpleDataState<T> {
       failure: (T? data) async {
         if (data != null) {
           final T? newData = await modifier.call(data);
+          if (newData != null) {
+            return SimpleDataState<T>.failure(newData);
+          }
+        }
+        return this;
+      },
+      orElse: () => this,
+    );
+  }
+
+  SimpleDataState<T> map(T? Function(T data) modifier) {
+    return maybeWhen(
+      success: (T data) {
+        final T? newData = modifier.call(data);
+        if (newData != null) {
+          return SimpleDataState<T>.success(newData);
+        }
+        return this;
+      },
+      failure: (T? data) {
+        if (data != null) {
+          final T? newData = modifier.call(data);
           if (newData != null) {
             return SimpleDataState<T>.failure(newData);
           }

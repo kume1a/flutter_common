@@ -106,7 +106,7 @@ sealed class DataState<E, T> {
         orElse: () => null,
       );
 
-  FutureOr<DataState<E, T>> map(
+  FutureOr<DataState<E, T>> mapAsync(
     FutureOr<T?> Function(T data) modifier,
   ) {
     return maybeWhen(
@@ -120,6 +120,28 @@ sealed class DataState<E, T> {
       failure: (E err, T? data) async {
         if (data != null) {
           final T? newData = await modifier.call(data);
+          if (newData != null) {
+            return DataState<E, T>.failure(err, newData);
+          }
+        }
+        return this;
+      },
+      orElse: () => this,
+    );
+  }
+
+  DataState<E, T> map(T? Function(T data) modifier) {
+    return maybeWhen(
+      success: (T data) {
+        final T? newData = modifier.call(data);
+        if (newData != null) {
+          return DataState<E, T>.success(newData);
+        }
+        return this;
+      },
+      failure: (E err, T? data) {
+        if (data != null) {
+          final T? newData = modifier.call(data);
           if (newData != null) {
             return DataState<E, T>.failure(err, newData);
           }
